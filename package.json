@@ -1,0 +1,64 @@
+{
+  "name": "@folio/local-kb-admin",
+  "version": "1.0.0",
+  "description": "ERM KB Administration for FOLIO with Stripes",
+  "main": "src/index.js",
+  "publishConfig": {
+    "registry": "https://repository.folio.org/repository/npm-folio/"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "lint": "eslint .",
+    "test": "echo 'placeholder. no tests implemented'"
+  },
+  "devDependencies": {
+    "@folio/eslint-config-stripes": "^3.2.1",
+    "@folio/stripes-cli": "^1.8.0",
+    "@folio/stripes": "^2.0.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "react": "~16.6.3",
+    "react-dom": "~16.6.3",
+    "react-redux": "~5.1.1",
+    "redux": "~3.7.2"
+  },
+  "dependencies": {
+    "@folio/stripes-erm-components": "^1.4.0",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.0",
+    "query-string": "^6.6.0",
+    "react-intl": "^2.4.0",
+    "redux-form": "^7.0.3"
+  },
+  "peerDependencies": {
+    "@folio/stripes": "^2.0.0",
+    "react": "*",
+    "react-dom": "*",
+    "react-redux": "*",
+    "redux": "*"
+  },
+  "stripes": {
+    "actsAs": ["app", "settings"],
+    "displayName": "ui-local-kb-admin.meta.title",
+    "route": "/local-kb-admin",
+    "home": "/local-kb-admin",
+    "hasSettings": true,
+    "queryResource": "query",
+    "okapiInterfaces": {
+      "erm": "1.0"
+    },
+    "permissionSets": [
+      {
+        "permissionName": "module.local-kb-admin.enabled",
+        "displayName": "UI: ui-local-kb-admin module is enabled",
+        "visible": true
+      }
+    ],
+    "icons": []
+  }
+}
