@@ -1,3 +1,14 @@
 {
-  "meta.title": "Local KB Admin"
+  "meta.title": "Local KB Admin",
+
+  "prop.jobName": "Job name",
+  "prop.runningStatus": "Running status",
+  "prop.result": "Result",
+  "prop.noOfErrors": "No. of errors",
+  "prop.started": "Started",
+  "prop.ended": "Ended",
+
+  "prop.status": "Running status",
+  "prop.outcome": "Import outcome",
+  "prop.jobSource": "Job type "
 }
