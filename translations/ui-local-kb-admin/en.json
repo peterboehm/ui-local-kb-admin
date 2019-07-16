@@ -8,6 +8,9 @@
   "prop.started": "Started",
   "prop.ended": "Ended",
 
-  "prop.outcome": "Import outcome",
+  "prop.filename": "Filename",
+  "prop.errors": "Errors",
+
+  "prop.outcome": "Outcome",
   "prop.jobSource": "Job type "
 }
