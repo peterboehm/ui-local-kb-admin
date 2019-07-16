@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 
 
-class ViewLocalKbAdminRoute extends React.Component {
+class ViewJobRoute extends React.Component {
 
   render() {
     return (
@@ -15,4 +15,4 @@ class ViewLocalKbAdminRoute extends React.Component {
   }
 }
 
-export default stripesConnect(ViewLocalKbAdminRoute);
+export default stripesConnect(ViewJobRoute);

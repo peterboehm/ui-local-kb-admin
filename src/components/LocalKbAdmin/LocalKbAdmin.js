@@ -46,7 +46,7 @@ export default class LocalKbAdmin extends React.Component {
     data: {},
     searchString: '',
     syncToLocationSearch: true,
-    visibleColumns: ['jobName', 'jobNumber', 'runningStatus', 'result', 'noOfErrors', 
+    visibleColumns: ['jobName', 'runningStatus', 'result', 'noOfErrors', 
         'started', 'ended'],
   }
 
@@ -56,7 +56,6 @@ export default class LocalKbAdmin extends React.Component {
 
   columnMapping = {
     jobName: <FormattedMessage id="ui-local-kb-admin.prop.jobName" />,
-    jobNumber: <FormattedMessage id="ui-local-kb-admin.prop.jobNumber" />,
     runningStatus: <FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />,
     result: <FormattedMessage id="ui-local-kb-admin.prop.result" />,
     noOfErrors: <FormattedMessage id="ui-local-kb-admin.prop.noOfErrors" />,
@@ -65,11 +64,12 @@ export default class LocalKbAdmin extends React.Component {
   }
 
   columnWidths = {
-    name: 300,
-    type: 150,
-    status: 150,
-    startDate: 150,
-    endDate: 150
+    jobName: 300,
+    runningStatus: 150,
+    result: 150,
+    noOfErrors: 150,
+    started: 100,
+    ended: 100,
   }
 
   formatter = {
@@ -109,7 +109,7 @@ export default class LocalKbAdmin extends React.Component {
   }
 
   rowURL = (id) => {
-    return `/licenses/${id}${this.props.searchString}`;
+    return `/local-kb-admin/${id}${this.props.searchString}`;
   }
 
   toggleFilterPane = () => {
@@ -176,16 +176,16 @@ export default class LocalKbAdmin extends React.Component {
     }
 
     return (
-      <IfPermission perm="ui-licenses.licenses.edit">
+      <IfPermission perm="ui-local-kb-admin.job.create">
         <PaneMenu>
-          <FormattedMessage id="ui-licenses.createLicense">
+          <FormattedMessage id="ui-local-kb-admin.createJob">
             {ariaLabel => (
               <Button
                 aria-label={ariaLabel}
                 buttonStyle="primary"
-                id="clickable-new-license"
+                id="clickable-new-job"
                 marginBottom0
-                to={`/licenses/create${this.props.searchString}`}
+                to={`/local-kb-admin/create${this.props.searchString}`}
               >
                 <FormattedMessage id="stripes-smart-components.new" />
               </Button>
@@ -239,7 +239,7 @@ export default class LocalKbAdmin extends React.Component {
               const disableReset = () => (!filterChanged && !searchChanged);
 
               return (
-                <Paneset id="licenses-paneset">
+                <Paneset id="local-kb-admin-paneset">
                   {this.state.filterPaneIsVisible &&
                     <Pane
                       defaultWidth="22%"
@@ -249,14 +249,14 @@ export default class LocalKbAdmin extends React.Component {
                       <form onSubmit={onSubmitSearch}>
                         {/* TODO: Use forthcoming <SearchGroup> or similar component */}
                         <div className={css.searchGroupWrap}>
-                          <FormattedMessage id="ui-licenses.searchInputLabel">
+                          <FormattedMessage id="ui-local-kb-admin.searchInputLabel">
                             { ariaLabel => (
                               <SearchField
                                 aria-label={ariaLabel}
                                 autoFocus
                                 className={css.searchField}
-                                data-test-license-search-input
-                                id="input-license-search"
+                                data-test-local-kb-admin-search-input
+                                id="input-local-kb-admin-search"
                                 inputRef={this.searchField}
                                 marginBottom0
                                 name="query"
@@ -274,7 +274,7 @@ export default class LocalKbAdmin extends React.Component {
                             buttonStyle="primary"
                             disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
-                            id="clickable-search-licenses"
+                            id="clickable-search-jobs"
                             marginBottom0
                             type="submit"
                           >
@@ -293,7 +293,7 @@ export default class LocalKbAdmin extends React.Component {
                             </Icon>
                           </Button>
                         </div>
-                        <LicenseFilters
+                        <LocalKbAdminFilters
                           activeFilters={activeFilters.state}
                           data={data}
                           filterHandlers={getFilterHandlers()}
@@ -302,12 +302,11 @@ export default class LocalKbAdmin extends React.Component {
                     </Pane>
                   }
                   <Pane
-                    appIcon={<AppIcon app="licenses" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
-                    paneTitle={<FormattedMessage id="ui-licenses.meta.title" />}
+                    paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
                   >
                     <MultiColumnList
@@ -316,7 +315,7 @@ export default class LocalKbAdmin extends React.Component {
                       columnWidths={this.columnWidths}
                       contentData={data.licenses}
                       formatter={this.formatter}
-                      id="list-licenses"
+                      id="list-jobs"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}

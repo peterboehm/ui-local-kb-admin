@@ -5,7 +5,16 @@ import { stripesConnect } from '@folio/stripes/core';
 
 //import View from '../components/LicenseForm';
 
-class CreateLocalKbAdminRoute extends React.Component {
+class CreateJobRoute extends React.Component {
+
+  static manifest = Object.freeze({
+    jobs: {
+      type: 'okapi',
+      path: 'erm/jobs',
+      fetch: false,
+      shouldRefresh: () => false,
+    },
+  });
   render() {
     const { handlers, resources } = this.props;
 
@@ -21,4 +30,4 @@ class CreateLocalKbAdminRoute extends React.Component {
 
 export default compose(
   stripesConnect
-)(CreateLocalKbAdminRoute);
+)(CreateJobRoute);
