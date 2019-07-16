@@ -6,14 +6,12 @@ import { stripesConnect } from '@folio/stripes/core';
 
 class ViewLocalKbAdminRoute extends React.Component {
 
-
   render() {
-   
     return (
-        <div>
-            View local kb admin
-        </div>
-    )
+      <div>
+        view page
+      </div>
+    );
   }
 }
 
