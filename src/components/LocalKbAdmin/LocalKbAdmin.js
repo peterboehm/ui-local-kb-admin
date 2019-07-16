@@ -217,7 +217,7 @@ export default class LocalKbAdmin extends React.Component {
     return (
       <div data-test-licenses ref={contentRef}>
         <SearchAndSortQuery
-          initialFilterState={{ status: ['Active'] }}
+          initialFilterState={{ runningStatus: ['Active'] }}
           initialSortState={{ sort: 'name' }}
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}
@@ -313,7 +313,7 @@ export default class LocalKbAdmin extends React.Component {
                       autosize
                       columnMapping={this.columnMapping}
                       columnWidths={this.columnWidths}
-                      contentData={data.licenses}
+                      contentData={data.jobs}
                       formatter={this.formatter}
                       id="list-jobs"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}

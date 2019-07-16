@@ -1,9 +1,11 @@
 import React from 'react';
 import compose from 'compose-function';
+import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 
 //import View from '../components/LicenseForm';
+//import View from '../components/jobForm';
 
 class CreateJobRoute extends React.Component {
 
@@ -15,11 +17,16 @@ class CreateJobRoute extends React.Component {
       shouldRefresh: () => false,
     },
   });
+
+  static propTypes = {
+    mutator: PropTypes.shape({
+      jobs: PropTypes.shape({
+        POST: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
+  };
   render() {
     const { handlers, resources } = this.props;
-
-    //if (!this.state.hasPerms) return <NoPermissions />;
-
     return (
         <div>
             Create page

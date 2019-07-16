@@ -9,6 +9,6 @@
   "prop.ended": "Ended",
 
   "prop.status": "Running status",
-  "prop.outcome": "Import outcome",
+  "prop.outcome": "Outcome",
   "prop.jobSource": "Job type "
 }
