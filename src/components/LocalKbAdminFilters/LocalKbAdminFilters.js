@@ -8,7 +8,6 @@ import { CheckboxFilter } from '@folio/stripes/smart-components';
 const FILTERS = [
   'runningStatus',
   'outcome',
-  'jobSource',
 ];
 
 export default class LocalKbAdminFilters extends React.Component {
@@ -22,23 +21,21 @@ export default class LocalKbAdminFilters extends React.Component {
     activeFilters: {
       runningStatus: [],
       outcome: [],
-      jobSource: [],
     }
   };
 
   state = {
     runningStatus: [],
-    type: [],
-    jobSource: [],
+    outcome: [],
   }
 
   static getDerivedStateFromProps(props, state) {
     const newState = {};
 
     FILTERS.forEach(filter => {
-      console.log(props,'props');
-      const values = !isEmpty(props.data) && props.data[`${filter}Values`];
-      if (values && values.length !== state[filter].length) {
+      console.log(props.data,'props');
+      const values = props.data[`${filter}Values`];
+      if (values.length !== state[filter].length) {
         newState[filter] = values.map(({ label }) => ({ label, value: label }));
       }
     });
@@ -77,7 +74,6 @@ export default class LocalKbAdminFilters extends React.Component {
       <AccordionSet>
         {this.renderCheckboxFilter('runningStatus')}
         {this.renderCheckboxFilter('outcome')}
-        {this.renderCheckboxFilter('jobSource')}
       </AccordionSet>
     );
   }

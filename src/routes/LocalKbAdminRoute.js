@@ -84,13 +84,12 @@ class LocalKbAdminRoute extends React.Component {
       this.source.update(this.props);
     }
 
-    console.log(this.props.resources,'res');
     return (
       <View
         data={{
           jobs: get(resources, 'jobs.records', []),
-          statusValues: get(resources, 'statusValues.records', []),
-          typeValues: get(resources, 'typeValues.records', []),
+          outcomeValues: get(resources, 'outcomeValues.records', []),
+          runningStatusValues: get(resources, 'statusValues.records', []),
         }}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
