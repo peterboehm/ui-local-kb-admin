@@ -8,11 +8,14 @@ import LocalKbAdminRoute from './routes/LocalKbAdminRoute';
 import ViewJobRoute from './routes/ViewJobRoute';
 
 class App extends React.Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+  }
 
   render() {
     const { match: { path } } = this.props;
 
-    return (  
+    return (
       <Switch>
         <Route path={`${path}/create`} component={CreateJobRoute} />
         <Route path={path} component={LocalKbAdminRoute}>

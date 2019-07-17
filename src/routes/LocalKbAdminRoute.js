@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
+import { stripesConnect } from '@folio/stripes/core';
 
 import View from '../components/LocalKbAdmin';
-import { stripesConnect } from '@folio/stripes/core';
 
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
 class LocalKbAdminRoute extends React.Component {
-  
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
@@ -46,31 +45,28 @@ class LocalKbAdminRoute extends React.Component {
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
   });
 
+  static propTypes = {
+    children: PropTypes.node,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+    }).isRequired,
+    mutator: PropTypes.object,
+    resources: PropTypes.object,
+    stripes: PropTypes.shape({
+      hasPerm: PropTypes.func.isRequired,
+      logger: PropTypes.object,
+    }),
+  }
+
   constructor(props) {
     super(props);
 
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
-  }
-
-  querySetter = ({ nsValues, state }) => {
-    const defaults = {
-      filters: null,
-      query: null,
-      sort: null,
-    };
-
-    if (/reset/.test(state.changeType)) {
-      // A mutator's `replace()` function doesn't update the URL of the page. As a result,
-      // we always use `update()` but fully specify the values we want to null out.
-      this.props.mutator.query.update({ ...defaults, ...nsValues });
-    } else {
-      this.props.mutator.query.update(nsValues);
-    }
-  }
-
-  queryGetter = () => {
-    return get(this.props.resources, 'query', {});
   }
 
 
@@ -95,11 +91,31 @@ class LocalKbAdminRoute extends React.Component {
 
       // console.log(oldCount, oldRecords[0].id, newRecords[0].id, 'values');
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
-        console.log(oldCount, 'oldCount');
+        //  console.log(oldCount, 'oldCount');
         const record = newRecords[0];
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
     }
+  }
+
+  querySetter = ({ nsValues, state }) => {
+    const defaults = {
+      filters: null,
+      query: null,
+      sort: null,
+    };
+
+    if (/reset/.test(state.changeType)) {
+      // A mutator's `replace()` function doesn't update the URL of the page. As a result,
+      // we always use `update()` but fully specify the values we want to null out.
+      this.props.mutator.query.update({ ...defaults, ...nsValues });
+    } else {
+      this.props.mutator.query.update(nsValues);
+    }
+  }
+
+  queryGetter = () => {
+    return get(this.props.resources, 'query', {});
   }
 
   render() {
@@ -120,9 +136,9 @@ class LocalKbAdminRoute extends React.Component {
         searchString={location.search}
         source={this.source}
       >
-      {children}
+        {children}
       </View>
-    )
+    );
   }
 }
 

@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-//import View from '../components/LicenseForm';
-//import View from '../components/jobForm';
+//  import View from '../components/LicenseForm';
+//  import View from '../components/jobForm';
 
 class CreateJobRoute extends React.Component {
-
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
@@ -25,12 +24,13 @@ class CreateJobRoute extends React.Component {
       }).isRequired,
     }).isRequired,
   };
+
   render() {
-    const { handlers, resources } = this.props;
+    //  const { handlers, resources } = this.props;
     return (
-        <div>
+      <div>
             Create page
-        </div>
+      </div>
     );
   }
 }
