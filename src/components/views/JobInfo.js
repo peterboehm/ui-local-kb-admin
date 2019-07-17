@@ -2,21 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedDate } from 'react-intl';
 import { get } from 'lodash';
-import { NotesSmartAccordion } from '@folio/stripes/smart-components';
 
 import {
-  AccordionSet,
-  Button,
   Col,
-  ExpandAllButton,
-  Icon,
   Layout,
   Pane,
-  PaneMenu,
   KeyValue,
   Row,
 } from '@folio/stripes/components';
-import { AppIcon, IfPermission, TitleManager } from '@folio/stripes/core';
+import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 
 class JobInfo extends React.Component {
@@ -24,11 +18,8 @@ class JobInfo extends React.Component {
     data: PropTypes.shape({
       job: PropTypes.object,
     }),
-    handlers: PropTypes.shape({
-      onClose: PropTypes.func.isRequired,
-    }).isRequired,
+    onClose: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
-    stripes: PropTypes.object,
   };
 
   renderLoadingPane = () => {
@@ -60,7 +51,7 @@ class JobInfo extends React.Component {
   }
 
   render() {
-    const { data: { job }, isLoading, handlers } = this.props;
+    const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
 
@@ -101,7 +92,7 @@ class JobInfo extends React.Component {
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
                   <div data-test-job-errors>
-                    {'errors'}
+                    {job.logEntries.length}
                   </div>
                 </KeyValue>
               </Col>
