@@ -73,10 +73,12 @@ export default class LocalKbAdmin extends React.Component {
   }
 
   formatter = {
-    type: ({ type }) => type && type.label,
-    status: ({ status }) => status && status.label,
-    startDate: ({ startDate }) => (startDate ? <FormattedDate value={startDate} /> : ''),
-    endDate: license => <LicenseEndDate license={license} />,
+    jobName: ({ name }) => name,
+    runningStatus: ({ status }) => status && status.label,
+    noOfErrors: () => '-',
+    result: ({ result }) => result && result.label,
+    started: ({ started }) => (started ? <FormattedDate value={started} /> : ''),
+    ended: ({ ended }) => (ended ? <FormattedDate value={ended} /> : ''),
   }
 
   rowFormatter = (row) => {
@@ -95,9 +97,9 @@ export default class LocalKbAdmin extends React.Component {
         aria-rowindex={rowIndex + 2}
         className={rowClass}
         data-label={[
-          rowData.name,
-          this.formatter.type(rowData),
-          this.formatter.status(rowData),
+          rowData.result,
+          this.formatter.started(rowData),
+          this.formatter.ended(rowData),
         ].join('...')}
         key={`row-${rowIndex}`}
         role="row"
@@ -209,6 +211,9 @@ export default class LocalKbAdmin extends React.Component {
       syncToLocationSearch,
       visibleColumns,
     } = this.props;
+
+    console.log(data,'data');
+    //const { jobs } = data;
 
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;

@@ -15,7 +15,7 @@ import { stripesConnect } from '@folio/stripes/core';
 //   'Started': 'started',
 //   'Ended': 'ended'
 // },
-
+const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
 class LocalKbAdminRoute extends React.Component {
@@ -23,11 +23,21 @@ class LocalKbAdminRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
-      records: 'results',
       recordsRequired: '%{resultCount}',
       perRequest: RESULT_COUNT_INCREMENT,
       limitParam: 'perPage',
       path: 'erm/jobs',
+      params: getSASParams({
+        searchKey: 'jobName',
+        columnMap: {
+          'Job name': 'jobName',
+          'Running status': 'runningStatus',
+          'Result': 'result',
+          'No. of errors': 'noOfErrors',
+          'Started': 'started',
+          'Ended': 'ended'
+        },
+      })
     },
     outcomeValues: {
       type: 'okapi',
@@ -40,6 +50,7 @@ class LocalKbAdminRoute extends React.Component {
       shouldRefresh: () => false,
     },
     query: { initialValue: {} },
+    resultCount: { initialValue: INITIAL_RESULT_COUNT },
   });
 
   constructor(props) {
@@ -71,10 +82,28 @@ class LocalKbAdminRoute extends React.Component {
 
 
   componentDidMount() {
-    this.source = new StripesConnectedSource(this.props, this.logger);
+    this.source = new StripesConnectedSource(this.props, this.logger, 'localKbAdmin');
 
     if (this.searchField.current) {
       this.searchField.current.focus();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const newCount = this.source.totalCount();
+    const newRecords = this.source.records();
+
+    if (newCount === 1) {
+      const { history, location } = this.props;
+
+      const prevSource = new StripesConnectedSource(prevProps, this.logger, 'localKbAdmin');
+      const oldCount = prevSource.totalCount();
+      const oldRecords = prevSource.records();
+
+      if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
+        const record = newRecords[0];
+        history.push(`/local-kb-admin/${record.id}${location.search}`);
+      }
     }
   }
 

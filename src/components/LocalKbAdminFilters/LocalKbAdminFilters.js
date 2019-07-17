@@ -33,7 +33,6 @@ export default class LocalKbAdminFilters extends React.Component {
     const newState = {};
 
     FILTERS.forEach(filter => {
-      console.log(props.data,'props');
       const values = props.data[`${filter}Values`];
       if (values.length !== state[filter].length) {
         newState[filter] = values.map(({ label }) => ({ label, value: label }));
@@ -48,7 +47,6 @@ export default class LocalKbAdminFilters extends React.Component {
   renderCheckboxFilter = (name, props) => {
     const { activeFilters } = this.props;
     const groupFilters = activeFilters[name] || [];
-    console.log(this.state, name, 'state');
     return (
       <Accordion
         id={`filter-accordion-${name}`}
