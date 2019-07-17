@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { isEmpty } from 'lodash';
-import { Accordion, AccordionSet, FilterAccordionHeader, Selection } from '@folio/stripes/components';
+import { Accordion, AccordionSet, FilterAccordionHeader } from '@folio/stripes/components';
 import { CheckboxFilter } from '@folio/stripes/smart-components';
 
 const FILTERS = [

@@ -14,8 +14,6 @@ import {
   Paneset,
 } from '@folio/stripes/components';
 
-import { IfPermission } from '@folio/stripes/core';
-
 import {
   SearchAndSortQuery,
   SearchAndSortNoResultsMessage as NoResultsMessage,
@@ -57,7 +55,7 @@ export default class LocalKbAdmin extends React.Component {
     jobName: <FormattedMessage id="ui-local-kb-admin.prop.jobName" />,
     runningStatus: <FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />,
     result: <FormattedMessage id="ui-local-kb-admin.prop.outcome" />,
-    errors: <FormattedMessage id="ui-local-kb-admin.errors" />,
+    errors: <FormattedMessage id="ui-local-kb-admin.prop.errors" />,
     started: <FormattedMessage id="ui-local-kb-admin.prop.started" />,
     ended: <FormattedMessage id="ui-local-kb-admin.prop.ended" />,
   }
@@ -179,32 +177,6 @@ export default class LocalKbAdmin extends React.Component {
 
     return <FormattedMessage id="stripes-smart-components.searchCriteria" />;
   }
-
-  // renderResultsLastMenu() {
-  //   if (this.props.disableRecordCreation) {
-  //     return null;
-  //   }
-
-  //   return (
-  //     <IfPermission perm="ui-local-kb-admin.job.create">
-  //       <PaneMenu>
-  //         <FormattedMessage id="ui-local-kb-admin.createJob">
-  //           {ariaLabel => (
-  //             <Button
-  //               aria-label={ariaLabel}
-  //               buttonStyle="primary"
-  //               id="clickable-new-job"
-  //               marginBottom0
-  //               to={`/local-kb-admin/create${this.props.searchString}`}
-  //             >
-  //               <FormattedMessage id="stripes-smart-components.new" />
-  //             </Button>
-  //           )}
-  //         </FormattedMessage>
-  //       </PaneMenu>
-  //     </IfPermission>
-  //   );
-  // }
 
   render() {
     const {

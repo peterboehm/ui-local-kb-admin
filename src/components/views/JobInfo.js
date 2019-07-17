@@ -117,9 +117,9 @@ class JobInfo extends React.Component {
                   job.fileName ? (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
                       <div data-test-job-filename>
-                        {data.fileName}
+                        {job.fileName}
                       </div>
-                  </KeyValue> ) : null
+                    </KeyValue>) : null
                 }
               </Col>
             </Row>
