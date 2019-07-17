@@ -6,8 +6,8 @@ import { Accordion, AccordionSet, FilterAccordionHeader, Selection } from '@foli
 import { CheckboxFilter } from '@folio/stripes/smart-components';
 
 const FILTERS = [
-  'runningStatus',
-  'outcome',
+  'status',
+  'result',
 ];
 
 export default class LocalKbAdminFilters extends React.Component {
@@ -19,14 +19,14 @@ export default class LocalKbAdminFilters extends React.Component {
 
   static defaultProps = {
     activeFilters: {
-      runningStatus: [],
-      outcome: [],
+      status: [],
+      result: [],
     }
   };
 
   state = {
-    runningStatus: [],
-    outcome: [],
+    status: [],
+    result: [],
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -70,8 +70,8 @@ export default class LocalKbAdminFilters extends React.Component {
   render() {
     return (
       <AccordionSet>
-        {this.renderCheckboxFilter('runningStatus')}
-        {this.renderCheckboxFilter('outcome')}
+        {this.renderCheckboxFilter('status')}
+        {this.renderCheckboxFilter('result')}
       </AccordionSet>
     );
   }

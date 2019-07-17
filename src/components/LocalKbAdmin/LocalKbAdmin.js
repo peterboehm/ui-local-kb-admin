@@ -14,7 +14,7 @@ import {
   Paneset,
 } from '@folio/stripes/components';
 
-import { AppIcon, IfPermission } from '@folio/stripes/core';
+import { IfPermission } from '@folio/stripes/core';
 
 import {
   SearchAndSortQuery,
@@ -126,7 +126,7 @@ export default class LocalKbAdmin extends React.Component {
     }
 
     return (
-      <div data-test-licenses-no-results-message>
+      <div data-test-jobs-no-results-message>
         <NoResultsMessage
           source={source}
           searchTerm={query.query || ''}
@@ -212,9 +212,6 @@ export default class LocalKbAdmin extends React.Component {
       visibleColumns,
     } = this.props;
 
-    console.log(data,'data');
-    //const { jobs } = data;
-
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;
     const sortOrder = query.sort || '';
@@ -222,7 +219,7 @@ export default class LocalKbAdmin extends React.Component {
     return (
       <div data-test-licenses ref={contentRef}>
         <SearchAndSortQuery
-          initialFilterState={{ runningStatus: ['Active'] }}
+          initialFilterState={{ status: ['Queued'] }}
           initialSortState={{ sort: 'name' }}
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}

@@ -29,18 +29,10 @@ class LocalKbAdminRoute extends React.Component {
       limitParam: 'perPage',
       path: 'erm/jobs',
       params: getSASParams({
-        searchKey: 'jobName',
-        columnMap: {
-          'Job name': 'jobName',
-          'Running status': 'runningStatus',
-          'Result': 'result',
-          'No. of errors': 'noOfErrors',
-          'Started': 'started',
-          'Ended': 'ended'
-        },
+        searchKey: 'name',
       })
     },
-    outcomeValues: {
+    resultValues: {
       type: 'okapi',
       path: 'erm/refdataValues/persistentJob/result',
       shouldRefresh: () => false,
@@ -83,7 +75,7 @@ class LocalKbAdminRoute extends React.Component {
 
 
   componentDidMount() {
-    this.source = new StripesConnectedSource(this.props, this.logger, 'localKbAdmin');
+    this.source = new StripesConnectedSource(this.props, this.logger, 'jobs');
 
     if (this.searchField.current) {
       this.searchField.current.focus();
@@ -97,11 +89,13 @@ class LocalKbAdminRoute extends React.Component {
     if (newCount === 1) {
       const { history, location } = this.props;
 
-      const prevSource = new StripesConnectedSource(prevProps, this.logger, 'localKbAdmin');
+      const prevSource = new StripesConnectedSource(prevProps, this.logger, 'jobs');
       const oldCount = prevSource.totalCount();
       const oldRecords = prevSource.records();
 
+      // console.log(oldCount, oldRecords[0].id, newRecords[0].id, 'values');
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
+        console.log(oldCount, 'oldCount');
         const record = newRecords[0];
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
@@ -111,15 +105,15 @@ class LocalKbAdminRoute extends React.Component {
   render() {
     const { children, location, resources } = this.props;
     if (this.source) {
-      this.source.update(this.props);
+      this.source.update(this.props, 'jobs');
     }
 
     return (
       <View
         data={{
           jobs: get(resources, 'jobs.records', []),
-          outcomeValues: get(resources, 'outcomeValues.records', []),
-          runningStatusValues: get(resources, 'statusValues.records', []),
+          resultValues: get(resources, 'resultValues.records', []),
+          statusValues: get(resources, 'statusValues.records', []),
         }}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
