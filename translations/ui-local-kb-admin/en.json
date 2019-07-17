@@ -11,6 +11,7 @@
   "prop.filename": "Filename",
   "prop.errors": "Errors",
 
+  "prop.status": "Running status",
   "prop.outcome": "Outcome",
   "prop.jobSource": "Job type "
 }

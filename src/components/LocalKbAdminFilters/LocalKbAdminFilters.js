@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-
+import { isEmpty } from 'lodash';
 import { Accordion, AccordionSet, FilterAccordionHeader, Selection } from '@folio/stripes/components';
 import { CheckboxFilter } from '@folio/stripes/smart-components';
 
 const FILTERS = [
-  'status',
+  'runningStatus',
   'outcome',
-  'jobSource',
 ];
 
 export default class LocalKbAdminFilters extends React.Component {
@@ -20,16 +19,14 @@ export default class LocalKbAdminFilters extends React.Component {
 
   static defaultProps = {
     activeFilters: {
-      status: [],
+      runningStatus: [],
       outcome: [],
-      jobSource: [],
     }
   };
 
   state = {
-    status: [],
-    type: [],
-    jobSource: [],
+    runningStatus: [],
+    outcome: [],
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -50,7 +47,6 @@ export default class LocalKbAdminFilters extends React.Component {
   renderCheckboxFilter = (name, props) => {
     const { activeFilters } = this.props;
     const groupFilters = activeFilters[name] || [];
-
     return (
       <Accordion
         id={`filter-accordion-${name}`}
@@ -74,9 +70,8 @@ export default class LocalKbAdminFilters extends React.Component {
   render() {
     return (
       <AccordionSet>
-        {this.renderCheckboxFilter('status')}
+        {this.renderCheckboxFilter('runningStatus')}
         {this.renderCheckboxFilter('outcome')}
-        {this.renderCheckboxFilter('jobSource')}
       </AccordionSet>
     );
   }
