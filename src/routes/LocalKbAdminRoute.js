@@ -24,6 +24,7 @@ class LocalKbAdminRoute extends React.Component {
     jobs: {
       type: 'okapi',
       recordsRequired: '%{resultCount}',
+      records: 'results',
       perRequest: RESULT_COUNT_INCREMENT,
       limitParam: 'perPage',
       path: 'erm/jobs',
