@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import { noop } from 'lodash';
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
 
 import {
   MultiColumnList,
@@ -46,8 +46,8 @@ export default class LocalKbAdmin extends React.Component {
     data: {},
     searchString: '',
     syncToLocationSearch: true,
-    visibleColumns: ['jobName', 'runningStatus', 'result', 'noOfErrors', 
-        'started', 'ended'],
+    visibleColumns: ['jobName', 'runningStatus', 'result', 'noOfErrors',
+      'started', 'ended'],
   }
 
   state = {
@@ -77,8 +77,17 @@ export default class LocalKbAdmin extends React.Component {
     runningStatus: ({ status }) => status && status.label,
     noOfErrors: () => '-',
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? <FormattedDate value={started} /> : ''),
-    ended: ({ ended }) => (ended ? <FormattedDate value={ended} /> : ''),
+    started: ({ started }) => (started ? this.renderDateTime(started) : ''),
+    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : ''),
+  }
+
+  renderDateTime = (date) => {
+    return (
+      <span>
+        <div><FormattedDate value={date} tagName="div" /></div>
+        <div><FormattedTime value={date} tagName="div" /></div>
+      </span>
+    );
   }
 
   rowFormatter = (row) => {
@@ -219,7 +228,7 @@ export default class LocalKbAdmin extends React.Component {
     return (
       <div data-test-licenses ref={contentRef}>
         <SearchAndSortQuery
-          initialFilterState={{ status: ['Queued'] }}
+          initialFilterState={{ status: ['Queued', 'In progress'] }}
           initialSortState={{ sort: 'name' }}
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}
