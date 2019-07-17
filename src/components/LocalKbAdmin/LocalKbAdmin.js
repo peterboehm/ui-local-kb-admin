@@ -46,8 +46,7 @@ export default class LocalKbAdmin extends React.Component {
     data: {},
     searchString: '',
     syncToLocationSearch: true,
-    visibleColumns: ['jobName', 'runningStatus', 'result', 'noOfErrors',
-      'started', 'ended'],
+    visibleColumns: ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'],
   }
 
   state = {
@@ -57,8 +56,8 @@ export default class LocalKbAdmin extends React.Component {
   columnMapping = {
     jobName: <FormattedMessage id="ui-local-kb-admin.prop.jobName" />,
     runningStatus: <FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />,
-    result: <FormattedMessage id="ui-local-kb-admin.prop.result" />,
-    noOfErrors: <FormattedMessage id="ui-local-kb-admin.prop.noOfErrors" />,
+    result: <FormattedMessage id="ui-local-kb-admin.prop.outcome" />,
+    errors: <FormattedMessage id="ui-local-kb-admin.errors" />,
     started: <FormattedMessage id="ui-local-kb-admin.prop.started" />,
     ended: <FormattedMessage id="ui-local-kb-admin.prop.ended" />,
   }
@@ -67,7 +66,7 @@ export default class LocalKbAdmin extends React.Component {
     jobName: 300,
     runningStatus: 150,
     result: 150,
-    noOfErrors: 150,
+    errors: 150,
     started: 100,
     ended: 100,
   }
@@ -75,7 +74,7 @@ export default class LocalKbAdmin extends React.Component {
   formatter = {
     jobName: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
-    noOfErrors: () => '-',
+    errors: () => '-',
     result: ({ result }) => result && result.label,
     started: ({ started }) => (started ? this.renderDateTime(started) : ''),
     ended: ({ ended }) => (ended ? this.renderDateTime(ended) : ''),
@@ -181,31 +180,31 @@ export default class LocalKbAdmin extends React.Component {
     return <FormattedMessage id="stripes-smart-components.searchCriteria" />;
   }
 
-  renderResultsLastMenu() {
-    if (this.props.disableRecordCreation) {
-      return null;
-    }
+  // renderResultsLastMenu() {
+  //   if (this.props.disableRecordCreation) {
+  //     return null;
+  //   }
 
-    return (
-      <IfPermission perm="ui-local-kb-admin.job.create">
-        <PaneMenu>
-          <FormattedMessage id="ui-local-kb-admin.createJob">
-            {ariaLabel => (
-              <Button
-                aria-label={ariaLabel}
-                buttonStyle="primary"
-                id="clickable-new-job"
-                marginBottom0
-                to={`/local-kb-admin/create${this.props.searchString}`}
-              >
-                <FormattedMessage id="stripes-smart-components.new" />
-              </Button>
-            )}
-          </FormattedMessage>
-        </PaneMenu>
-      </IfPermission>
-    );
-  }
+  //   return (
+  //     <IfPermission perm="ui-local-kb-admin.job.create">
+  //       <PaneMenu>
+  //         <FormattedMessage id="ui-local-kb-admin.createJob">
+  //           {ariaLabel => (
+  //             <Button
+  //               aria-label={ariaLabel}
+  //               buttonStyle="primary"
+  //               id="clickable-new-job"
+  //               marginBottom0
+  //               to={`/local-kb-admin/create${this.props.searchString}`}
+  //             >
+  //               <FormattedMessage id="stripes-smart-components.new" />
+  //             </Button>
+  //           )}
+  //         </FormattedMessage>
+  //       </PaneMenu>
+  //     </IfPermission>
+  //   );
+  // }
 
   render() {
     const {
@@ -229,7 +228,7 @@ export default class LocalKbAdmin extends React.Component {
       <div data-test-licenses ref={contentRef}>
         <SearchAndSortQuery
           initialFilterState={{ status: ['Queued', 'In progress'] }}
-          initialSortState={{ sort: 'name' }}
+          initialSortState={{ sort: 'started' }}
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -315,7 +314,6 @@ export default class LocalKbAdmin extends React.Component {
                   <Pane
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                    lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}

@@ -12,6 +12,6 @@
   "prop.errors": "Errors",
 
   "prop.status": "Running status",
-  "prop.outcome": "Outcome",
+  "prop.outcome": "Import outcome",
   "prop.jobSource": "Job type "
 }

@@ -83,7 +83,7 @@ class JobInfo extends React.Component {
                 </KeyValue>
               </Col>
               <Col xs={4}>
-                <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.result" />}>
+                <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                   <div data-test-job-result>
                     {get(job, ['result', 'label'], '-')}
                   </div>
@@ -113,11 +113,14 @@ class JobInfo extends React.Component {
                 </KeyValue>
               </Col>
               <Col xs={4}>
-                <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
-                  <div data-test-job-filename>
-                    {'filename'}
-                  </div>
-                </KeyValue>
+                {
+                  job.fileName ? (
+                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
+                      <div data-test-job-filename>
+                        {data.fileName}
+                      </div>
+                  </KeyValue> ) : null
+                }
               </Col>
             </Row>
           </div>

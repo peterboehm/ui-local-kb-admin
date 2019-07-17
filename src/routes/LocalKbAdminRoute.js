@@ -7,14 +7,6 @@ import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import View from '../components/LocalKbAdmin';
 import { stripesConnect } from '@folio/stripes/core';
 
-// columnMap: {
-//   'Job name': 'jobName',
-//   'Running status': 'runningStatus',
-//   'Result': 'result',
-//   'No. of errors': 'noOfErrors',
-//   'Started': 'started',
-//   'Ended': 'ended'
-// },
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
@@ -30,6 +22,14 @@ class LocalKbAdminRoute extends React.Component {
       path: 'erm/jobs',
       params: getSASParams({
         searchKey: 'name',
+        columnMap: {
+          'Job name': 'jobName',
+          'Running status': 'runningStatus',
+          'Import outcome': 'result',
+          'Errors': 'errors',
+          'Started': 'started',
+          'Ended': 'ended'
+        },
       })
     },
     resultValues: {
