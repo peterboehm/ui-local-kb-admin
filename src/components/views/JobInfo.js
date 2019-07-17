@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, FormattedDate } from 'react-intl';
+import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
 import { get } from 'lodash';
 
 import {
@@ -21,6 +21,18 @@ class JobInfo extends React.Component {
     onClose: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
   };
+
+  renderDateTime = (date) => {
+    return (
+      <span>
+        <div>
+          <FormattedDate value={date} />
+          {' '}
+          <FormattedTime value={date} />
+        </div>
+      </span>
+    );
+  }
 
   renderLoadingPane = () => {
     return (
@@ -101,14 +113,14 @@ class JobInfo extends React.Component {
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                   <div data-test-job-started>
-                    {job.started ? <FormattedDate value={job.started} /> : '-'}
+                    {job.started ? this.renderDateTime(job.started) : ''}
                   </div>
                 </KeyValue>
               </Col>
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                   <div data-test-job-ended>
-                    {job.ended ? <FormattedDate value={job.ended} /> : '-'}
+                    {job.ended ? this.renderDateTime(job.ended) : ''}
                   </div>
                 </KeyValue>
               </Col>

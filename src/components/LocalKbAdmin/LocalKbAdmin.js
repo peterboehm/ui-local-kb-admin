@@ -81,8 +81,11 @@ export default class LocalKbAdmin extends React.Component {
   renderDateTime = (date) => {
     return (
       <span>
-        <div><FormattedDate value={date} tagName="div" /></div>
-        <div><FormattedTime value={date} tagName="div" /></div>
+        <div>
+          <FormattedDate value={date} />
+          {' '}
+          <FormattedTime value={date} />
+        </div>
       </span>
     );
   }
