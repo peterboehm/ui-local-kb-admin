@@ -104,7 +104,7 @@ class JobInfo extends React.Component {
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
                   <div data-test-job-errors>
-                    {job.logEntries.length}
+                    {'-'}
                   </div>
                 </KeyValue>
               </Col>
