@@ -39,7 +39,7 @@ class JobInfo extends React.Component {
       <span>
         <div>
           <FormattedDate value={date} />
-          {' '}
+          &nbsp;
           <FormattedTime value={date} />
         </div>
       </span>
