@@ -19,7 +19,6 @@ export default class ErrorLogs extends React.Component {
 
     return (
       <Accordion
-        closedByDefault
         id={id}
         label={<FormattedMessage id="ui-local-kb-admin.errorLog" />}
         onToggle={onToggle}

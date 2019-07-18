@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import { noop } from 'lodash';
-import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+import { AppIcon } from '@folio/stripes/core';
 
 import {
   Button,
@@ -20,31 +21,26 @@ import {
   SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
 
-import LocalKbAdminFilters from '../LocalKbAdminFilters';
+import JobFilters from '../JobFilters';
+import { RenderDateTime } from '../utils';
 
-import css from './LocalKbAdmin.css';
+import css from './Jobs.css';
 
-export default class LocalKbAdmin extends React.Component {
+export default class Jobs extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     contentRef: PropTypes.object,
     data: PropTypes.object,
-    disableRecordCreation: PropTypes.bool,
     onNeedMoreData: PropTypes.func,
-    onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
     searchString: PropTypes.string,
     source: PropTypes.object,
-    syncToLocationSearch: PropTypes.bool,
-    visibleColumns: PropTypes.arrayOf(PropTypes.string),
   }
 
   static defaultProps = {
     data: {},
     searchString: '',
-    syncToLocationSearch: true,
-    visibleColumns: ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'],
   }
 
   state = {
@@ -61,48 +57,29 @@ export default class LocalKbAdmin extends React.Component {
   }
 
   columnWidths = {
-    ended: 100,
-    errors: 150,
+    ended: 150,
+    errors: 100,
     jobName: 300,
     runningStatus: 150,
     result: 150,
-    started: 100,
+    started: 150,
   }
 
   formatter = {
-    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : '-'),
+    ended: ({ ended }) => (ended ? <RenderDateTime dateString={ended} /> : '-'),
     errors: () => '-',
     jobName: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? this.renderDateTime(started) : '-'),
-  }
-
-  renderDateTime = (date) => {
-    return (
-      <span>
-        <div>
-          <FormattedDate value={date} />
-          &nbsp;
-          <FormattedTime value={date} />
-        </div>
-      </span>
-    );
+    started: ({ started }) => (started ? <RenderDateTime dateString={started} /> : '-'),
   }
 
   rowFormatter = (row) => {
     const { rowClass, rowData, rowIndex, rowProps = {}, cells } = row;
-    let RowComponent;
-
-    if (this.props.onSelectRow) {
-      RowComponent = 'div';
-    } else {
-      RowComponent = Link;
-      rowProps.to = this.rowURL(rowData.id);
-    }
+    rowProps.to = this.rowURL(rowData.id);
 
     return (
-      <RowComponent
+      <Link
         aria-rowindex={rowIndex + 2}
         className={rowClass}
         data-label={[
@@ -115,7 +92,7 @@ export default class LocalKbAdmin extends React.Component {
         {...rowProps}
       >
         {cells}
-      </RowComponent>
+      </Link>
     );
   }
 
@@ -187,17 +164,16 @@ export default class LocalKbAdmin extends React.Component {
       contentRef,
       data,
       onNeedMoreData,
-      onSelectRow,
       queryGetter,
       querySetter,
       source,
-      syncToLocationSearch,
-      visibleColumns,
     } = this.props;
 
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;
     const sortOrder = query.sort || '';
+    const visibleColumns = ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'];
+
 
     return (
       <div data-test-localkbadmin ref={contentRef}>
@@ -207,7 +183,6 @@ export default class LocalKbAdmin extends React.Component {
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
-          syncToLocationSearch={syncToLocationSearch}
         >
           {
             ({
@@ -227,7 +202,7 @@ export default class LocalKbAdmin extends React.Component {
                 <Paneset id="local-kb-admin-paneset">
                   {this.state.filterPaneIsVisible &&
                     <Pane
-                      defaultWidth="22%"
+                      defaultWidth="20%"
                       onClose={this.toggleFilterPane}
                       paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                     >
@@ -278,7 +253,7 @@ export default class LocalKbAdmin extends React.Component {
                             </Icon>
                           </Button>
                         </div>
-                        <LocalKbAdminFilters
+                        <JobFilters
                           activeFilters={activeFilters.state}
                           data={data}
                           filterHandlers={getFilterHandlers()}
@@ -287,6 +262,7 @@ export default class LocalKbAdmin extends React.Component {
                     </Pane>
                   }
                   <Pane
+                    appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
                     padContent={false}
@@ -303,7 +279,6 @@ export default class LocalKbAdmin extends React.Component {
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
-                      onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}

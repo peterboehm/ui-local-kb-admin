@@ -18,7 +18,6 @@ export default class InfoLogs extends React.Component {
     const { id, onToggle, open } = this.props;
     return (
       <Accordion
-        closedByDefault
         id={id}
         label={<FormattedMessage id="ui-local-kb-admin.infoLog" />}
         onToggle={onToggle}

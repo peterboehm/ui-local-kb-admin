@@ -17,8 +17,9 @@ import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 import ErrorLogs from './ErrorLogs';
 import InfoLogs from './InfoLogs';
+import { RenderDateTime } from '../utils';
 
-class JobInfo extends React.Component {
+export default class JobInfo extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       job: PropTypes.object,
@@ -34,18 +35,6 @@ class JobInfo extends React.Component {
     }
   }
 
-  renderDateTime = (date) => {
-    return (
-      <span>
-        <div>
-          <FormattedDate value={date} />
-          &nbsp;
-          <FormattedTime value={date} />
-        </div>
-      </span>
-    );
-  }
-
   renderLoadingPane = () => {
     return (
       <Pane
@@ -59,18 +48,6 @@ class JobInfo extends React.Component {
           <Spinner />
         </Layout>
       </Pane>
-    );
-  }
-
-  renderName = (job) => {
-    return (
-      <Row>
-        <Col xs={12}>
-          <strong data-test-job-name>
-            {job.name}
-          </strong>
-        </Col>
-      </Row>
     );
   }
 
@@ -99,8 +76,8 @@ class JobInfo extends React.Component {
     const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
-    const isJobQueued = get(job, ['status', 'label'], '-') === 'Queued';
-    const isJobInProgress = get(job, ['status', 'label'], '-') === '"In progress"';
+    const isJobQueued = get(job, 'status.value') === 'queued';
+    const isJobInProgress = get(job, 'status.value') === 'in_progress';
 
     return (
       <Pane
@@ -116,7 +93,7 @@ class JobInfo extends React.Component {
               <Col xs={9}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.jobName" />}>
                   <div data-test-job-name>
-                    { this.renderName(job) }
+                    <strong>{job.name}</strong>
                   </div>
                 </KeyValue>
               </Col>
@@ -132,13 +109,12 @@ class JobInfo extends React.Component {
                     </Button>
                   </Col>) : null
               }
-
             </Row>
             <Row>
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
                   <div data-test-job-status>
-                    {get(job, ['status', 'label'], '-')}
+                    {get(job, 'status.label', '-')}
                   </div>
                 </KeyValue>
               </Col>
@@ -147,7 +123,7 @@ class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                       <div data-test-job-result>
-                        {get(job, ['result', 'label'], '-')}
+                        {get(job, 'result.label', '-')}
                       </div>
                     </KeyValue>
                   )
@@ -158,7 +134,7 @@ class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
                       <div data-test-job-errors>
-                        {'-'}
+                        {job.errorLog ? job.errorLog.length : '0'}
                       </div>
                     </KeyValue>
                   )
@@ -171,7 +147,7 @@ class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
-                        {job.started ? this.renderDateTime(job.started) : '-'}
+                        {job.started ? <RenderDateTime dateString={job.started} /> : '-'}
                       </div>
                     </KeyValue>
                   )
@@ -182,7 +158,7 @@ class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
-                        {job.ended ? this.renderDateTime(job.ended) : '-'}
+                        {job.ended ? <RenderDateTime dateString={job.ended} /> : '-'}
                       </div>
                     </KeyValue>
                   )
@@ -205,7 +181,11 @@ class JobInfo extends React.Component {
               <AccordionSet>
                 <Row end="xs">
                   <Col xs>
-                    <ExpandAllButton accordionStatus={this.state.sections} onToggle={this.handleAllSectionsToggle} />
+                    <ExpandAllButton
+                      accordionStatus={this.state.sections}
+                      id="clickable-expand-all"
+                      onToggle={this.handleAllSectionsToggle} 
+                    />
                   </Col>
                 </Row>
                 <ErrorLogs {...this.getSectionProps('errorLogs')} />
@@ -218,5 +198,3 @@ class JobInfo extends React.Component {
     );
   }
 }
-
-export default JobInfo;

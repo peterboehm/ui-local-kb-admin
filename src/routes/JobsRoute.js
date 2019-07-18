@@ -5,12 +5,12 @@ import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 
-import View from '../components/LocalKbAdmin';
+import View from '../components/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
-class LocalKbAdminRoute extends React.Component {
+class JobsRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
@@ -137,4 +137,4 @@ class LocalKbAdminRoute extends React.Component {
   }
 }
 
-export default stripesConnect(LocalKbAdminRoute);
+export default stripesConnect(JobsRoute);

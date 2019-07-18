@@ -9,7 +9,7 @@ const FILTERS = [
   'result',
 ];
 
-export default class LocalKbAdminFilters extends React.Component {
+export default class JobFilters extends React.Component {
   static propTypes = {
     activeFilters: PropTypes.object,
     data: PropTypes.object.isRequired,

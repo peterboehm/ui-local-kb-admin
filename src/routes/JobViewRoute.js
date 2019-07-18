@@ -4,7 +4,7 @@ import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-import View from '../components/views';
+import { JobInfo } from '../components/views';
 
 
 class ViewJobRoute extends React.Component {
@@ -38,7 +38,7 @@ class ViewJobRoute extends React.Component {
   render() {
     const { resources } = this.props;
     return (
-      <View
+      <JobInfo
         data={{
           job: {
             ...get(resources, 'job.records[0]', {}),
