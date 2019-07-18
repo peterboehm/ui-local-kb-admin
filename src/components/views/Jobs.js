@@ -23,7 +23,6 @@ import {
 
 import JobFilters from '../JobFilters';
 import FormattedDateTime from '../FormattedDateTime';
-
 import css from './Jobs.css';
 
 export default class Jobs extends React.Component {
@@ -169,8 +168,7 @@ export default class Jobs extends React.Component {
     const count = source ? source.totalCount() : 0;
     const sortOrder = query.sort || '';
     const visibleColumns = ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'];
-
-
+    
     return (
       <div data-test-localkbadmin ref={contentRef}>
         <SearchAndSortQuery

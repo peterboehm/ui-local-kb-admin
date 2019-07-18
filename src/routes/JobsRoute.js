@@ -4,7 +4,6 @@ import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
-
 import View from '../components/views/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
@@ -59,7 +58,6 @@ class JobsRoute extends React.Component {
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
   }
-
 
   componentDidMount() {
     this.source = new StripesConnectedSource(this.props, this.logger, 'jobs');
