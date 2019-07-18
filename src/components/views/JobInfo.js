@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { get } from 'lodash';
 
 import {
@@ -184,7 +184,7 @@ export default class JobInfo extends React.Component {
                     <ExpandAllButton
                       accordionStatus={this.state.sections}
                       id="clickable-expand-all"
-                      onToggle={this.handleAllSectionsToggle} 
+                      onToggle={this.handleAllSectionsToggle}
                     />
                   </Col>
                 </Row>

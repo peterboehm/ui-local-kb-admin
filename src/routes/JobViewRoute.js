@@ -6,8 +6,7 @@ import { stripesConnect } from '@folio/stripes/core';
 
 import { JobInfo } from '../components/views';
 
-
-class ViewJobRoute extends React.Component {
+class JobViewRoute extends React.Component {
   static manifest = Object.freeze({
     job: {
       type: 'okapi',
@@ -40,9 +39,7 @@ class ViewJobRoute extends React.Component {
     return (
       <JobInfo
         data={{
-          job: {
-            ...get(resources, 'job.records[0]', {}),
-          },
+          job: get(resources, 'job.records[0]', {}),
         }}
         onClose={this.handleClose}
         isLoading={get(resources, 'job.isPending', true)}
@@ -51,4 +48,4 @@ class ViewJobRoute extends React.Component {
   }
 }
 
-export default stripesConnect(ViewJobRoute);
+export default stripesConnect(JobViewRoute);

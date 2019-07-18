@@ -2,8 +2,6 @@ import React from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 import PropTypes from 'prop-types';
 
-
-
 const RenderDateTime = ({ dateString }) => {
   return (
     <div>

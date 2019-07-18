@@ -21,14 +21,6 @@ class JobsRoute extends React.Component {
       path: 'erm/jobs',
       params: getSASParams({
         searchKey: 'name',
-        columnMap: {
-          'Job name': 'jobName',
-          'Running status': 'runningStatus',
-          'Import outcome': 'result',
-          'Errors': 'errors',
-          'Started': 'started',
-          'Ended': 'ended'
-        },
       })
     },
     resultValues: {

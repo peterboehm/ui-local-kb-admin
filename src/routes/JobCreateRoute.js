@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-class CreateJobRoute extends React.Component {
+class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
@@ -33,4 +33,4 @@ class CreateJobRoute extends React.Component {
 
 export default compose(
   stripesConnect
-)(CreateJobRoute);
+)(JobCreateRoute);

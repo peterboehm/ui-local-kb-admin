@@ -3,23 +3,20 @@
 
   "errorLog": "Error Log",
   "infoLog": "Info Log",
-
-  "job.delete": "Delete job",
-
   "noInfoLogs": "No information notices for this job.",
   "noErrorLogs": "No errors to report.",
 
-  "prop.jobName": "Job name",
-  "prop.runningStatus": "Running status",
-  "prop.result": "Result",
-  "prop.noOfErrors": "No. of errors",
-  "prop.started": "Started",
+  "job.delete": "Delete job",
+
   "prop.ended": "Ended",
-
-  "prop.filename": "Filename",
   "prop.errors": "Errors",
-
-  "prop.status": "Running status",
+  "prop.filename": "Filename",
+  "prop.jobName": "Job name",
+  "prop.jobSource": "Job type",
+  "prop.noOfErrors": "No. of errors",
   "prop.outcome": "Import outcome",
-  "prop.jobSource": "Job type "
+  "prop.result": "Result",
+  "prop.runningStatus": "Running status",
+  "prop.started": "Started",
+  "prop.status": "Running status"
 }
