@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-
 import { stripesConnect } from '@folio/stripes/core';
-
-import { JobInfo } from '../components/views';
+import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
   static manifest = Object.freeze({

@@ -17,7 +17,7 @@ import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 import ErrorLogs from './ErrorLogs';
 import InfoLogs from './InfoLogs';
-import { RenderDateTime } from '../utils';
+import FormattedDateTime from '../FormattedDateTime';
 
 export default class JobInfo extends React.Component {
   static propTypes = {
@@ -147,7 +147,7 @@ export default class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
-                        {job.started ? <RenderDateTime dateString={job.started} /> : '-'}
+                        {job.started ? <FormattedDateTime dateString={job.started} /> : '-'}
                       </div>
                     </KeyValue>
                   )
@@ -158,7 +158,7 @@ export default class JobInfo extends React.Component {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
-                        {job.ended ? <RenderDateTime dateString={job.ended} /> : '-'}
+                        {job.ended ? <FormattedDateTime dateString={job.ended} /> : '-'}
                       </div>
                     </KeyValue>
                   )

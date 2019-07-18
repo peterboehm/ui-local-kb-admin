@@ -7,7 +7,7 @@ import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
 import JobViewRoute from './routes/JobViewRoute';
 
-class App extends React.Component {
+export default class App extends React.Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
   }
@@ -25,5 +25,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

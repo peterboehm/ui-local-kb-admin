@@ -22,7 +22,7 @@ import {
 } from '@folio/stripes/smart-components';
 
 import JobFilters from '../JobFilters';
-import { RenderDateTime } from '../utils';
+import FormattedDateTime from '../FormattedDateTime';
 
 import css from './Jobs.css';
 
@@ -66,29 +66,25 @@ export default class Jobs extends React.Component {
   }
 
   formatter = {
-    ended: ({ ended }) => (ended ? <RenderDateTime dateString={ended} /> : '-'),
+    ended: ({ ended }) => (ended ? <FormattedDateTime dateString={ended} /> : '-'),
     errors: () => '-',
     jobName: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? <RenderDateTime dateString={started} /> : '-'),
+    started: ({ started }) => (started ? <FormattedDateTime dateString={started} /> : '-'),
   }
 
   rowFormatter = (row) => {
     const { rowClass, rowData, rowIndex, rowProps = {}, cells } = row;
-    rowProps.to = this.rowURL(rowData.id);
 
     return (
       <Link
         aria-rowindex={rowIndex + 2}
         className={rowClass}
-        data-label={[
-          rowData.result,
-          this.formatter.started(rowData),
-          this.formatter.ended(rowData),
-        ].join('...')}
+        data-label={rowData.name}
         key={`row-${rowIndex}`}
         role="row"
+        to={this.rowURL(rowData.id)}
         {...rowProps}
       >
         {cells}
