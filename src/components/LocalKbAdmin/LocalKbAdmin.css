@@ -14,10 +14,6 @@
   }
 }
 
-.userError {
-  color: var(--error);
-}
-
 .modalContent {
   padding: 0;
   position: relative;
