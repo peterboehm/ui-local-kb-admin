@@ -64,6 +64,12 @@
         "visible": true
       }
     ],
-    "icons": []
+    "icons": [
+      {
+        "name": "app",
+        "alt": "ERM: Local Kb Admin app for Stripes",
+        "title": "LocalKbAdmin"
+      }
+    ]
   }
 }
