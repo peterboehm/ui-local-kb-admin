@@ -74,8 +74,8 @@ export default class LocalKbAdmin extends React.Component {
     runningStatus: ({ status }) => status && status.label,
     errors: () => '-',
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? this.renderDateTime(started) : ''),
-    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : ''),
+    started: ({ started }) => (started ? this.renderDateTime(started) : '-'),
+    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : '-'),
   }
 
   renderDateTime = (date) => {
@@ -200,7 +200,7 @@ export default class LocalKbAdmin extends React.Component {
     const sortOrder = query.sort || '';
 
     return (
-      <div data-test-licenses ref={contentRef}>
+      <div data-test-localkbadmin ref={contentRef}>
         <SearchAndSortQuery
           initialFilterState={{ status: ['Queued', 'In progress'] }}
           initialSortState={{ sort: 'started' }}

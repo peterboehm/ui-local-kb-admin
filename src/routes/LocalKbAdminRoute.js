@@ -57,7 +57,6 @@ class LocalKbAdminRoute extends React.Component {
     mutator: PropTypes.object,
     resources: PropTypes.object,
     stripes: PropTypes.shape({
-      hasPerm: PropTypes.func.isRequired,
       logger: PropTypes.object,
     }),
   }

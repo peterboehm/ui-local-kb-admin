@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-//  import View from '../components/LicenseForm';
-//  import View from '../components/jobForm';
-
 class CreateJobRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
@@ -26,10 +23,9 @@ class CreateJobRoute extends React.Component {
   };
 
   render() {
-    //  const { handlers, resources } = this.props;
     return (
       <div>
-            Create page
+        Create page
       </div>
     );
   }

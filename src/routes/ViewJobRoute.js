@@ -24,14 +24,9 @@ class ViewJobRoute extends React.Component {
       search: PropTypes.string.isRequired,
     }).isRequired,
     resources: PropTypes.shape({
-      interfaces: PropTypes.object,
-      linkedAgreements: PropTypes.object,
-      license: PropTypes.object,
-      terms: PropTypes.object,
-      users: PropTypes.object,
+      job: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
-      hasPerm: PropTypes.func.isRequired,
       okapi: PropTypes.object.isRequired,
     }).isRequired,
   };

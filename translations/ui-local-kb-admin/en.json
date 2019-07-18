@@ -1,6 +1,14 @@
 {
   "meta.title": "Local KB Admin",
 
+  "errorLog": "Error Log",
+  "infoLog": "Info Log",
+
+  "job.delete": "Delete job",
+
+  "noInfoLogs": "No information notices for this job.",
+  "noErrorLogs": "No errors to report.",
+
   "prop.jobName": "Job name",
   "prop.runningStatus": "Running status",
   "prop.result": "Result",
