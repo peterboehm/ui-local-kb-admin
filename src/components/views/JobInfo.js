@@ -5,13 +5,13 @@ import { get } from 'lodash';
 
 import {
   AccordionSet,
+  Button,
   Col,
   ExpandAllButton,
+  KeyValue,
   Layout,
   Pane,
-  KeyValue,
   Row,
-  Button,
 } from '@folio/stripes/components';
 import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
@@ -23,8 +23,8 @@ class JobInfo extends React.Component {
     data: PropTypes.shape({
       job: PropTypes.object,
     }),
-    onClose: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
+    onClose: PropTypes.func.isRequired,
   };
 
   state = {

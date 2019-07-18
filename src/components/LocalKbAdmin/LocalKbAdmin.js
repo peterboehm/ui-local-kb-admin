@@ -5,13 +5,13 @@ import { noop } from 'lodash';
 import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
 
 import {
-  MultiColumnList,
-  SearchField,
-  Pane,
-  Icon,
   Button,
+  Icon,
+  MultiColumnList,
+  Pane,
   PaneMenu,
   Paneset,
+  SearchField,
 } from '@folio/stripes/components';
 
 import {
@@ -61,21 +61,21 @@ export default class LocalKbAdmin extends React.Component {
   }
 
   columnWidths = {
+    ended: 100,
+    errors: 150,
     jobName: 300,
     runningStatus: 150,
     result: 150,
-    errors: 150,
     started: 100,
-    ended: 100,
   }
 
   formatter = {
+    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : '-'),
+    errors: () => '-',
     jobName: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
-    errors: () => '-',
     result: ({ result }) => result && result.label,
     started: ({ started }) => (started ? this.renderDateTime(started) : '-'),
-    ended: ({ ended }) => (ended ? this.renderDateTime(ended) : '-'),
   }
 
   renderDateTime = (date) => {

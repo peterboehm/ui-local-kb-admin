@@ -88,9 +88,7 @@ class LocalKbAdminRoute extends React.Component {
       const oldCount = prevSource.totalCount();
       const oldRecords = prevSource.records();
 
-      // console.log(oldCount, oldRecords[0].id, newRecords[0].id, 'values');
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
-        //  console.log(oldCount, 'oldCount');
         const record = newRecords[0];
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
@@ -105,8 +103,6 @@ class LocalKbAdminRoute extends React.Component {
     };
 
     if (/reset/.test(state.changeType)) {
-      // A mutator's `replace()` function doesn't update the URL of the page. As a result,
-      // we always use `update()` but fully specify the values we want to null out.
       this.props.mutator.query.update({ ...defaults, ...nsValues });
     } else {
       this.props.mutator.query.update(nsValues);
