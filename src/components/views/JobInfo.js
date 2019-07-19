@@ -76,7 +76,7 @@ export default class JobInfo extends React.Component {
     const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
-    const isJobQueued = get(job, 'status.value') === 'queued';
+    const isJobNotQueued = get(job, 'status.value') !== 'queued';
     const isJobInProgress = get(job, 'status.value') === 'in_progress';
 
     return (
@@ -118,52 +118,52 @@ export default class JobInfo extends React.Component {
                   </div>
                 </KeyValue>
               </Col>
-              <Col xs={4}>
-                {
-                  !isJobQueued && (
+              {
+                isJobNotQueued && (
+                  <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                       <div data-test-job-result>
                         {get(job, 'result.label', '-')}
                       </div>
                     </KeyValue>
-                  )
-                }
-              </Col>
-              <Col xs={4}>
-                {
-                  !isJobQueued && (
+                  </Col>
+                )
+              }
+              {
+                isJobNotQueued && (
+                  <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
                       <div data-test-job-errors>
                         {job.errorLog ? job.errorLog.length : '0'}
                       </div>
                     </KeyValue>
-                  )
-                }
-              </Col>
+                  </Col>
+                )
+              }
             </Row>
             <Row>
-              <Col xs={!isJobQueued ? 4 : 0}>
-                {
-                  !isJobQueued && (
+              {
+                isJobNotQueued && (
+                  <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
                         {job.started ? <FormattedDateTime dateString={job.started} /> : '-'}
                       </div>
                     </KeyValue>
-                  )
-                }
-              </Col>
-              <Col xs={!isJobQueued ? 4 : 0}>
-                {
-                  !isJobQueued && (
+                  </Col>
+                )
+              }
+              {
+                isJobNotQueued && (
+                  <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
                         {job.ended ? <FormattedDateTime dateString={job.ended} /> : '-'}
                       </div>
                     </KeyValue>
-                  )
-                }
-              </Col>
+                  </Col>
+                )
+              }
               <Col xs={4}>
                 {
                   job.fileName ? (
@@ -182,7 +182,7 @@ export default class JobInfo extends React.Component {
             </Row>
           </div>
           {
-            !isJobQueued ? (
+            isJobNotQueued ? (
               <AccordionSet>
                 <Row end="xs">
                   <Col xs>
