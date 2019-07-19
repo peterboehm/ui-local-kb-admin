@@ -21,6 +21,5 @@
   "prop.status": "Running status",
 
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
-  "org.olf.general.jobs.FileUploadJob": "File import",
   "source": "Source"
 }
