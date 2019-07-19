@@ -20,12 +20,14 @@ export default class JobFilters extends React.Component {
     activeFilters: {
       status: [],
       result: [],
+      class: [],
     }
   };
 
   state = {
     status: [],
     result: [],
+    class: [{ value: 'Harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> }],
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -42,6 +44,7 @@ export default class JobFilters extends React.Component {
 
     return null;
   }
+
 
   renderCheckboxFilter = (name, props) => {
     const { activeFilters } = this.props;
@@ -71,6 +74,7 @@ export default class JobFilters extends React.Component {
       <AccordionSet>
         {this.renderCheckboxFilter('status')}
         {this.renderCheckboxFilter('result')}
+        {this.renderCheckboxFilter('class')}
       </AccordionSet>
     );
   }
