@@ -77,7 +77,7 @@ export default class JobInfo extends React.Component {
 
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = get(job, 'status.value') !== 'queued';
-    const isJobInProgress = get(job, 'status.value') === 'in_progress';
+    const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
 
     return (
       <Pane
@@ -98,7 +98,7 @@ export default class JobInfo extends React.Component {
                 </KeyValue>
               </Col>
               {
-                isJobInProgress ? (
+                isJobNotInProgress ? (
                   <Col xs={2} xsOffset={1}>
                     <Button
                       buttonStyle="danger"
