@@ -142,7 +142,7 @@ export default class JobInfo extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={4}>
+              <Col xs={!isJobQueued ? 4 : 0}>
                 {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
@@ -153,7 +153,7 @@ export default class JobInfo extends React.Component {
                   )
                 }
               </Col>
-              <Col xs={4}>
+              <Col xs={!isJobQueued ? 4 : 0}>
                 {
                   !isJobQueued && (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
@@ -171,7 +171,12 @@ export default class JobInfo extends React.Component {
                       <div data-test-job-filename>
                         {job.fileName}
                       </div>
-                    </KeyValue>) : null
+                    </KeyValue>) : (
+                      <KeyValue label={<FormattedMessage id="ui-local-kb-admin.source" />}>
+                        <div data-test-job-type>
+                          <FormattedMessage id={`ui-local-kb-admin.${job.class}`} />
+                        </div>
+                      </KeyValue>)
                 }
               </Col>
             </Row>

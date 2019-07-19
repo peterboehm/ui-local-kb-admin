@@ -66,7 +66,7 @@ export default class Jobs extends React.Component {
 
   formatter = {
     ended: ({ ended }) => (ended ? <FormattedDateTime dateString={ended} /> : '-'),
-    errors: () => '-',
+    errors: ({ errorLog }) => (errorLog ? errorLog.length : '0'),
     jobName: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
@@ -168,7 +168,7 @@ export default class Jobs extends React.Component {
     const count = source ? source.totalCount() : 0;
     const sortOrder = query.sort || '';
     const visibleColumns = ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'];
-    
+
     return (
       <div data-test-localkbadmin ref={contentRef}>
         <SearchAndSortQuery

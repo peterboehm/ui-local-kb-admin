@@ -18,5 +18,8 @@
   "prop.result": "Result",
   "prop.runningStatus": "Running status",
   "prop.started": "Started",
-  "prop.status": "Running status"
+  "prop.status": "Running status",
+
+  "org.olf.general.jobs.PackageIngestJob": "Harvester",
+  "source": "Source"
 }
