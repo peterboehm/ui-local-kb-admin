@@ -15,8 +15,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { actAs } = this.props;
-    const { match: { path } } = this.props;
+    const { actAs, match: { path } } = this.props;
 
     if (actAs === 'settings') {
       return <Settings {...this.props} />;

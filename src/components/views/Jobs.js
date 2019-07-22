@@ -47,7 +47,7 @@ export default class Jobs extends React.Component {
   }
 
   columnMapping = {
-    jobName: <FormattedMessage id="ui-local-kb-admin.prop.jobName" />,
+    jobname: <FormattedMessage id="ui-local-kb-admin.prop.jobName" />,
     runningStatus: <FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />,
     result: <FormattedMessage id="ui-local-kb-admin.prop.outcome" />,
     errors: <FormattedMessage id="ui-local-kb-admin.prop.errors" />,
@@ -58,7 +58,7 @@ export default class Jobs extends React.Component {
   columnWidths = {
     ended: 150,
     errors: 100,
-    jobName: 300,
+    jobname: 300,
     runningStatus: 150,
     result: 150,
     started: 150,
@@ -67,7 +67,7 @@ export default class Jobs extends React.Component {
   formatter = {
     ended: ({ ended }) => (ended ? <FormattedDateTime dateString={ended} /> : '-'),
     errors: ({ errorLog }) => (errorLog ? errorLog.length : '0'),
-    jobName: ({ name }) => name,
+    jobname: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
     started: ({ started }) => (started ? <FormattedDateTime dateString={started} /> : '-'),
@@ -167,7 +167,7 @@ export default class Jobs extends React.Component {
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;
     const sortOrder = query.sort || '';
-    const visibleColumns = ['jobName', 'runningStatus', 'result', 'errors', 'started', 'ended'];
+    const visibleColumns = ['jobname', 'runningStatus', 'result', 'errors', 'started', 'ended'];
 
     return (
       <div data-test-localkbadmin ref={contentRef}>
