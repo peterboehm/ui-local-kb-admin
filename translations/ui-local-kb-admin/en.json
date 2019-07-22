@@ -1,3 +1,25 @@
 {
-  "meta.title": "Local KB Admin"
+  "meta.title": "Local KB Admin",
+
+  "errorLog": "Error Log",
+  "infoLog": "Info Log",
+  "noInfoLogs": "No information notices for this job.",
+  "noErrorLogs": "No errors to report.",
+
+  "job.delete": "Delete job",
+
+  "prop.class": "Job type",
+  "prop.ended": "Ended",
+  "prop.errors": "Errors",
+  "prop.filename": "Filename",
+  "prop.jobName": "Job name",
+  "prop.noOfErrors": "No. of errors",
+  "prop.outcome": "Import outcome",
+  "prop.result": "Result",
+  "prop.runningStatus": "Running status",
+  "prop.started": "Started",
+  "prop.status": "Running status",
+
+  "org.olf.general.jobs.PackageIngestJob": "Harvester",
+  "source": "Source"
 }

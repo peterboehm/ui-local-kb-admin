@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "@folio/eslint-config-stripes": "^3.2.1",
-    "@folio/stripes-cli": "^1.8.0",
     "@folio/stripes": "^2.0.0",
+    "@folio/stripes-cli": "^1.8.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.5.0",
     "react": "~16.6.3",
@@ -29,10 +29,12 @@
   },
   "dependencies": {
     "@folio/stripes-erm-components": "^1.4.0",
+    "compose-function": "^3.0.3",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0",
     "query-string": "^6.6.0",
     "react-intl": "^2.4.0",
+    "react-router-dom": "^4.1.1",
     "redux-form": "^7.0.3"
   },
   "peerDependencies": {
@@ -43,7 +45,10 @@
     "redux": "*"
   },
   "stripes": {
-    "actsAs": ["app", "settings"],
+    "actsAs": [
+      "app",
+      "settings"
+    ],
     "displayName": "ui-local-kb-admin.meta.title",
     "route": "/local-kb-admin",
     "home": "/local-kb-admin",
@@ -59,6 +64,12 @@
         "visible": true
       }
     ],
-    "icons": []
+    "icons": [
+      {
+        "name": "app",
+        "alt": "ERM: Local Kb Admin app for Stripes",
+        "title": "LocalKbAdmin"
+      }
+    ]
   }
 }
