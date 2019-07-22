@@ -1,10 +1,10 @@
 {
   "meta.title": "Local KB Admin",
 
-  "ErrorLog": "Error Log",
-  "InfoLog": "Info Log",
-  "noInfoLog": "No information notices for this job.",
-  "noErrorLog": "No errors to report.",
+  "errorLog": "Error Log",
+  "infoLog": "Info Log",
+  "infoLogNo": "No information notices for this job.",
+  "errorLogNo": "No errors to report.",
 
   "job.delete": "Delete job",
 

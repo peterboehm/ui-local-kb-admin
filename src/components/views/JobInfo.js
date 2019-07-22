@@ -17,7 +17,7 @@ import {
 import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 import ErrorLogs from './ErrorLogs';
-import Logs from './Logs';
+import InfoLogs from './InfoLogs';
 import FormattedDateTime from '../FormattedDateTime';
 
 export default class JobInfo extends React.Component {
@@ -53,8 +53,10 @@ export default class JobInfo extends React.Component {
   }
 
   getSectionProps = (id) => {
+    const { job } = this.props;
     return {
       id,
+      job,
       onToggle: this.handleSectionToggle,
       open: this.state.sections[id],
     };
@@ -202,7 +204,7 @@ export default class JobInfo extends React.Component {
                   </Col>
                 </Row>
                 <ErrorLogs {...this.getSectionProps('errorLogs')} />
-                <Logs {...this.getSectionProps('infoLog')} />
+                <InfoLogs {...this.getSectionProps('infoLogs')} />
               </AccordionSet>
             ) : null
           }

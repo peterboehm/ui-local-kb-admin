@@ -6,16 +6,22 @@ import { Accordion } from '@folio/stripes/components';
 export default class InfoLogs extends React.Component {
   static propTypes = {
     id: PropTypes.string,
+    job: PropTypes.object,
     onToggle: PropTypes.func,
     open: PropTypes.bool,
   };
 
-  renderInfoLogs = () => {
-    return <FormattedMessage id="ui-local-kb-admin.noInfoLogs" />;
+  renderInfoLogs = (job) => {
+    const { infoLogs } = job;
+    if (infoLogs) {
+      return 'exists';
+    } else {
+      return <FormattedMessage id="ui-local-kb-admin.infoLogNo" />;
+    }
   }
 
   render() {
-    const { id, onToggle, open } = this.props;
+    const { id, job, onToggle, open } = this.props;
     return (
       <Accordion
         id={id}
@@ -23,7 +29,7 @@ export default class InfoLogs extends React.Component {
         onToggle={onToggle}
         open={open}
       >
-        { this.renderInfoLogs() }
+        { this.renderInfoLogs(job) }
       </Accordion>
     );
   }
