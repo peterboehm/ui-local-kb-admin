@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { Accordion } from '@folio/stripes/components';
+import { Accordion, MultiColumnList } from '@folio/stripes/components';
 
 export default class InfoLogs extends React.Component {
   static propTypes = {
@@ -11,10 +11,15 @@ export default class InfoLogs extends React.Component {
     open: PropTypes.bool,
   };
 
-  renderInfoLogs = (job) => {
-    const { infoLogs } = job;
-    if (infoLogs) {
-      return 'exists';
+  renderInfoLogs = (id, job) => {
+    const { infoLog } = job;
+    if (infoLog) {
+      return (
+        <MultiColumnList
+          contentData={infoLog}
+          id={`list-${id}`}
+        />
+      );
     } else {
       return <FormattedMessage id="ui-local-kb-admin.infoLogNo" />;
     }
@@ -29,7 +34,7 @@ export default class InfoLogs extends React.Component {
         onToggle={onToggle}
         open={open}
       >
-        { this.renderInfoLogs(job) }
+        { this.renderInfoLogs(id, job) }
       </Accordion>
     );
   }

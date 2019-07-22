@@ -53,7 +53,7 @@ export default class JobInfo extends React.Component {
   }
 
   getSectionProps = (id) => {
-    const { job } = this.props;
+    const { data: { job } } = this.props;
     return {
       id,
       job,
@@ -203,8 +203,8 @@ export default class JobInfo extends React.Component {
                     />
                   </Col>
                 </Row>
-                <ErrorLogs {...this.getSectionProps('errorLogs')} />
-                <InfoLogs {...this.getSectionProps('infoLogs')} />
+                <ErrorLogs {...this.getSectionProps('errorLog')} />
+                <InfoLogs {...this.getSectionProps('infoLog')} />
               </AccordionSet>
             ) : null
           }
