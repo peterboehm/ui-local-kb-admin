@@ -16,7 +16,7 @@ import {
 import { TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 import ErrorLogs from './ErrorLogs';
-import InfoLogs from './InfoLogs';
+import Logs from './Logs';
 import FormattedDateTime from '../FormattedDateTime';
 
 export default class JobInfo extends React.Component {
@@ -194,7 +194,7 @@ export default class JobInfo extends React.Component {
                   </Col>
                 </Row>
                 <ErrorLogs {...this.getSectionProps('errorLogs')} />
-                <InfoLogs {...this.getSectionProps('infoLogs')} />
+                <Logs {...this.getSectionProps('infoLog')} />
               </AccordionSet>
             ) : null
           }
