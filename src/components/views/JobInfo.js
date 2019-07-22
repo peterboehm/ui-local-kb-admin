@@ -8,6 +8,7 @@ import {
   Button,
   Col,
   ExpandAllButton,
+  Icon,
   KeyValue,
   Layout,
   Pane,
@@ -72,15 +73,34 @@ export default class JobInfo extends React.Component {
     this.setState({ sections });
   }
 
+  getActionMenu = () => {
+    const { data: { job } } = this.props;
+    const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
+
+    return (
+      <React.Fragment>
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-delete-job"
+          disabled={!isJobNotInProgress}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-local-kb-admin.job.delete" />
+          </Icon>
+        </Button>
+      </React.Fragment>
+    );
+  }
+
   render() {
     const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = get(job, 'status.value') !== 'queued';
-    const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
 
     return (
       <Pane
+        actionMenu={this.getActionMenu}
         defaultWidth="45%"
         dismissible
         id="pane-view-job"
@@ -97,18 +117,6 @@ export default class JobInfo extends React.Component {
                   </div>
                 </KeyValue>
               </Col>
-              {
-                isJobNotInProgress ? (
-                  <Col xs={2} xsOffset={1}>
-                    <Button
-                      buttonStyle="danger"
-                      id="clickable-delete-job"
-                      onClick={() => {}}
-                    >
-                      <FormattedMessage id="ui-local-kb-admin.job.delete" />
-                    </Button>
-                  </Col>) : null
-              }
             </Row>
             <Row>
               <Col xs={4}>
