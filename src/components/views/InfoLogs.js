@@ -22,14 +22,18 @@ export default class InfoLogs extends React.Component {
     if (infoLog) {
       return (
         <MultiColumnList
-          contentData={infoLog}
-          id="list-infoLog"
-          visibleColumns={['recordNumber', 'message']}
           columnMapping={{
             recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
             message: <FormattedMessage id="ui-local-kb-admin.columns.infoLogMessage" />,
           }}
+          columnWidths={{
+            recordNumber: '10%',
+            message: '90%',
+          }}
+          contentData={infoLog}
           formatter={{ recordNumber: ({ recordNumber }) => (recordNumber || '-') }}
+          id="list-infoLog"
+          visibleColumns={['recordNumber', 'message']}
         />
       );
     } else {

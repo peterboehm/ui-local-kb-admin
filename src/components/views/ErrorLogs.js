@@ -22,14 +22,18 @@ export default class ErrorLogs extends React.Component {
     if (errorLog) {
       return (
         <MultiColumnList
-          contentData={errorLog}
-          id="list-errorLog"
-          visibleColumns={['recordNumber', 'message']}
           columnMapping={{
             recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
             message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
           }}
+          columnWidths={{
+            recordNumber: '10%',
+            message: '90%',
+          }}
+          contentData={errorLog}
           formatter={{ recordNumber: ({ recordNumber }) => (recordNumber || '-') }}
+          id="list-errorLog"
+          visibleColumns={['recordNumber', 'message']}
         />
       );
     } else {
