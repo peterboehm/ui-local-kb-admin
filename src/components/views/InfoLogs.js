@@ -19,26 +19,26 @@ export default class InfoLogs extends React.Component {
 
   renderInfoLogs = (job) => {
     const { infoLog } = job;
-    if (infoLog) {
-      return (
-        <MultiColumnList
-          columnMapping={{
-            recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
-            message: <FormattedMessage id="ui-local-kb-admin.columns.infoLogMessage" />,
-          }}
-          columnWidths={{
-            recordNumber: '10%',
-            message: '90%',
-          }}
-          contentData={infoLog}
-          formatter={{ recordNumber: ({ recordNumber }) => (recordNumber || '-') }}
-          id="list-infoLog"
-          visibleColumns={['recordNumber', 'message']}
-        />
-      );
-    } else {
+    if (!infoLog) {
       return <FormattedMessage id="ui-local-kb-admin.infoLogNo" />;
     }
+
+    return (
+      <MultiColumnList
+        columnMapping={{
+          recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
+          message: <FormattedMessage id="ui-local-kb-admin.columns.infoLogMessage" />,
+        }}
+        columnWidths={{
+          recordNumber: '10%',
+          message: '90%',
+        }}
+        contentData={infoLog}
+        formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : '-') }}
+        id="list-infoLog"
+        visibleColumns={['recordNumber', 'message']}
+      />
+    );
   }
 
   render() {

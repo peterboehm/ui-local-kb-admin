@@ -19,26 +19,26 @@ export default class ErrorLogs extends React.Component {
 
   renderErrorLogs = (job) => {
     const { errorLog } = job;
-    if (errorLog) {
-      return (
-        <MultiColumnList
-          columnMapping={{
-            recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
-            message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
-          }}
-          columnWidths={{
-            recordNumber: '10%',
-            message: '90%',
-          }}
-          contentData={errorLog}
-          formatter={{ recordNumber: ({ recordNumber }) => (recordNumber || '-') }}
-          id="list-errorLog"
-          visibleColumns={['recordNumber', 'message']}
-        />
-      );
-    } else {
+    if (!errorLog) {
       return <FormattedMessage id="ui-local-kb-admin.errorLogNo" />;
     }
+
+    return (
+      <MultiColumnList
+        columnMapping={{
+          recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
+          message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
+        }}
+        columnWidths={{
+          recordNumber: '10%',
+          message: '90%',
+        }}
+        contentData={errorLog}
+        formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : '-') }}
+        id="list-errorLog"
+        visibleColumns={['recordNumber', 'message']}
+      />
+    );
   }
 
   render() {
