@@ -203,8 +203,8 @@ export default class JobInfo extends React.Component {
                     />
                   </Col>
                 </Row>
-                <ErrorLogs {...this.getSectionProps('errorLog')} />
-                <InfoLogs {...this.getSectionProps('infoLog')} />
+                <ErrorLogs {...this.getSectionProps('errorLogs')} />
+                <InfoLogs {...this.getSectionProps('infoLogs')} />
               </AccordionSet>
             ) : null
           }
