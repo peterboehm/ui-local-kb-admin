@@ -13,7 +13,7 @@ export default class ErrorLogs extends React.Component {
   };
 
   renderBadge = () => {
-    const count = this.job.errorLog.length;
+    const count = get(this.props.job, ['errorLog', 'length']);
     return count !== undefined ? <Badge>{count}</Badge> : <Badge>0</Badge>;
   }
 
