@@ -20,7 +20,6 @@ export default class InfoLogs extends React.Component {
   renderInfoLogs = (job) => {
     const { infoLog } = job;
     if (infoLog) {
-      const { recordNumber } = infoLog;
       return (
         <MultiColumnList
           contentData={infoLog}
@@ -30,12 +29,7 @@ export default class InfoLogs extends React.Component {
             recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
             message: <FormattedMessage id="ui-local-kb-admin.columns.infoLogMessage" />,
           }}
-          formatter={{
-            recordNumber: () => {
-              if (!recordNumber) return '-';
-              return recordNumber;
-            },
-          }}
+          formatter={{ recordNumber: ({ recordNumber }) => (recordNumber || '-') }}
         />
       );
     } else {
