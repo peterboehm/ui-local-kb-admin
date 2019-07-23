@@ -53,8 +53,10 @@ export default class JobInfo extends React.Component {
   }
 
   getSectionProps = (id) => {
+    const { data: { job } } = this.props;
     return {
       id,
+      job,
       onToggle: this.handleSectionToggle,
       open: this.state.sections[id],
     };
