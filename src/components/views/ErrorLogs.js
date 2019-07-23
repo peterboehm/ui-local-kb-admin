@@ -13,22 +13,22 @@ export default class ErrorLogs extends React.Component {
   };
 
   renderBadge = () => {
-    const count = get(this.props.job, ['errorLog', 'length']);
-    return count !== undefined ? <Badge>{count}</Badge> : <Badge>0</Badge>;
+    const count = get(this.props.job, 'errorLog.length', 0);
+    return <Badge>{count}</Badge>;
   }
 
-  renderErrorLogs = (id, job) => {
+  renderErrorLogs = (job) => {
     const { errorLog } = job;
     if (errorLog) {
       const { recordNumber } = errorLog;
       return (
         <MultiColumnList
           contentData={errorLog}
-          id={`list-${id}`}
+          id="list-errorLog"
           visibleColumns={['recordNumber', 'message']}
           columnMapping={{
             recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
-            message: <FormattedMessage id={`ui-local-kb-admin.columns.${id}Message`} />,
+            message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
           }}
           formatter={{
             recordNumber: () => {
@@ -39,7 +39,7 @@ export default class ErrorLogs extends React.Component {
         />
       );
     } else {
-      return <FormattedMessage id={`ui-local-kb-admin.${id}No`} />;
+      return <FormattedMessage id="ui-local-kb-admin.errorLogNo" />;
     }
   }
 
@@ -50,11 +50,11 @@ export default class ErrorLogs extends React.Component {
         displayWhenClosed={this.renderBadge()}
         displayWhenOpen={this.renderBadge()}
         id={id}
-        label={<FormattedMessage id={`ui-local-kb-admin.${id}`} />}
+        label={<FormattedMessage id="ui-local-kb-admin.errorLog" />}
         onToggle={onToggle}
         open={open}
       >
-        { this.renderErrorLogs(id, job) }
+        { this.renderErrorLogs(job) }
       </Accordion>
     );
   }
