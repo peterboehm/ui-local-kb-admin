@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
+import { ConfirmationModal } from '@folio/stripes/components';
 import JobInfo from '../components/views/JobInfo';
-import {
-  Callout,
-  ConfirmationModal,
-} from '@folio/stripes/components';
 
 class JobViewRoute extends React.Component {
   static manifest = Object.freeze({
@@ -21,11 +18,13 @@ class JobViewRoute extends React.Component {
   static propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
       search: PropTypes.string.isRequired,
     }).isRequired,
+    mutator: PropTypes.func.isRequired,
     resources: PropTypes.shape({
       job: PropTypes.object,
     }).isRequired,
@@ -38,32 +37,28 @@ class JobViewRoute extends React.Component {
     super(props);
 
     this.state = { showConfirmDelete: false };
-    this.callout = React.createRef();
-  }
-
-  showToast(messageId, messageType = 'success', values = {}) {
-    this.callout.current.sendCallout({
-      message: <FormattedMessage id={messageId} values={values} />,
-      type: messageType,
-    });
   }
 
   handleDelete = () => {
     const { resources } = this.props;
     const job = get(resources, 'job.records[0]', {});
     const name = get(job, 'name', '');
+    const id = get(job, 'id', '');
 
     this.props.mutator.job
       .DELETE(job)
-      .then(() => { 
-        this.showToast('ui-local-kb-admin.job.delete.success', 'success', { name })
-      }).then(() => this.handleClose())
-
-  }
+      .then(() => this.props.history.replace(
+        {
+          pathname: '/local-kb-admin',
+          search: `${this.props.location.search}`,
+          state: { deletedJobId: id, deletedJobName: name }
+        }
+      )); // push deleted job id and name to location state so that it could be used to show the callout in jobsRoute
+  };
 
   handleClose = () => {
-    this.props.history.replace(`/local-kb-admin${this.props.location.search}`)
-  }
+    this.props.history.push(`/local-kb-admin${this.props.location.search}`);
+  };
 
   showDeleteConfirmationModal = () => this.setState({ showConfirmDelete: true });
 
@@ -88,14 +83,13 @@ class JobViewRoute extends React.Component {
           <ConfirmationModal
             id="delete-job-confirmation"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
-            heading={<FormattedMessage id="ui-local-kb-admin.job.delete.heading" values={{ name }}/>}
+            heading={<FormattedMessage id="ui-local-kb-admin.job.delete.heading" values={{ name }} />}
             message={<FormattedMessage id="ui-local-kb-admin.job.delete.message" />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={this.handleDelete}
             open
           />
         )}
-        <Callout ref={this.callout} />
       </React.Fragment>
     );
   }

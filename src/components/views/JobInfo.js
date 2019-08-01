@@ -27,6 +27,7 @@ export default class JobInfo extends React.Component {
     }),
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
+    onDelete: PropTypes.func,
   };
 
   state = {

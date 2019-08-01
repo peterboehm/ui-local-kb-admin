@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
+import { FormattedMessage } from 'react-intl';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
+import { Callout } from '@folio/stripes/components';
 import View from '../components/views/Jobs';
+
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
@@ -60,8 +63,7 @@ class JobsRoute extends React.Component {
 
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
-
-    this.state = { showConfirmDelete: false };
+    this.callout = React.createRef();
   }
 
   componentDidMount() {
@@ -84,10 +86,16 @@ class JobsRoute extends React.Component {
       const oldRecords = prevSource.records();
 
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
-        console.log('inside thus');
         const record = newRecords[0];
         history.push(`/local-kb-admin/view/${record.id}${location.search}`);
       }
+    }
+
+    const prevDeletedJobId = get(prevProps, 'location.state.deletedJobId', '');
+    const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
+    if (prevDeletedJobId !== currentDeletedJobId) {
+      const name = get(this.props, 'location.state.deletedJobName', '');
+      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', 'success', { name });
     }
   }
 
@@ -108,7 +116,14 @@ class JobsRoute extends React.Component {
   queryGetter = () => {
     return get(this.props.resources, 'query', {});
   }
-  
+
+  showToast(messageId, messageType = 'success', values = {}) {
+    this.callout.current.sendCallout({
+      message: <FormattedMessage id={messageId} values={values} />,
+      type: messageType,
+    });
+  }
+
   render() {
     const { children, location, resources } = this.props;
     if (this.source) {
@@ -130,9 +145,9 @@ class JobsRoute extends React.Component {
         >
           {children}
         </View>
-        
+        <Callout ref={this.callout} />
       </div>
-      
+
     );
   }
 }
