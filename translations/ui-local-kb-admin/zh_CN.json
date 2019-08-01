@@ -1,7 +1,7 @@
 {
     "meta.title": "本地知识库管理",
-    "errorLog": "Error Log",
-    "infoLog": "Info Log",
+    "errorLog": "Error log",
+    "infoLog": "Info log",
     "job.delete": "Delete job",
     "prop.class": "Job type",
     "prop.ended": "Ended",
