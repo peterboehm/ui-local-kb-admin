@@ -5,7 +5,6 @@ import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import View from '../components/views/Jobs';
-
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
@@ -61,6 +60,8 @@ class JobsRoute extends React.Component {
 
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
+
+    this.state = { showConfirmDelete: false };
   }
 
   componentDidMount() {
@@ -83,8 +84,9 @@ class JobsRoute extends React.Component {
       const oldRecords = prevSource.records();
 
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
+        console.log('inside thus');
         const record = newRecords[0];
-        history.push(`/local-kb-admin/${record.id}${location.search}`);
+        history.push(`/local-kb-admin/view/${record.id}${location.search}`);
       }
     }
   }
@@ -106,7 +108,7 @@ class JobsRoute extends React.Component {
   queryGetter = () => {
     return get(this.props.resources, 'query', {});
   }
-
+  
   render() {
     const { children, location, resources } = this.props;
     if (this.source) {
@@ -114,19 +116,23 @@ class JobsRoute extends React.Component {
     }
 
     return (
-      <View
-        data={{
-          jobs: get(resources, 'jobs.records', []),
-          resultValues: get(resources, 'resultValues.records', []),
-          statusValues: get(resources, 'statusValues.records', []),
-        }}
-        queryGetter={this.queryGetter}
-        querySetter={this.querySetter}
-        searchString={location.search}
-        source={this.source}
-      >
-        {children}
-      </View>
+      <div>
+        <View
+          data={{
+            jobs: get(resources, 'jobs.records', []),
+            resultValues: get(resources, 'resultValues.records', []),
+            statusValues: get(resources, 'statusValues.records', []),
+          }}
+          queryGetter={this.queryGetter}
+          querySetter={this.querySetter}
+          searchString={location.search}
+          source={this.source}
+        >
+          {children}
+        </View>
+        
+      </div>
+      
     );
   }
 }

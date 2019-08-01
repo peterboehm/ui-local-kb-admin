@@ -25,7 +25,7 @@ export default class App extends React.Component {
       <Switch>
         <Route path={`${path}/create`} component={JobCreateRoute} />
         <Route path={path} component={JobsRoute}>
-          <Route path={`${path}/:id`} component={JobViewRoute} />
+          <Route path={`${path}/view/:id`} component={JobViewRoute} />
         </Route>
       </Switch>
     );
