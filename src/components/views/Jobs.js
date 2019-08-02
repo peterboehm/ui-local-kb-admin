@@ -92,7 +92,7 @@ export default class Jobs extends React.Component {
   }
 
   rowURL = (id) => {
-    return `/local-kb-admin/view/${id}${this.props.searchString}`;
+    return `/local-kb-admin/${id}${this.props.searchString}`;
   }
 
   toggleFilterPane = () => {

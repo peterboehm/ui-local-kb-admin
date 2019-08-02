@@ -87,7 +87,7 @@ class JobsRoute extends React.Component {
 
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
         const record = newRecords[0];
-        history.push(`/local-kb-admin/view/${record.id}${location.search}`);
+        history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
     }
 
