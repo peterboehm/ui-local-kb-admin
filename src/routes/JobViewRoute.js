@@ -33,11 +33,7 @@ class JobViewRoute extends React.Component {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { showConfirmDelete: false };
-  }
+  state = { showConfirmDelete: false };
 
   handleDelete = () => {
     const { resources } = this.props;

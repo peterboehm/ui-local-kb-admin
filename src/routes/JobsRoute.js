@@ -117,8 +117,8 @@ class JobsRoute extends React.Component {
     return get(this.props.resources, 'query', {});
   }
 
-  showToast(messageId, messageType = 'success', values = {}) {
-    this.callout.current.sendCallout({
+  showToast = (messageId, messageType = 'success', values = {}) => {
+    return this.callout.current.sendCallout({
       message: <FormattedMessage id={messageId} values={values} />,
       type: messageType,
     });
