@@ -30,5 +30,12 @@
 
   "columns.errorLogMessage": "Error",
   "columns.infoLogMessage": "Message",
-  "columns.recordNumber": "Record number"
+  "columns.recordNumber": "Record number",
+
+  "section.externalDataSources": "External data sources",
+
+  "settings.externalDataSources": "External Data Sources",
+  "settings.general": "General",
+  "settings.externalDataSources.termCount": "{count} external data sources"
+
 }
