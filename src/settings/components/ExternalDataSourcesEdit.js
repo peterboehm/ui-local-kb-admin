@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
 import { required } from '../../util/validators';
@@ -26,14 +27,21 @@ export default class ExternalDataSourcesEdit extends React.Component {
     const recordTypes = [{ label: '', value: '' }, { value: '1', label: 'Package' }];
     return (
       <Card
-        headerStart={<strong>{value.id ? 'Edit External kb' : 'New External kb'}</strong>}
+        headerStart={(
+          <strong>
+            {value.id ?
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.editExternalKb" />
+              :
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalKb" />}
+          </strong>
+        )}
         headerEnd={this.props.actionButtons}
       >
         <Row>
           <Col xs={4} md={4}>
             <Field
               component={TextField}
-              label="Name"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               name={`${name}.name`}
               required
               validate={required}
@@ -42,7 +50,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={Select}
-              label="Type"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               name={`${name}.type`}
               dataOptions={kbadapterTypes}
               required
@@ -52,7 +60,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={Select}
-              label="Record type"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
               name={`${name}.rectype`}
               dataOptions={recordTypes}
               required
@@ -62,7 +70,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
         </Row>
         <Field
           component={TextField}
-          label="URI"
+          label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
           name={`${name}.uri`}
         />
         <Layout className="padding-bottom-gutter">
@@ -70,7 +78,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Col xs={4} md={4}>
               <Field
                 component={Checkbox}
-                label="Is active"
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
                 name={`${name}.active`}
                 type="checkbox"
               />
@@ -78,7 +86,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Col xs={4} md={4}>
               <Field
                 component={Checkbox}
-                label="Supports harvesting"
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
                 name={`${name}.supportsHarvesting`}
                 type="checkbox"
               />
@@ -86,7 +94,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Col xs={4} md={4}>
               <Field
                 component={Checkbox}
-                label="Activation enabled"
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
                 name={`${name}.activationEnabled`}
                 type="checkbox"
               />
@@ -97,28 +105,28 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={TextField}
-              label="listPrefix"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
               name={`${name}.listPrefix`}
             />
           </Col>
           <Col xs={4} md={4}>
             <Field
               component={TextField}
-              label="fullPrefix"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
               name={`${name}.fullPrefix`}
             />
           </Col>
           <Col xs={4} md={4}>
             <Field
               component={TextField}
-              label="Principal"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
               name={`${name}.principal`}
             />
           </Col>
         </Row>
         <Field
           component={TextArea}
-          label="Credentials"
+          label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
           name={`${name}.credentials`}
         />
       </Card>

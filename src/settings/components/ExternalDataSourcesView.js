@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
@@ -29,45 +30,45 @@ export default class ExternalDataSourcesView extends React.Component {
         <Row>
           <Col xs={3} md={3}>
             <KeyValue
-              label="Name"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               value={value.name}
             />
           </Col>
           <Col xs={5} md={5}>
             <KeyValue
-              label="Type"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               value={value.type}
             />
           </Col>
           <Col xs={4} md={4}>
             <KeyValue
-              label="Record type"
-              value={value.rectype === 1 ? 'Package' : ''}
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
+              value={value.rectype === 1 ? <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.package" /> : ''}
             />
           </Col>
         </Row>
         <KeyValue
-          label="URI"
+          label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
           value={value.uri}
         />
         <Layout className="padding-bottom-gutter">
           <Row>
             <Col xs={3} md={3}>
               <KeyValue
-                label="Is active"
-                value={value.active ? 'Yes' : 'No'}
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
+                value={<FormattedMessage id={value.active ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
               />
             </Col>
             <Col xs={5} md={5}>
               <KeyValue
-                label="Supports harvesting"
-                value={value.supportsHarvesting ? 'Yes' : 'No'}
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
+                value={<FormattedMessage id={value.supportsHarvesting ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
               />
             </Col>
             <Col xs={4} md={4}>
               <KeyValue
-                label="Activation enabled"
-                value={value.activationEnabled ? 'Yes' : 'No'}
+                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
+                value={<FormattedMessage id={value.activationEnabled ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
               />
             </Col>
           </Row>
@@ -75,25 +76,25 @@ export default class ExternalDataSourcesView extends React.Component {
         <Row>
           <Col xs={3} md={3}>
             <KeyValue
-              label="listPrefix"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
               value={value.listPrefix}
             />
           </Col>
           <Col xs={5} md={5}>
             <KeyValue
-              label="fullPrefix"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
               value={value.fullPrefix}
             />
           </Col>
           <Col xs={4} md={4}>
             <KeyValue
-              label="Principal"
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
               value={value.principal}
             />
           </Col>
         </Row>
         <KeyValue
-          label="Credentials"
+          label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
           value={value.credentials}
         />
       </Card>

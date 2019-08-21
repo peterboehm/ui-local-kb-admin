@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { isEqual } from 'lodash';
-import { Button, Layout } from '@folio/stripes/components';
+import { Button, Col, Row } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import ExternalDataSourcesFields from './ExternalDataSourcesFields';
 
@@ -11,6 +12,7 @@ class ExternalDataSourcesList extends React.Component {
       unshift: PropTypes.func.isRequired,
       value: PropTypes.array.isRequired,
     }).isRequired,
+    mutators: PropTypes.object,
     onDelete: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
   }
@@ -32,25 +34,27 @@ class ExternalDataSourcesList extends React.Component {
 
   handleSave = (index) => {
     const externalkb = this.props.fields.value[index];
-    this.props.onSave(externalkb);
+    return this.props.onSave(externalkb);
   }
 
   render() {
     const { fields, mutators } = this.props;
     return (
       <div>
-        <Layout end="sm">
-          <Button onClick={this.handleNew}>
-            New
-          </Button>
-        </Layout>
+        <Row end="sm">
+          <Col>
+            <Button onClick={this.handleNew}>
+              <FormattedMessage id="stripes-components.button.new" />
+            </Button>
+          </Col>
+        </Row>
         {
           fields.value.map((externalkb, i) => (
             <Field
               component={ExternalDataSourcesFields}
               isEqual={isEqual}
+              key={externalkb.id || i}
               mutators={mutators}
-              key={(externalkb && externalkb.id) || i}
               name={`${fields.name}[${i}]`}
               onDelete={() => this.handleDelete(i)}
               onSave={() => this.handleSave(i)}

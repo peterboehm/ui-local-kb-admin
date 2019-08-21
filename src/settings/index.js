@@ -7,7 +7,6 @@ import {
 } from './routes';
 
 export default class LocalKbAdminSettings extends React.Component {
-
   sections = [
     {
       label: <FormattedMessage id="ui-local-kb-admin.settings.general" />,

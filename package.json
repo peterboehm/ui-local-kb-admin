@@ -36,13 +36,13 @@
     "prop-types": "^15.6.0",
     "query-string": "^6.6.0",
     "react-final-form": "^6.3.0",
-    "react-final-form-arrays": "^3.1.1",
+    "react-final-form-arrays": "^3.1.0",
     "react-intl": "^2.4.0",
     "react-router-dom": "^4.1.1",
     "redux-form": "^7.0.3"
   },
   "peerDependencies": {
-    "@folio/stripes": "^2.0.0",
+    "@folio/stripes": "^2.9.0",
     "react": "*",
     "react-dom": "*",
     "react-redux": "*",

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Button } from '@folio/stripes/components';
 import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
 import ExternalDataSourcesView from './ExternalDataSourcesView';
@@ -62,24 +63,15 @@ export default class ExternalDataSourcesFields extends React.Component {
     });
   }
 
-  handleSave = (term) => {
-    this.setState({
-      editing: false,
-    });
-
-    this.props.onSave(term);
-  }
-
-  handleDelete = (term) => {
-    this.setState({
-      editing: false,
-    }, () => this.props.onDelete(term));
+  handleSave = () => {
+    this.props.onSave()
+      .then(() => this.setState({ editing: false }));
   }
 
   renderActionButtons = () => {
     const {
-      input: { value },
       meta,
+      onDelete
     } = this.props;
 
     const { editing } = this.state;
@@ -91,14 +83,14 @@ export default class ExternalDataSourcesFields extends React.Component {
             marginBottom0
             onClick={this.handleCancel}
           >
-            Cancel
+            <FormattedMessage id="stripes-core.button.cancel" />
           </Button>
           <Button
             disabled={meta.invalid || meta.pristine || meta.submitting}
             marginBottom0
             onClick={this.handleSave}
           >
-            Save
+            <FormattedMessage id="stripes-core.button.save" />
           </Button>
         </span>
       );
@@ -108,15 +100,15 @@ export default class ExternalDataSourcesFields extends React.Component {
           <Button
             buttonStyle="danger"
             marginBottom0
-            onClick={this.handleDelete}
+            onClick={onDelete}
           >
-            Delete
+            <FormattedMessage id="stripes-core.button.delete" />
           </Button>
           <Button
             marginBottom0
             onClick={this.handleEdit}
           >
-            Edit
+            <FormattedMessage id="stripes-core.button.edit" />
           </Button>
         </span>
       );

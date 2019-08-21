@@ -6,7 +6,6 @@ import { stripesConnect } from '@folio/stripes/core';
 import ExternalDataSourcesForm from '../components/ExternalDataSourcesForm';
 
 class ExternalDataSourcesSettingsRoute extends React.Component {
-
   static propTypes = {
     resources: PropTypes.shape({
       externalKbs: PropTypes.object,
@@ -31,15 +30,8 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
     },
   });
 
-  handleSubmit = () => {
-    console.log('submitting');
-  }
-
   handleDelete = (externalKb) => {
-    this.props.mutator.externalKbs.DELETE({ id: externalKb.id })
-      .then(response => {
-        console.log(response);
-      });
+    return this.props.mutator.externalKbs.DELETE({ id: externalKb.id })
   }
 
   handleSave = (externalKb) => {
@@ -49,9 +41,7 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
       mutator.PUT(externalKb, { pk: externalKb.id }) :
       mutator.POST(externalKb);
 
-    promise.then(response => {
-      console.log(response);
-    });
+    return promise;
   }
 
   render() {

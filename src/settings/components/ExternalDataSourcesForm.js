@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { FieldArray } from 'react-final-form-arrays';
-import { Pane } from '@folio/stripes/components';
+import { Callout, Pane } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import ExternalDataSourcesList from './ExternalDataSourcesList';
 
 class ExternalDataSourcesForm extends React.Component {
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    form: PropTypes.shape({
+      mutators: PropTypes.object
+    }),
     initialValues: PropTypes.shape({
       externalKbs: PropTypes.arrayOf(PropTypes.object),
     }),
@@ -17,8 +19,27 @@ class ExternalDataSourcesForm extends React.Component {
     onSave: PropTypes.func.isRequired,
   }
 
+  sendCallout = (operation, outcome) => {
+    this.callout.sendCallout({
+      type: outcome,
+      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} />
+    });
+  }
+
+  handleDelete = (...rest) => {
+    this.props.onDelete(...rest)
+      .then(() => this.sendCallout('delete', 'success'))
+      .catch(() => this.sendCallout('delete', 'error'));
+  }
+
+  handleSave = (...rest) => {
+    this.props.onSave(...rest)
+      .then(() => this.sendCallout('save', 'success'))
+      .catch(() => this.sendCallout('save', 'error'));
+  }
+
   render() {
-    const { form: { mutators }, onDelete, onSave } = this.props;
+    const { form: { mutators } } = this.props;
 
     const count = get(this.props, 'initialValues.externalKbs.length', 0);
     return (
@@ -31,19 +52,20 @@ class ExternalDataSourcesForm extends React.Component {
         <form>
           <FieldArray
             component={ExternalDataSourcesList}
-            name="externalKbs"
-            onDelete={onDelete}
-            onSave={onSave}
             mutators={mutators}
+            name="externalKbs"
+            onDelete={this.handleDelete}
+            onSave={this.handleSave}
           />
         </form>
+        <Callout ref={ref => { this.callout = ref; }} />
       </Pane>
     );
   }
 }
 export default stripesFinalForm({
   enableReinitialize: true,
-  keepDirtyOnReinitialize: true,
+  keepDirtyOnReinitialize: false,
   mutators: {
     resetTermState: (args, state, tools) => {
       tools.resetFieldState(args[0]);
@@ -52,5 +74,5 @@ export default stripesFinalForm({
       tools.changeValue(state, args[0], () => args[1]);
     },
   },
-  navigationCheck: true
+  navigationCheck: true,
 })(ExternalDataSourcesForm);
