@@ -44,6 +44,7 @@ class ExternalDataSourcesForm extends React.Component {
     const count = get(this.props, 'initialValues.externalKbs.length', 0);
     return (
       <Pane
+        data-test-external-data-sources
         defaultWidth="fill"
         id="settings-external-data-sources"
         paneTitle={<FormattedMessage id="ui-local-kb-admin.section.externalDataSources" />}

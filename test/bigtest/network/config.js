@@ -37,18 +37,18 @@ export default function config() {
 
   this.get('/erm/refdataValues/persistentJob/result', () => {
     return [
-      { 'id':'2c9d81916c044334016c0444659b0032', 'value':'success', 'label':'Success' },
-      { 'id':'2c9d81916c044334016c044465a90033', 'value':'partial_success', 'label':'Partial success' },
-      { 'id':'2c9d81916c044334016c044465ba0034', 'value':'failure', 'label':'Failure' },
-      { 'id':'2c9d81916c044334016c044465c10035', 'value':'interrupted', 'label':'Interrupted' }
+      { 'id': '2c9d81916c044334016c0444659b0032', 'value': 'success', 'label': 'Success' },
+      { 'id': '2c9d81916c044334016c044465a90033', 'value': 'partial_success', 'label': 'Partial success' },
+      { 'id': '2c9d81916c044334016c044465ba0034', 'value': 'failure', 'label': 'Failure' },
+      { 'id': '2c9d81916c044334016c044465c10035', 'value': 'interrupted', 'label': 'Interrupted' }
     ];
   });
 
   this.get('/erm/refdataValues/persistentJob/status', () => {
     return [
-      { 'id':'2c9d81916c044334016c04445e310008', 'value':'queued', 'label':'Queued' },
-      { 'id':'2c9d81916c044334016c0444657d002f', 'value':'in_progress', 'label':'In progress' },
-      { 'id':'2c9d81916c044334016c044465880030', 'value':'ended', 'label':'Ended' }
+      { 'id': '2c9d81916c044334016c04445e310008', 'value': 'queued', 'label': 'Queued' },
+      { 'id': '2c9d81916c044334016c0444657d002f', 'value': 'in_progress', 'label': 'In progress' },
+      { 'id': '2c9d81916c044334016c044465880030', 'value': 'ended', 'label': 'Ended' }
     ];
   });
 
@@ -58,5 +58,9 @@ export default function config() {
 
   this.delete('erm/jobs/:id', (schema, request) => {
     return schema.jobs.find(request.params.id).destroy();
+  });
+
+  this.get('erm/kbs', ({ externalDataSources }) => {
+    return externalDataSources.all().models;
   });
 }

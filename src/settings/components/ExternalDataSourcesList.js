@@ -43,7 +43,7 @@ class ExternalDataSourcesList extends React.Component {
       <div>
         <Row end="sm">
           <Col>
-            <Button onClick={this.handleNew}>
+            <Button data-test-external-data-source-new onClick={this.handleNew}>
               <FormattedMessage id="stripes-components.button.new" />
             </Button>
           </Col>

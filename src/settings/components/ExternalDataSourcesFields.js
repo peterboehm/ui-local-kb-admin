@@ -80,6 +80,7 @@ export default class ExternalDataSourcesFields extends React.Component {
       return (
         <span>
           <Button
+            data-test-external-data-source-cancel
             marginBottom0
             onClick={this.handleCancel}
           >
@@ -98,6 +99,7 @@ export default class ExternalDataSourcesFields extends React.Component {
       return (
         <span>
           <Button
+            data-test-external-data-source-delete
             buttonStyle="danger"
             marginBottom0
             onClick={onDelete}
@@ -105,6 +107,7 @@ export default class ExternalDataSourcesFields extends React.Component {
             <FormattedMessage id="stripes-core.button.delete" />
           </Button>
           <Button
+            data-test-external-data-source-edit
             marginBottom0
             onClick={this.handleEdit}
           >
