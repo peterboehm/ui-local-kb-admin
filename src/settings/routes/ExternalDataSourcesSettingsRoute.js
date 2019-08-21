@@ -31,7 +31,7 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
   });
 
   handleDelete = (externalKb) => {
-    return this.props.mutator.externalKbs.DELETE({ id: externalKb.id })
+    return this.props.mutator.externalKbs.DELETE({ id: externalKb.id });
   }
 
   handleSave = (externalKb) => {
