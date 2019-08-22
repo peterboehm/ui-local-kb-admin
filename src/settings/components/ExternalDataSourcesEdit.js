@@ -27,6 +27,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
     const recordTypes = [{ label: '', value: '' }, { value: '1', label: 'Package' }];
     return (
       <Card
+        data-test-external-data-source-edit
         headerStart={(
           <strong>
             {value.id ?
@@ -41,6 +42,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={TextField}
+              data-test-external-data-source-name-edit
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               name={`${name}.name`}
               required
@@ -50,6 +52,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={Select}
+              data-test-external-data-source-type-edit
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               name={`${name}.type`}
               dataOptions={kbadapterTypes}
@@ -60,6 +63,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           <Col xs={4} md={4}>
             <Field
               component={Select}
+              data-test-external-data-source-record-type-edit
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
               name={`${name}.rectype`}
               dataOptions={recordTypes}

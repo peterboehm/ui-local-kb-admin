@@ -2,6 +2,8 @@ import { get, isEmpty } from 'lodash';
 import parseQueryString from './util';
 
 export default function config() {
+  const server = this;
+
   this.get('/configurations/entries', {
     configs: []
   });
@@ -62,5 +64,19 @@ export default function config() {
 
   this.get('erm/kbs', ({ externalDataSources }) => {
     return externalDataSources.all().models;
+  });
+
+  this.delete('erm/kbs/:id', (schema, request) => {
+    return schema.externalDataSources.find(request.params.id).destroy();
+  });
+
+  this.post('erm/kbs', (_, request) => {
+    const body = JSON.parse(request.requestBody);
+    return server.create('externalDataSource', body);
+  });
+
+  this.put('erm/kbs/:id', ({ externalDataSources }, { params, requestBody }) => {
+    const externalDataSourceData = JSON.parse(requestBody);
+    return externalDataSources.find(params.id).update(externalDataSourceData);
   });
 }

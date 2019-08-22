@@ -31,7 +31,7 @@ export default class ExternalDataSourcesView extends React.Component {
         <Row>
           <Col xs={3} md={3}>
             <KeyValue
-              data-test-external-data-source-name
+              data-test-external-data-source-name="bar"
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               value={value.name}
             />

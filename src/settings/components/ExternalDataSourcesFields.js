@@ -64,8 +64,8 @@ export default class ExternalDataSourcesFields extends React.Component {
   }
 
   handleSave = () => {
-    this.props.onSave()
-      .then(() => this.setState({ editing: false }));
+    this.props.onSave();
+    this.setState({ editing: false });
   }
 
   renderActionButtons = () => {
@@ -87,6 +87,7 @@ export default class ExternalDataSourcesFields extends React.Component {
             <FormattedMessage id="stripes-core.button.cancel" />
           </Button>
           <Button
+            data-test-external-data-source-save
             disabled={meta.invalid || meta.pristine || meta.submitting}
             marginBottom0
             onClick={this.handleSave}
