@@ -29,10 +29,10 @@
     "chai": "^4.2.0",
     "eslint": "^5.5.0",
     "mocha": "^6.2.0",
-    "react": "~16.6.3",
-    "react-dom": "~16.6.3",
-    "react-redux": "~5.1.1",
-    "redux": "~3.7.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^3.7.0",
     "sinon": "^7.3.2"
   },
   "dependencies": {
