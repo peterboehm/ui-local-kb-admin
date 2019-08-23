@@ -24,5 +24,7 @@
     "job.delete.confirmLabel": "حذف",
     "job.delete.heading": "حذف {name}؟",
     "job.delete.message": "حذف الوظيفة؟",
-    "job.delete.success": "تم حذف الوظيفة {name} بنجاح"
+    "job.delete.success": "تم حذف الوظيفة {name} بنجاح",
+    "loading": "جاري التحميل...",
+    "searchInputLabel": "بحث الوظائف"
 }

@@ -24,5 +24,7 @@
     "job.delete.confirmLabel": "Delete",
     "job.delete.heading": "Delete {name}?",
     "job.delete.message": "Delete job?",
-    "job.delete.success": "The job {name} was successfully deleted"
+    "job.delete.success": "The job {name} was successfully deleted",
+    "loading": "Loading...",
+    "searchInputLabel": "Search jobs"
 }
