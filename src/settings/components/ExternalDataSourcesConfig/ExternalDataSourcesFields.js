@@ -7,8 +7,6 @@ import ExternalDataSourcesView from './ExternalDataSourcesView';
 
 export default class ExternalDataSourcesFields extends React.Component {
   static propTypes = {
-    onDelete: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
     input: PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
@@ -23,7 +21,9 @@ export default class ExternalDataSourcesFields extends React.Component {
     mutators: PropTypes.shape({
       resetTermState: PropTypes.func,
       setTermValue: PropTypes.func,
-    })
+    }),
+    onDelete: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
   }
 
   constructor(props) {
