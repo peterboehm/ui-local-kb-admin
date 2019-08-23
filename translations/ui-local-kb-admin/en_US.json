@@ -2,7 +2,6 @@
     "meta.title": "Local KB Admin",
     "errorLog": "Error log",
     "infoLog": "Info log",
-    "loading": "Loading...",
     "job.delete": "Delete job",
     "prop.class": "Job type",
     "prop.ended": "Ended",
@@ -26,9 +25,7 @@
     "job.delete.heading": "Delete {name}?",
     "job.delete.message": "Delete job?",
     "job.delete.success": "The job {name} was successfully deleted",
-    "section.externalDataSources": "External data sources",
 
-  "settings.externalDataSources": "External Data Sources",
-  "settings.general": "General",
-  "settings.externalDataSources.termCount": "{count} external data sources"
+    "loading": "Loading...",
+    "searchInputLabel": "Search jobs"
 }
