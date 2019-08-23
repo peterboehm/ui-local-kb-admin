@@ -24,5 +24,7 @@
     "job.delete.confirmLabel": "Excluir",
     "job.delete.heading": "Excluir {name}?",
     "job.delete.message": "Excluir job",
-    "job.delete.success": "O job {name} foi excluído com sucesso"
+    "job.delete.success": "O job {name} foi excluído com sucesso",
+    "loading": "Carregando...",
+    "searchInputLabel": "Pesquisar jobs"
 }
