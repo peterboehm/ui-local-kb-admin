@@ -21,30 +21,30 @@ export default class ExternalDataSourcesView extends React.Component {
   }
 
   render() {
-    const { input: { value } } = this.props;
+    const { actionButtons, input: { value } } = this.props;
 
     return (
       <Card
         data-test-external-data-source-view
-        headerStart={<strong>External Kb</strong>}
-        headerEnd={this.props.actionButtons}
+        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalKb" /></strong>}
+        headerEnd={actionButtons}
       >
         <Row>
-          <Col xs={3} md={3}>
+          <Col xs={3}>
             <KeyValue
-              data-test-external-data-source-name="bar"
+              data-test-external-data-source-name
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               value={value.name}
             />
           </Col>
-          <Col xs={5} md={5}>
+          <Col xs={5}>
             <KeyValue
               data-test-external-data-source-type
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               value={value.type}
             />
           </Col>
-          <Col xs={4} md={4}>
+          <Col xs={4}>
             <KeyValue
               data-test-external-data-source-recordtype
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
@@ -59,21 +59,21 @@ export default class ExternalDataSourcesView extends React.Component {
         />
         <Layout className="padding-bottom-gutter">
           <Row>
-            <Col xs={3} md={3}>
+            <Col xs={3}>
               <KeyValue
                 data-test-external-data-source-isactive
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
                 value={<FormattedMessage id={value.active ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
               />
             </Col>
-            <Col xs={5} md={5}>
+            <Col xs={5}>
               <KeyValue
                 data-test-external-data-source-supportsharvesting
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
                 value={<FormattedMessage id={value.supportsHarvesting ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
               />
             </Col>
-            <Col xs={4} md={4}>
+            <Col xs={4}>
               <KeyValue
                 data-test-external-data-source-activationenabled
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
@@ -83,21 +83,21 @@ export default class ExternalDataSourcesView extends React.Component {
           </Row>
         </Layout>
         <Row>
-          <Col xs={3} md={3}>
+          <Col xs={3}>
             <KeyValue
               data-test-external-data-source-listprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
               value={get(value, 'listPrefix', '-')}
             />
           </Col>
-          <Col xs={5} md={5}>
+          <Col xs={5}>
             <KeyValue
               data-test-external-data-source-fullprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
               value={get(value, 'fullPrefix', '-')}
             />
           </Col>
-          <Col xs={4} md={4}>
+          <Col xs={4}>
             <KeyValue
               data-test-external-data-source-principal
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}

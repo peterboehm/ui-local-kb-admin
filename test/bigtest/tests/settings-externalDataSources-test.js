@@ -135,10 +135,13 @@ describe('ExternalDataSources', () => {
     });
   });
 
-  describe('Creating and editing data source', () => {
+  describe('Creating, editing and cancelling data source', () => {
     const name = 'aa';
     const type = 'org.olf.kb.adapters.EbscoKBAdapter';
     const recordType = 'Package';
+    const isActive = true;
+    const supportsHarvesting = false;
+    const activationEnabled = true;
 
     beforeEach(async function () {
       this.visit('/settings/local-kb-admin/external-data-sources');
@@ -150,21 +153,63 @@ describe('ExternalDataSources', () => {
     });
 
     describe('creating a new data source', () => {
-      it('sholud render the expected source', () => {
+      it('should render the expected source', () => {
         expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(name);
       });
 
-      describe('editing the source', () => {
+      describe('edit', () => {
         const editedName = 'aa edited name';
 
         beforeEach(async function () {
           await externaldatasources.externalDataSourceList.items(0).clickEditButton();
           await externaldatasources.externalDataSourceList.itemsEdit(0).editName(editedName);
+          await externaldatasources.externalDataSourceList.itemsEdit(0).editIsActive(isActive);
+          await externaldatasources.externalDataSourceList.itemsEdit(0).editSupportsHarvesting(supportsHarvesting);
+          await externaldatasources.externalDataSourceList.itemsEdit(0).editActivationEnabled(activationEnabled);
           await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
         });
 
-        it('should render the edited data source', () => {
-          expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(editedName);
+        describe('editing and saving the source', () => {
+          it('should render the edited data source name', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(editedName);
+          });
+
+          it('should render the edited isActive checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isActive.value.text).to.equal('Yes');
+          });
+
+          it('should render the edited supportsHarvesting checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isSupportsHarvesting.value.text).to.equal('No');
+          });
+
+          it('should render the edited activationEnabled checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isActivationEnabled.value.text).to.equal('Yes');
+          });
+        });
+      });
+
+      describe('edit and cancel', () => {
+        beforeEach(async function () {
+          await externaldatasources.externalDataSourceList.items(0).clickEditButton();
+          await externaldatasources.externalDataSourceList.itemsEdit(0).clickCancelButton();
+        });
+
+        describe('editing and canceling the source', () => {
+          it('should render the previous name', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(name);
+          });
+
+          it('should render the previous isActive checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isActive.value.text).to.equal('No');
+          });
+
+          it('should render the previous supportsHarvesting checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isSupportsHarvesting.value.text).to.equal('Yes');
+          });
+
+          it('should render the previous activationEnabled checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).isActivationEnabled.value.text).to.equal('No');
+          });
         });
       });
     });

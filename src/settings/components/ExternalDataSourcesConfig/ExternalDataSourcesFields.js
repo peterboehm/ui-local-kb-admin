@@ -19,8 +19,7 @@ export default class ExternalDataSourcesFields extends React.Component {
       submitting: PropTypes.bool,
     }),
     mutators: PropTypes.shape({
-      resetTermState: PropTypes.func,
-      setTermValue: PropTypes.func,
+      setExternalDataSourceValue: PropTypes.func,
     }),
     onDelete: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
@@ -38,8 +37,6 @@ export default class ExternalDataSourcesFields extends React.Component {
   }
 
   handleEdit = () => {
-    this.props.mutators.resetTermState(this.props.input.name);
-
     this.setState({
       initialValue: this.props.input.value,
       editing: true,
@@ -53,7 +50,7 @@ export default class ExternalDataSourcesFields extends React.Component {
     } = this.props;
 
     if (value.id) {
-      this.props.mutators.setTermValue(name, this.state.initialValue);
+      this.props.mutators.setExternalDataSourceValue(name, this.state.initialValue);
     } else {
       onDelete();
     }

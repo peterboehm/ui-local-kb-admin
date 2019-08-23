@@ -51,6 +51,9 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   editName = fillable('[data-test-external-data-source-name-edit]');
   editType = selectable('[data-test-external-data-source-type-edit]');
   editRecordType = selectable('[data-test-external-data-source-record-type-edit]');
+  editIsActive = clickable('[data-test-external-data-source-is-active-edit]');
+  editSupportsHarvesting = clickable('[data-test-external-data-source-supports-harvesting-edit]');
+  editActivationEnabled = clickable('[data-test-external-data-source-activation-enabled-edit]');
 }
 
 @interactor class ExternalDataSourcesListInteractor {

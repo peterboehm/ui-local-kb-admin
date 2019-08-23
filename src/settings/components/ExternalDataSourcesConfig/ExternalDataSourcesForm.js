@@ -87,10 +87,7 @@ export default stripesFinalForm({
   enableReinitialize: true,
   keepDirtyOnReinitialize: false,
   mutators: {
-    resetTermState: (args, state, tools) => {
-      tools.resetFieldState(args[0]);
-    },
-    setTermValue: (args, state, tools) => {
+    setExternalDataSourceValue: (args, state, tools) => {
       tools.changeValue(state, args[0], () => args[1]);
     },
   },
