@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { FieldArray } from 'react-final-form-arrays';
 import { Callout, Pane } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
-import ExternalDataSourcesList from './ExternalDataSourcesList';
+import ExternalDataSourcesListFieldArray from './ExternalDataSourcesListFieldArray';
 
 class ExternalDataSourcesForm extends React.Component {
   static propTypes = {
@@ -19,23 +19,42 @@ class ExternalDataSourcesForm extends React.Component {
     onSave: PropTypes.func.isRequired,
   }
 
-  sendCallout = (operation, outcome) => {
+  sendCallout = (operation, outcome, error = '') => {
     this.callout.sendCallout({
       type: outcome,
-      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} />
+      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} values={{ error }} />,
+      timeout: error ? 0 : undefined, // Don't autohide callouts with a specified error message.
     });
   }
 
   handleDelete = (...rest) => {
-    this.props.onDelete(...rest)
+    return this.props.onDelete(...rest)
       .then(() => this.sendCallout('delete', 'success'))
-      .catch(() => this.sendCallout('delete', 'error'));
+      .catch(response => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        response.json()
+          .then(error => this.sendCallout('delete', 'error', error.message))
+          .catch(() => this.sendCallout('delete', 'error'));
+
+        // Return a rejected promise to break any downstream Promise chains.
+        return Promise.reject();
+      });
   }
 
   handleSave = (...rest) => {
-    this.props.onSave(...rest)
+    return this.props.onSave(...rest)
       .then(() => this.sendCallout('save', 'success'))
-      .catch(() => this.sendCallout('save', 'error'));
+      .catch(response => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        response.json()
+          .then(error => this.sendCallout('save', 'error', error.message))
+          .catch(() => this.sendCallout('save', 'error'));
+
+        // Return a rejected promise to break any downstream Promise chains.
+        return Promise.reject();
+      });
   }
 
   render() {
@@ -48,11 +67,11 @@ class ExternalDataSourcesForm extends React.Component {
         defaultWidth="fill"
         id="settings-external-data-sources"
         paneTitle={<FormattedMessage id="ui-local-kb-admin.section.externalDataSources" />}
-        paneSub={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.termCount" values={{ count }} />}
+        paneSub={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.sourceCount" values={{ count }} />}
       >
         <form>
           <FieldArray
-            component={ExternalDataSourcesList}
+            component={ExternalDataSourcesListFieldArray}
             mutators={mutators}
             name="externalKbs"
             onDelete={this.handleDelete}

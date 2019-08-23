@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 
-import ExternalDataSourcesForm from '../components/ExternalDataSourcesForm';
+import ExternalDataSourcesForm from '../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
 
 class ExternalDataSourcesSettingsRoute extends React.Component {
   static propTypes = {
@@ -24,14 +24,12 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
       type: 'okapi',
       path: 'erm/kbs',
       clientGeneratePk: false,
-    },
-    DELETE: {
-      path: 'erm/kbs/%{activeRecord.id}',
+      throwErrors: false
     },
   });
 
   handleDelete = (externalKb) => {
-    return this.props.mutator.externalKbs.DELETE({ id: externalKb.id });
+    return this.props.mutator.externalKbs.DELETE(externalKb);
   }
 
   handleSave = (externalKb) => {
@@ -40,7 +38,6 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
     const promise = externalKb.id ?
       mutator.PUT(externalKb, { pk: externalKb.id }) :
       mutator.POST(externalKb);
-
     return promise;
   }
 

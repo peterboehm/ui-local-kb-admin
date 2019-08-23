@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { get } from 'lodash';
 import { Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
@@ -54,7 +55,7 @@ export default class ExternalDataSourcesView extends React.Component {
         <KeyValue
           data-test-external-data-source-uri
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
-          value={value.uri}
+          value={get(value, 'uri', '-')}
         />
         <Layout className="padding-bottom-gutter">
           <Row>
@@ -86,28 +87,28 @@ export default class ExternalDataSourcesView extends React.Component {
             <KeyValue
               data-test-external-data-source-listprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
-              value={value.listPrefix}
+              value={get(value, 'listPrefix', '-')}
             />
           </Col>
           <Col xs={5} md={5}>
             <KeyValue
               data-test-external-data-source-fullprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
-              value={value.fullPrefix}
+              value={get(value, 'fullPrefix', '-')}
             />
           </Col>
           <Col xs={4} md={4}>
             <KeyValue
               data-test-external-data-source-principal
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
-              value={value.principal}
+              value={get(value, 'principal', '-')}
             />
           </Col>
         </Row>
         <KeyValue
           data-test-external-data-source-credentials
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
-          value={value.credentials}
+          value={get(value, 'credentials', '-')}
         />
       </Card>
     );

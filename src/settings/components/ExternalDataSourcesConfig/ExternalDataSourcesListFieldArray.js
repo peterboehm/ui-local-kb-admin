@@ -6,7 +6,7 @@ import { Button, Col, Row } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import ExternalDataSourcesFields from './ExternalDataSourcesFields';
 
-class ExternalDataSourcesList extends React.Component {
+export default class ExternalDataSourcesListFieldArray extends React.Component {
   static propTypes = {
     fields: PropTypes.shape({
       unshift: PropTypes.func.isRequired,
@@ -15,6 +15,14 @@ class ExternalDataSourcesList extends React.Component {
     mutators: PropTypes.object,
     onDelete: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+  }
+
+  defaultValues = {
+    active: false,
+    activationEnabled: false,
+    rectype: 1,
+    supportsHarvesting: true,
+    type: 'org.olf.kb.adapters.EbscoKBAdapter',
   }
 
   handleDelete = (index) => {
@@ -29,7 +37,7 @@ class ExternalDataSourcesList extends React.Component {
   }
 
   handleNew = () => {
-    this.props.fields.unshift({});
+    this.props.fields.unshift(this.defaultValues);
   }
 
   handleSave = (index) => {
@@ -65,5 +73,3 @@ class ExternalDataSourcesList extends React.Component {
     );
   }
 }
-
-export default ExternalDataSourcesList;

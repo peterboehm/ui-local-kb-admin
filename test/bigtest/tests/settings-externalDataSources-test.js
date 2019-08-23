@@ -3,7 +3,7 @@ import { beforeEach, describe, it } from '@bigtest/mocha';
 import { expect } from 'chai';
 
 import setupApplication from '../helpers/setup-application';
-import ExternalDataSourcesInteractor from '../interactors/externalDataSources';
+import ExternalDataSourcesInteractor from '../interactors/external-data-sources';
 
 describe('ExternalDataSources', () => {
   setupApplication();
@@ -136,7 +136,7 @@ describe('ExternalDataSources', () => {
   });
 
   describe('Creating and editing data source', () => {
-    const name = 'aaaaa';
+    const name = 'aa';
     const type = 'org.olf.kb.adapters.EbscoKBAdapter';
     const recordType = 'Package';
 
@@ -149,13 +149,13 @@ describe('ExternalDataSources', () => {
       await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
     });
 
-    describe('createing a new data source', () => {
-      it('sholud render the expected name', () => {
+    describe('creating a new data source', () => {
+      it('sholud render the expected source', () => {
         expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(name);
       });
 
-      describe('Editing the source', () => {
-        const editedName = 'aaaaa edited name';
+      describe('editing the source', () => {
+        const editedName = 'aa edited name';
 
         beforeEach(async function () {
           await externaldatasources.externalDataSourceList.items(0).clickEditButton();
@@ -163,7 +163,7 @@ describe('ExternalDataSources', () => {
           await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
         });
 
-        it('should render the edited data source name', () => {
+        it('should render the edited data source', () => {
           expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(editedName);
         });
       });
@@ -192,7 +192,7 @@ describe('ExternalDataSources', () => {
           await externaldatasources.externalDataSourceList.items(1).clickDeleteButton();
         });
 
-        it('reduces the count of data sourcesby 2', () => {
+        it('reduces the count of data sources by 2', () => {
           expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 2);
         });
       });

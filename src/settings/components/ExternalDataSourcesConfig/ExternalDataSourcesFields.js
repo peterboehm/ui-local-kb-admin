@@ -64,8 +64,8 @@ export default class ExternalDataSourcesFields extends React.Component {
   }
 
   handleSave = () => {
-    this.props.onSave();
-    this.setState({ editing: false });
+    this.props.onSave()
+      .then(() => this.setState({ editing: false }));
   }
 
   renderActionButtons = () => {

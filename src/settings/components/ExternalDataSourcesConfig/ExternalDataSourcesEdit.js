@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
-import { required } from '../../util/validators';
+import { required } from '../../../util/validators';
 
 export default class ExternalDataSourcesEdit extends React.Component {
   static propTypes = {
@@ -23,8 +23,8 @@ export default class ExternalDataSourcesEdit extends React.Component {
 
   render() {
     const { input: { value, name } } = this.props;
-    const kbadapterTypes = [{ label: '', value: '' }, { value: 'org.olf.kb.adapters.EbscoKBAdapter', label: 'org.olf.kb.adapters.EbscoKBAdapter' }];
-    const recordTypes = [{ label: '', value: '' }, { value: '1', label: 'Package' }];
+    const kbadapterTypes = [{ value: 'org.olf.kb.adapters.EbscoKBAdapter', label: 'org.olf.kb.adapters.EbscoKBAdapter' }];
+    const recordTypes = [{ value: '1', label: 'Package' }];
     return (
       <Card
         data-test-external-data-source-edit
@@ -53,9 +53,9 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={Select}
               data-test-external-data-source-type-edit
+              dataOptions={kbadapterTypes}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               name={`${name}.type`}
-              dataOptions={kbadapterTypes}
               required
               validate={required}
             />
@@ -64,9 +64,9 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={Select}
               data-test-external-data-source-record-type-edit
+              dataOptions={recordTypes}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
               name={`${name}.rectype`}
-              dataOptions={recordTypes}
               required
               validate={required}
             />
