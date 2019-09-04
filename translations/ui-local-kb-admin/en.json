@@ -1,11 +1,14 @@
 {
   "meta.title": "Local KB Admin",
 
+  "create": "Create",
   "errorLog": "Error log",
   "infoLog": "Info log",
   "infoLogNo": "No information notices for this job.",
   "errorLogNo": "No errors to report.",
   "loading": "Loading...",
+
+  "error.uploadFile": "Please upload a file to continue",
 
   "job.delete": "Delete job",
 
@@ -13,6 +16,9 @@
   "job.delete.heading": "Delete {name}?",
   "job.delete.message": "Delete job?",
   "job.delete.success": "The job {name} was successfully deleted",
+
+  "job.newJob": "New job",
+  "job.close": "Close job",
 
   "prop.class": "Job type",
   "prop.ended": "Ended",
@@ -29,6 +35,8 @@
   "searchInputLabel": "Search jobs",
 
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
+  "org.olf.general.jobs.PackageImportJob": "File import",
+
   "source": "Source",
 
   "columns.errorLogMessage": "Error",
