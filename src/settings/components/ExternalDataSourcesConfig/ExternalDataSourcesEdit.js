@@ -102,9 +102,11 @@ export default class ExternalDataSourcesEdit extends React.Component {
         </Row>
         <Field
           component={TextField}
+          data-test-external-data-source-URI
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
           name={`${name}.uri`}
-          validate={validateURLIsValid}
+          required
+          validate={v => { return (v && v.length) ? validateURLIsValid(v) : required(v); }}
         />
         <Layout className="padding-bottom-gutter">
           <Row>
