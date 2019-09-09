@@ -1,8 +1,9 @@
 # Change history for ui-local-kb-admin
 
-## 1.1.0 IN PROGRESS
+## 1.1.0 2019-09-09
 * Added functionality to create jobs. ERM-337
 * Added settings page for External Data Sources. ERM-83
+* Added ability to import packages from files. ERM-217
 
 ## 1.0.0 2019-07-22
 * Search and view jobs. ERM-332
