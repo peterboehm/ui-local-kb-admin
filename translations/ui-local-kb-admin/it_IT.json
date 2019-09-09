@@ -52,5 +52,10 @@
     "settings.externalDataSources.externalDataSource": "External data source",
     "settings.externalDataSources.editExternalDataSource": "Edit external data source",
     "settings.externalDataSources.newExternalDataSource": "New external data source",
-    "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\")."
+    "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
+    "create": "Create",
+    "error.uploadFile": "Please upload a file to continue",
+    "job.newJob": "New job",
+    "job.close": "Close job",
+    "org.olf.general.jobs.PackageImportJob": "File import"
 }

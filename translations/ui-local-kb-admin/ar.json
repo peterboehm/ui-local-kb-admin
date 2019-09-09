@@ -52,5 +52,10 @@
     "settings.externalDataSources.externalDataSource": "مصدر بيانات خارجي",
     "settings.externalDataSources.editExternalDataSource": "تحرير مصدر البيانات الخارجي",
     "settings.externalDataSources.newExternalDataSource": "مصدر بيانات خارجي جديد",
-    "valid.isURLValid": "يرجى إدخال عنوان URL صالح (متضمنًا \"http\" أو\"https\")"
+    "valid.isURLValid": "يرجى إدخال عنوان URL صالح (متضمنًا \"http\" أو\"https\")",
+    "create": "إنشاء",
+    "error.uploadFile": "يرجى تحميل ملف للمتابعة",
+    "job.newJob": "وظيفة جديدة",
+    "job.close": "غلق الوظيفة",
+    "org.olf.general.jobs.PackageImportJob": "استيراد الملفات"
 }
