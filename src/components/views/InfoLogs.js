@@ -29,13 +29,12 @@ export default class InfoLogs extends React.Component {
           recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
           message: <FormattedMessage id="ui-local-kb-admin.columns.infoLogMessage" />,
         }}
-        columnWidths={{
-          recordNumber: '10%',
-          message: '90%',
-        }}
         contentData={infoLog}
         formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : '-') }}
         id="list-infoLog"
+        interactive={false}
+        maxHeight={800}
+        virtualize
         visibleColumns={['recordNumber', 'message']}
       />
     );
