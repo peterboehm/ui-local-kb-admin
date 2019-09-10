@@ -29,13 +29,12 @@ export default class ErrorLogs extends React.Component {
           recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
           message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
         }}
-        columnWidths={{
-          recordNumber: '10%',
-          message: '90%',
-        }}
         contentData={errorLog}
         formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : '-') }}
         id="list-errorLog"
+        interactive={false}
+        maxHeight={800}
+        virtualize
         visibleColumns={['recordNumber', 'message']}
       />
     );

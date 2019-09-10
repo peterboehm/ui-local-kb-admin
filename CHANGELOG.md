@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 1.2.0 IN PROGRESS
+* Improved performance when viewing info and error logs.
+
 ## 1.1.1 2019-09-10
 * Added translations.
 
