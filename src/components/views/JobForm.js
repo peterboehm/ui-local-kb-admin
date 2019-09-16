@@ -44,7 +44,7 @@ class JobForm extends React.Component {
 
     const endButton = (
       <Button
-        buttonStyle="primary paneHeaderNewButton"
+        buttonStyle="primary mega"
         data-test-save-button
         disabled={this.props.pristine || this.props.submitting || this.props.invalid}
         marginBottom0
