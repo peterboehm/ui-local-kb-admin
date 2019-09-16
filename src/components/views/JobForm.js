@@ -10,6 +10,7 @@ import {
   Button,
   IconButton,
   Pane,
+  PaneFooter,
   PaneMenu,
   Paneset,
 } from '@folio/stripes/components';
@@ -29,6 +30,39 @@ class JobForm extends React.Component {
     invalid: PropTypes.bool
   }
 
+  renderPaneFooter() {
+    const startButton = (
+      <Button
+        buttonStyle="default mega"
+        id="clickable-cancel"
+        marginBottom0
+        onClick={this.props.handlers.onClose}
+      >
+        <FormattedMessage id="stripes-components.cancel" />
+      </Button>
+    );
+
+    const endButton = (
+      <Button
+        buttonStyle="primary mega"
+        data-test-save-button
+        disabled={this.props.pristine || this.props.submitting || this.props.invalid}
+        marginBottom0
+        onClick={this.props.handleSubmit}
+        type="submit"
+      >
+        <FormattedMessage id="stripes-components.saveAndClose" />
+      </Button>
+    );
+
+    return (
+      <PaneFooter
+        renderStart={startButton}
+        renderEnd={endButton}
+      />
+    );
+  }
+
   renderFirstMenu() {
     return (
       <PaneMenu>
@@ -42,23 +76,6 @@ class JobForm extends React.Component {
             />
           )}
         </FormattedMessage>
-      </PaneMenu>
-    );
-  }
-
-  renderLastMenu() {
-    return (
-      <PaneMenu>
-        <Button
-          buttonStyle="primary paneHeaderNewButton"
-          data-test-save-button
-          disabled={this.props.pristine || this.props.submitting || this.props.invalid}
-          marginBottom0
-          onClick={this.props.handleSubmit}
-          type="submit"
-        >
-          <FormattedMessage id="stripes-components.saveAndClose" />
-        </Button>
       </PaneMenu>
     );
   }
@@ -77,9 +94,9 @@ class JobForm extends React.Component {
             <Pane
               appIcon={<AppIcon app="local-kb-admin" />}
               defaultWidth="100%"
+              footer={this.renderPaneFooter()}
               id="pane-job-form"
               firstMenu={this.renderFirstMenu()}
-              lastMenu={this.renderLastMenu()}
               paneTitle={<FormattedMessage id="ui-local-kb-admin.job.newJob" />}
             >
               <TitleManager record={create}>

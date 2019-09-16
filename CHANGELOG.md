@@ -1,6 +1,7 @@
 # Change history for ui-local-kb-admin
 
 ## 1.2.0 IN PROGRESS
+* Move the Save & close button and add a Cancel button to Pane footer. ERM-414
 * Improved performance when viewing info and error logs.
 
 ## 1.1.1 2019-09-10
