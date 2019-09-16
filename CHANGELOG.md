@@ -1,6 +1,7 @@
 # Change history for ui-local-kb-admin
 
 ## 1.2.0 IN PROGRESS
+* Update stripes to v2.10.1 to support PaneFooter.
 * Move the Save & close button and add a Cancel button to Pane footer. ERM-414
 * Improved performance when viewing info and error logs.
 
