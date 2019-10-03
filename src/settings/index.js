@@ -14,7 +14,7 @@ export default class LocalKbAdminSettings extends React.Component {
         {
           component: ExternalDataSourcesSettingsRoute,
           label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources" />,
-          perm: 'module.local-kb-admin.enabled',
+          perm: 'ui-local-kb-admin.kbs.manage',
           route: 'external-data-sources',
         }
       ]

@@ -27,16 +27,16 @@ class JobForm extends React.Component {
     }),
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
-    invalid: PropTypes.bool
   }
 
   renderPaneFooter() {
+    const { handlers, handleSubmit, pristine, submitting } = this.props;
     const startButton = (
       <Button
         buttonStyle="default mega"
         id="clickable-cancel"
         marginBottom0
-        onClick={this.props.handlers.onClose}
+        onClick={handlers.onClose}
       >
         <FormattedMessage id="stripes-components.cancel" />
       </Button>
@@ -46,9 +46,9 @@ class JobForm extends React.Component {
       <Button
         buttonStyle="primary mega"
         data-test-save-button
-        disabled={this.props.pristine || this.props.submitting || this.props.invalid}
+        disabled={pristine || submitting}
         marginBottom0
-        onClick={this.props.handleSubmit}
+        onClick={handleSubmit}
         type="submit"
       >
         <FormattedMessage id="stripes-components.saveAndClose" />

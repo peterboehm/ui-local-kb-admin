@@ -33,12 +33,12 @@ class JobsRoute extends React.Component {
     },
     resultValues: {
       type: 'okapi',
-      path: 'erm/refdataValues/persistentJob/result',
+      path: 'erm/refdata/persistentJob/result',
       shouldRefresh: () => false,
     },
     statusValues: {
       type: 'okapi',
-      path: 'erm/refdataValues/persistentJob/status',
+      path: 'erm/refdata/persistentJob/status',
       shouldRefresh: () => false,
     },
     query: { initialValue: {} },

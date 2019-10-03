@@ -37,7 +37,7 @@ export default function config() {
     }
   });
 
-  this.get('/erm/refdataValues/persistentJob/result', () => {
+  this.get('/erm/refdata/persistentJob/result', () => {
     return [
       { 'id': '2c9d81916c044334016c0444659b0032', 'value': 'success', 'label': 'Success' },
       { 'id': '2c9d81916c044334016c044465a90033', 'value': 'partial_success', 'label': 'Partial success' },
@@ -46,7 +46,7 @@ export default function config() {
     ];
   });
 
-  this.get('/erm/refdataValues/persistentJob/status', () => {
+  this.get('/erm/refdata/persistentJob/status', () => {
     return [
       { 'id': '2c9d81916c044334016c04445e310008', 'value': 'queued', 'label': 'Queued' },
       { 'id': '2c9d81916c044334016c0444657d002f', 'value': 'in_progress', 'label': 'In progress' },

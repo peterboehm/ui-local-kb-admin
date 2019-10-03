@@ -67,19 +67,55 @@
     "hasSettings": true,
     "queryResource": "query",
     "okapiInterfaces": {
-      "erm": "1.0"
+      "erm": "1.0 2.0"
     },
     "permissionSets": [
       {
         "permissionName": "module.local-kb-admin.enabled",
-        "displayName": "UI: ui-local-kb-admin module is enabled",
-        "visible": true
+        "displayName": "UI: ui-local-kb-admin module is enabled"
+      },
+      {
+        "permissionName": "ui-local-kb-admin.jobs.view",
+        "displayName": "Local KB Admin: View jobs",
+        "visible": true,
+        "subPermissions": [
+          "module.local-kb-admin.enabled",
+          "erm.jobs.view",
+          "erm.refdata.view"
+        ]
+      },
+      {
+        "permissionName": "ui-local-kb-admin.jobs.edit",
+        "displayName": "Local KB Admin: Create jobs",
+        "visible": true,
+        "subPermissions": [
+          "ui-local-kb-admin.jobs.view",
+          "erm.jobs.edit"
+        ]
+      },
+      {
+        "permissionName": "ui-local-kb-admin.jobs.delete",
+        "displayName": "Local KB Admin: Delete jobs",
+        "visible": true,
+        "subPermissions": [
+          "ui-local-kb-admin.jobs.view",
+          "erm.jobs.item.delete"
+        ]
       },
       {
         "permissionName": "settings.local-kb-admin.enabled",
         "displayName": "Settings (Local KB Admin): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ]
+      },
+      {
+        "permissionName": "ui-local-kb-admin.kbs.manage",
+        "displayName": "Local KB Admin: Manage remote KB configuration",
         "visible": true,
         "subPermissions": [
+          "settings.local-kb-admin.enabled",
+          "erm.kbs.manage",
           "settings.enabled"
         ]
       }
