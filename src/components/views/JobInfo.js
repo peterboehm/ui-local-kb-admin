@@ -14,7 +14,7 @@ import {
   Pane,
   Row,
 } from '@folio/stripes/components';
-import { TitleManager } from '@folio/stripes/core';
+import { IfPermission, TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 import ErrorLogs from './ErrorLogs';
 import InfoLogs from './InfoLogs';
@@ -81,21 +81,23 @@ export default class JobInfo extends React.Component {
     const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
 
     return (
-      <React.Fragment>
-        <Button
-          buttonStyle="dropdownItem"
-          id="clickable-dropdown-delete-job"
-          disabled={!isJobNotInProgress}
-          onClick={() => {
-            onToggle();
-            this.props.onDelete();
-          }}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="ui-local-kb-admin.job.delete" />
-          </Icon>
-        </Button>
-      </React.Fragment>
+      <IfPermission perm="ui-local-kb-admin.jobs.delete">
+        <React.Fragment>
+          <Button
+            buttonStyle="dropdownItem"
+            id="clickable-dropdown-delete-job"
+            disabled={!isJobNotInProgress}
+            onClick={() => {
+              onToggle();
+              this.props.onDelete();
+            }}
+          >
+            <Icon icon="trash">
+              <FormattedMessage id="ui-local-kb-admin.job.delete" />
+            </Icon>
+          </Button>
+        </React.Fragment>
+      </IfPermission>
     );
   }
 
