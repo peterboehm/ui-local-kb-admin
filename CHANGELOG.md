@@ -4,6 +4,7 @@
 * Update stripes to v2.10.1 to support PaneFooter.
 * Move the Save & close button and add a Cancel button to Pane footer. ERM-414
 * Improved performance when viewing info and error logs.
+* Added permission sets
 
 ## 1.1.1 2019-09-10
 * Added translations.
