@@ -9,7 +9,7 @@ class JobLogContainer extends React.Component {
   static manifest = Object.freeze({
     logs: {
       type: 'okapi',
-      path: 'erm/jobs/!{jobId}/!{type}Log',
+      path: 'erm/jobs/!{job.id}/!{type}Log',
       fetch: props => props.fetch,
       throwErrors: false
     },
@@ -17,14 +17,15 @@ class JobLogContainer extends React.Component {
 
   static defaultProps = {
     fetch: false,
+    job: {},
   }
 
   static propTypes = {
-    children: PropTypes.func.isRequired,
     // eslint-disable-next-line react/no-unused-prop-types
     fetch: PropTypes.bool, // used in `logs` manifest
-    // eslint-disable-next-line react/no-unused-prop-types
-    jobId: PropTypes.string,  // used in `logs` manifest
+    job: PropTypes.shape({
+      id: PropTypes.string,
+    }),
     resources: PropTypes.shape({
       logs: PropTypes.object,
     }),

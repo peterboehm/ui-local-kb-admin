@@ -107,7 +107,6 @@ export default class JobInfo extends React.Component {
     return (
       <JobLogContainer
         fetch={props.open}
-        jobId={this.props.data.job.id}
         type={type}
         {...props}
       />
