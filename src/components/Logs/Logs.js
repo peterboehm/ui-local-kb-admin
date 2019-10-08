@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Accordion, Badge, MultiColumnList } from '@folio/stripes/components';
 import { Spinner } from '@folio/stripes-erm-components';
 
-export default class ErrorLogs extends React.Component {
+export default class Logs extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     job: PropTypes.object,
@@ -14,23 +14,24 @@ export default class ErrorLogs extends React.Component {
     })),
     onToggle: PropTypes.func,
     open: PropTypes.bool,
+    type: PropTypes.string.isRequired,
   };
 
-  renderErrorLogs = () => {
-    const { logs } = this.props;
+  renderList = () => {
+    const { logs, type } = this.props;
 
     if (!logs) return <Spinner />;
-    if (!logs.length) return <FormattedMessage id="ui-local-kb-admin.errorLogNo" />;
+    if (!logs.length) return <FormattedMessage id={`ui-local-kb-admin.${type}LogNo`} />;
 
     return (
       <MultiColumnList
         columnMapping={{
           recordNumber: <FormattedMessage id="ui-local-kb-admin.columns.recordNumber" />,
-          message: <FormattedMessage id="ui-local-kb-admin.columns.errorLogMessage" />,
+          message: <FormattedMessage id={`ui-local-kb-admin.columns.${type}LogMessage`} />,
         }}
         contentData={logs}
         formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : '-') }}
-        id="list-errorLog"
+        id={`list-${type}Log`}
         interactive={false}
         maxHeight={800}
         virtualize
@@ -40,19 +41,18 @@ export default class ErrorLogs extends React.Component {
   }
 
   render() {
-    const { id, job, onToggle, open } = this.props;
+    const { id, job, onToggle, open, type } = this.props;
 
     return (
       <Accordion
-        data-test-errorlog-accordion
-        displayWhenClosed={<Badge>{job.errorLogCount}</Badge>}
-        displayWhenOpen={<Badge>{job.errorLogCount}</Badge>}
+        displayWhenClosed={<Badge>{job[`${type}LogCount`]}</Badge>}
+        displayWhenOpen={<Badge>{job[`${type}LogCount`]}</Badge>}
         id={id}
-        label={<FormattedMessage id="ui-local-kb-admin.errorLog" />}
+        label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
         onToggle={onToggle}
         open={open}
       >
-        { this.renderErrorLogs(job) }
+        { this.renderList(job) }
       </Accordion>
     );
   }
