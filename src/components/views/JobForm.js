@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 import { FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
-import stripesForm from '@folio/stripes/form';
+import stripesFinalForm from '@folio/stripes/final-form';
 
 import {
   Button,
@@ -123,9 +123,7 @@ class JobForm extends React.Component {
   }
 }
 
-export default stripesForm({
-  form: 'JobForm',
+export default stripesFinalForm({
   navigationCheck: true,
-  enableReinitialize: true,
   keepDirtyOnReinitialize: true,
 })(JobForm);
