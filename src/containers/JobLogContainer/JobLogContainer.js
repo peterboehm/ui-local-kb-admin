@@ -3,26 +3,22 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 
-import Logs from '../../components/Logs';
+import LogsList from '../../components/LogsList';
 
 class JobLogContainer extends React.Component {
   static manifest = Object.freeze({
     logs: {
       type: 'okapi',
       path: 'erm/jobs/!{job.id}/!{type}Log',
-      fetch: props => props.fetch,
       throwErrors: false
     },
   });
 
   static defaultProps = {
-    fetch: false,
     job: {},
   }
 
   static propTypes = {
-    // eslint-disable-next-line react/no-unused-prop-types
-    fetch: PropTypes.bool, // used in `logs` manifest
     job: PropTypes.shape({
       id: PropTypes.string,
     }),
@@ -38,7 +34,7 @@ class JobLogContainer extends React.Component {
 
     const logs = get(resources, 'logs.records');
 
-    return <Logs logs={logs} {...rest} />;
+    return <LogsList logs={logs} {...rest} />;
   }
 }
 

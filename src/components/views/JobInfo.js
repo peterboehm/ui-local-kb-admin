@@ -17,7 +17,7 @@ import {
 import { IfPermission, TitleManager } from '@folio/stripes/core';
 import { Spinner } from '@folio/stripes-erm-components';
 
-import JobLogContainer from '../../containers/JobLogContainer';
+import Logs from '../Logs';
 import FormattedDateTime from '../FormattedDateTime';
 
 export default class JobInfo extends React.Component {
@@ -98,18 +98,6 @@ export default class JobInfo extends React.Component {
           </Button>
         </React.Fragment>
       </IfPermission>
-    );
-  }
-
-  renderLogs = (type) => {
-    const props = this.getSectionProps(`${type}Logs`);
-
-    return (
-      <JobLogContainer
-        fetch={props.open}
-        type={type}
-        {...props}
-      />
     );
   }
 
@@ -227,8 +215,8 @@ export default class JobInfo extends React.Component {
                     />
                   </Col>
                 </Row>
-                { this.renderLogs('error') }
-                { this.renderLogs('info') }
+                { <Logs type="error" {...this.getSectionProps('errorLogs')} /> }
+                { <Logs type="info" {...this.getSectionProps('infoLogs')} /> }
               </AccordionSet>
             ) : null
           }
