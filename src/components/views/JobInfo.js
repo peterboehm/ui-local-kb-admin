@@ -182,7 +182,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
-                        {job.started ? <FormattedDateTime dateString={job.started} /> : '-'}
+                        {job.started ? <FormattedDateTime date={job.started} /> : '-'}
                       </div>
                     </KeyValue>
                   </Col>
@@ -193,7 +193,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
-                        {job.ended ? <FormattedDateTime dateString={job.ended} /> : '-'}
+                        {job.ended ? <FormattedDateTime date={job.ended} /> : '-'}
                       </div>
                     </KeyValue>
                   </Col>
