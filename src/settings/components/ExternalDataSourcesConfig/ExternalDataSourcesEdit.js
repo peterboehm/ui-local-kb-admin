@@ -102,7 +102,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
         </Row>
         <Field
           component={TextField}
-          data-test-external-data-source-URI
+          data-test-external-data-source-uri
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
           name={`${name}.uri`}
           required

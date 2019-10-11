@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { stripesConnect } from '@folio/stripes/core';
 
 import LogsList from '../../components/LogsList';
 
-class JobLogContainer extends React.Component {
+const RECORDS_PER_REQUEST = 100;
+const RECORD_INCREMENT = 5000;
+
+export default class JobLogContainer extends React.Component {
   static manifest = Object.freeze({
     logs: {
       type: 'okapi',
       path: 'erm/jobs/!{job.id}/!{type}Log',
-      throwErrors: false
+      records: 'results',
+      perRequest: RECORDS_PER_REQUEST,
+      recordsRequired: '%{logsCount}',
+      limitParam: 'perPage',
+      params: {
+        stats: 'true',
+      },
+      throwErrors: false,
     },
+    logsCount: { initialValue: RECORD_INCREMENT },
   });
 
   static defaultProps = {
@@ -22,20 +32,42 @@ class JobLogContainer extends React.Component {
     job: PropTypes.shape({
       id: PropTypes.string,
     }),
+    mutator: PropTypes.shape({
+      logsCount: PropTypes.shape({
+        replace: PropTypes.func.isRequired,
+      }),
+    }).isRequired,
     resources: PropTypes.shape({
       logs: PropTypes.object,
+      logsCount: PropTypes.number,
     }),
     // eslint-disable-next-line react/no-unused-prop-types
     type: PropTypes.string, // used in `logs` manifest
   };
 
+  handleNeedMoreLogs = () => {
+    const { mutator, resources } = this.props;
+    mutator.logsCount.replace(resources.logsCount + RECORD_INCREMENT);
+  }
+
   render() {
     const { resources, ...rest } = this.props;
 
-    const logs = get(resources, 'logs.records');
+    const records = get(resources, 'logs.records', []);
+    const hasLoaded = get(resources, 'logs.hasLoaded', false);
 
-    return <LogsList logs={logs} {...rest} />;
+    // We want to send any logs if we've fetched them, and only send an empty array
+    // if the fetch is complete. Otherwise send an undefined to indicate that we're loading.
+    let logs;
+    if (records.length) logs = records;
+    else if (hasLoaded) logs = [];
+
+    return (
+      <LogsList
+        logs={logs}
+        onNeedMoreLogs={this.handleNeedMoreLogs}
+        {...rest}
+      />
+    );
   }
 }
-
-export default stripesConnect(JobLogContainer);

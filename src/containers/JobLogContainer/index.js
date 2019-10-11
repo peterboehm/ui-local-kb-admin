@@ -1,1 +1,1 @@
-export { default } from './JobLogContainer';
+export { default } from './JobLogContainerWrapper';

@@ -10,11 +10,12 @@ export default class LogsList extends React.Component {
       recordNumber: PropTypes.string,
       message: PropTypes.string,
     })),
+    onNeedMoreLogs: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
   };
 
   render() {
-    const { logs, type } = this.props;
+    const { logs, onNeedMoreLogs, type } = this.props;
 
     if (!logs) return <Spinner />;
     if (!logs.length) return <FormattedMessage id={`ui-local-kb-admin.${type}LogNo`} />;
@@ -30,6 +31,7 @@ export default class LogsList extends React.Component {
         id={`list-${type}Log`}
         interactive={false}
         maxHeight={800}
+        onNeedMoreData={onNeedMoreLogs}
         virtualize
         visibleColumns={['recordNumber', 'message']}
       />
