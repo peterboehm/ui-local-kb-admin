@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 
 export default class FormattedDateTime extends React.Component {
   static propTypes = {
-    dateString: PropTypes.string,
+    date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   render() {
-    const { dateString } = this.props;
     return (
       <div>
-        <FormattedDate value={dateString} />
+        <FormattedDate value={this.props.date} />
         &nbsp;
-        <FormattedTime value={dateString} />
+        <FormattedTime value={this.props.date} />
       </div>
     );
   }

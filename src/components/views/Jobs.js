@@ -65,12 +65,12 @@ export default class Jobs extends React.Component {
   }
 
   formatter = {
-    ended: ({ ended }) => (ended ? <FormattedDateTime dateString={ended} /> : '-'),
-    errors: ({ errorLog }) => (errorLog ? errorLog.length : '0'),
+    ended: ({ ended }) => (ended ? <FormattedDateTime date={ended} /> : '-'),
+    errors: ({ errorLogCount }) => errorLogCount,
     jobname: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? <FormattedDateTime dateString={started} /> : '-'),
+    started: ({ started }) => (started ? <FormattedDateTime date={started} /> : '-'),
   }
 
   rowFormatter = (row) => {
@@ -148,7 +148,7 @@ export default class Jobs extends React.Component {
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
         <PaneMenu>
-          <FormattedMessage id="ui-local-kb-admin.job.createJob">
+          <FormattedMessage id="ui-local-kb-admin.job.newJob">
             {ariaLabel => (
               <Button
                 aria-label={ariaLabel}

@@ -24,7 +24,9 @@ class JobViewRoute extends React.Component {
       pathname: PropTypes.string.isRequired,
       search: PropTypes.string.isRequired,
     }).isRequired,
-    mutator: PropTypes.func.isRequired,
+    mutator: PropTypes.shape({
+      job: PropTypes.object,
+    }).isRequired,
     resources: PropTypes.shape({
       job: PropTypes.object,
     }).isRequired,
