@@ -6,7 +6,7 @@ This software is distributed under the terms of the Apache License, Version 2.0.
 
 ## Introduction
 
-The Local KB Admin UI Module, or `ui-local-kb-admin`, is a Stripes UI module used for management of the local KB used for ERM tasks handled by the `ui-agreements` (Agreements) module.
+The Local KB admin UI Module, or `ui-local-kb-admin`, is a Stripes UI module used for management of the local KB used for ERM tasks handled by the `ui-agreements` (Agreements) module.
 
 ## Prerequisites
 

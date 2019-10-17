@@ -75,7 +75,7 @@
       },
       {
         "permissionName": "ui-local-kb-admin.jobs.view",
-        "displayName": "Local KB Admin: View jobs",
+        "displayName": "Local KB admin: View jobs",
         "visible": true,
         "subPermissions": [
           "module.local-kb-admin.enabled",
@@ -85,7 +85,7 @@
       },
       {
         "permissionName": "ui-local-kb-admin.jobs.edit",
-        "displayName": "Local KB Admin: Create jobs",
+        "displayName": "Local KB admin: Create jobs",
         "visible": true,
         "subPermissions": [
           "ui-local-kb-admin.jobs.view",
@@ -94,7 +94,7 @@
       },
       {
         "permissionName": "ui-local-kb-admin.jobs.delete",
-        "displayName": "Local KB Admin: Delete jobs",
+        "displayName": "Local KB admin: Delete jobs",
         "visible": true,
         "subPermissions": [
           "ui-local-kb-admin.jobs.view",
@@ -103,14 +103,14 @@
       },
       {
         "permissionName": "settings.local-kb-admin.enabled",
-        "displayName": "Settings (Local KB Admin): display list of settings pages",
+        "displayName": "Settings (Local KB admin): display list of settings pages",
         "subPermissions": [
           "settings.enabled"
         ]
       },
       {
         "permissionName": "ui-local-kb-admin.kbs.manage",
-        "displayName": "Local KB Admin: Manage remote KB configuration",
+        "displayName": "Local KB admin: Manage remote KB configuration",
         "visible": true,
         "subPermissions": [
           "settings.local-kb-admin.enabled",
@@ -122,7 +122,7 @@
     "icons": [
       {
         "name": "app",
-        "alt": "ERM: Local Kb Admin app for Stripes",
+        "alt": "ERM: Local KB admin app for Stripes",
         "title": "LocalKbAdmin"
       }
     ]
