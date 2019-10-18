@@ -34,6 +34,7 @@ export default class Jobs extends React.Component {
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
     searchString: PropTypes.string,
+    selectedRecordId: PropTypes.string,
     source: PropTypes.object,
   }
 
@@ -183,6 +184,7 @@ export default class Jobs extends React.Component {
       onNeedMoreData,
       queryGetter,
       querySetter,
+      selectedRecordId,
       source,
     } = this.props;
 
@@ -296,6 +298,7 @@ export default class Jobs extends React.Component {
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
+                      isSelected={({ item }) => item.id === selectedRecordId}
                       rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
