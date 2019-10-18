@@ -54,6 +54,11 @@ class JobsRoute extends React.Component {
       pathname: PropTypes.string,
       search: PropTypes.string,
     }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
     mutator: PropTypes.object,
     resources: PropTypes.object,
     stripes: PropTypes.shape({
@@ -128,7 +133,7 @@ class JobsRoute extends React.Component {
   }
 
   render() {
-    const { children, location, resources } = this.props;
+    const { children, location, match, resources } = this.props;
     if (this.source) {
       this.source.update(this.props, 'jobs');
     }
@@ -141,6 +146,7 @@ class JobsRoute extends React.Component {
             resultValues: get(resources, 'resultValues.records', []),
             statusValues: get(resources, 'statusValues.records', []),
           }}
+          selectedRecordId={match.params.id}
           queryGetter={this.queryGetter}
           querySetter={this.querySetter}
           searchString={location.search}
