@@ -13,9 +13,9 @@ import {
   Layout,
   Pane,
   Row,
+  Spinner,
 } from '@folio/stripes/components';
 import { IfPermission, TitleManager } from '@folio/stripes/core';
-import { Spinner } from '@folio/stripes-erm-components';
 
 import Logs from '../Logs';
 import FormattedDateTime from '../FormattedDateTime';

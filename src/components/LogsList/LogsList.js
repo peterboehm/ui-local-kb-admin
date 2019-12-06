@@ -1,8 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { MultiColumnList } from '@folio/stripes/components';
-import { Spinner } from '@folio/stripes-erm-components';
+import { MultiColumnList, Spinner } from '@folio/stripes/components';
 
 export default class LogsList extends React.Component {
   static propTypes = {
