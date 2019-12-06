@@ -1,5 +1,9 @@
 # Change history for ui-local-kb-admin
 
+## 1.3.0 IN PROGRESS
+* Switched to using `<FormattedUTCDate>` from Stripes. ERM-635
+* Switched to using `<Spinner>` from Stripes. ERM-635
+
 ## 1.2.0 2019-12-02
 * Update stripes to v2.10.1 to support PaneFooter.
 * Move the Save & close button and add a Cancel button to Pane footer. ERM-414
