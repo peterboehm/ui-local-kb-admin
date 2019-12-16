@@ -2,7 +2,7 @@
     "meta.title": "Administración local de KB",
     "errorLog": "Error log",
     "infoLog": "Info log",
-    "job.delete": "Delete job",
+    "job.delete": "Delete",
     "prop.class": "Job type",
     "prop.ended": "Ended",
     "prop.errors": "Errors",
