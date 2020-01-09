@@ -2,7 +2,7 @@
     "meta.title": "Local KB admin",
     "errorLog": "Log di errore",
     "infoLog": "Info log",
-    "job.delete": "Elimina procedura",
+    "job.delete": "Elimina",
     "prop.class": "Tipo procedura",
     "prop.ended": "Ended",
     "prop.errors": "Errori",
@@ -57,5 +57,6 @@
     "error.uploadFile": "Please upload a file to continue",
     "job.newJob": "Nuova procedura",
     "job.close": "Chiudi procedura",
-    "org.olf.general.jobs.PackageImportJob": "File import"
+    "org.olf.general.jobs.PackageImportJob": "File import",
+    "settings.externalDataSources.nameExists": "Questo nome esiste già"
 }

@@ -57,5 +57,6 @@
     "error.uploadFile": "Пожалуйста, загрузите файл, чтобы продолжить",
     "job.newJob": "New job",
     "job.close": "Close job",
-    "org.olf.general.jobs.PackageImportJob": "Импорт файла"
+    "org.olf.general.jobs.PackageImportJob": "Импорт файла",
+    "settings.externalDataSources.nameExists": "This name already exists"
 }

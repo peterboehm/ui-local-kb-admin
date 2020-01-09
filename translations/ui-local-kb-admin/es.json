@@ -57,5 +57,6 @@
     "error.uploadFile": "Sube un archivo para continuar",
     "job.newJob": "Nuevo trabajo",
     "job.close": "Cerrar trabajo",
-    "org.olf.general.jobs.PackageImportJob": "Importación de archivos"
+    "org.olf.general.jobs.PackageImportJob": "Importación de archivos",
+    "settings.externalDataSources.nameExists": "This name already exists"
 }

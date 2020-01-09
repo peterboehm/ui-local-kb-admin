@@ -57,5 +57,6 @@
     "error.uploadFile": "Merci de télécharger un fichier pour continuer",
     "job.newJob": "Nouvelle tâche",
     "job.close": "Fermer la tâche",
-    "org.olf.general.jobs.PackageImportJob": "Import de fichier"
+    "org.olf.general.jobs.PackageImportJob": "Import de fichier",
+    "settings.externalDataSources.nameExists": "Ce nom existe déjà"
 }

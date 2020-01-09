@@ -57,5 +57,6 @@
     "error.uploadFile": "يرجى تحميل ملف للمتابعة",
     "job.newJob": "وظيفة جديدة",
     "job.close": "غلق الوظيفة",
-    "org.olf.general.jobs.PackageImportJob": "استيراد الملفات"
+    "org.olf.general.jobs.PackageImportJob": "استيراد الملفات",
+    "settings.externalDataSources.nameExists": "هذا الاسم موجود بالفعل"
 }
