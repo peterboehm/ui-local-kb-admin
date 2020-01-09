@@ -57,5 +57,6 @@
     "error.uploadFile": "Please upload a file to continue",
     "job.newJob": "New job",
     "job.close": "Close job",
-    "org.olf.general.jobs.PackageImportJob": "File import"
+    "org.olf.general.jobs.PackageImportJob": "File import",
+    "settings.externalDataSources.nameExists": "この名前は既に存在します"
 }
