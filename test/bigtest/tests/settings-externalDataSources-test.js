@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import ExternalDataSourcesInteractor from '../interactors/external-data-sources';
 
-describe('ExternalDataSources', () => {
+describe('External Data Source Settings', () => {
   setupApplication();
   const externaldatasources = new ExternalDataSourcesInteractor();
 
@@ -22,7 +22,7 @@ describe('ExternalDataSources', () => {
     supportsHarvesting: true,
   };
 
-  describe('externaldatasources tests for one data source', () => {
+  describe('one external data source', () => {
     beforeEach(async function () {
       this.server.create('externalDataSource', dataSource);
       this.visit('/settings/local-kb-admin/external-data-sources');
@@ -131,6 +131,31 @@ describe('ExternalDataSources', () => {
 
       it('renders the expected credentials', () => {
         expect(externaldatasources.externalDataSourceList.items(0).credentials.value.text).to.equal(dataSource.credentials);
+      });
+    });
+  });
+
+  describe('readonly data source', () => {
+    beforeEach(async function () {
+      this.server.create('externalDataSource', { ...dataSource, readonly: true });
+      this.visit('/settings/local-kb-admin/external-data-sources');
+    });
+
+    describe('viewing the data source', () => {
+      it('renders the external data source', () => {
+        expect(externaldatasources.isFormPresent).to.be.true;
+      });
+
+      it('renders the expected name', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(dataSource.name);
+      });
+
+      it('does not render the delete button', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).isDeleteButtonPresent).to.be.false;
+      });
+
+      it('does not render the edit button', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).isEditButtonPresent).to.be.false;
       });
     });
   });

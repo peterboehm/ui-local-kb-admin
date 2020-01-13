@@ -32,7 +32,7 @@ export default class ExternalDataSourcesView extends React.Component {
       <Card
         data-test-external-data-source-view
         headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
-        headerEnd={(
+        headerEnd={value.readonly ? undefined : (
           <span>
             <Button
               buttonStyle="danger"
