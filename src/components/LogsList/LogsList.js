@@ -31,6 +31,8 @@ export default class LogsList extends React.Component {
         interactive={false}
         maxHeight={800}
         onNeedMoreData={onNeedMoreLogs}
+        pageAmount={100}
+        pagingType="scroll"
         virtualize
         visibleColumns={['recordNumber', 'message']}
       />
