@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import LogsList from '../../components/LogsList';
-
-const RECORDS_PER_REQUEST = 100;
-const INITIAL_RESULT_COUNT = 100;
-const RECORD_INCREMENT = 100;
+import { resultCount } from '../../constants';
 
 export default class JobLogContainer extends React.Component {
   static manifest = Object.freeze({
@@ -14,7 +11,7 @@ export default class JobLogContainer extends React.Component {
       type: 'okapi',
       path: 'erm/jobs/!{job.id}/!{type}Log',
       records: 'results',
-      perRequest: RECORDS_PER_REQUEST,
+      perRequest: 100,
       resultOffset: '%{resultOffset}',
       limitParam: 'perPage',
       params: {
@@ -23,7 +20,7 @@ export default class JobLogContainer extends React.Component {
       throwErrors: false,
     },
     resultOffset: { initialValue: 0 },
-    resultCount: { initialValue: INITIAL_RESULT_COUNT },
+    resultCount: { initialValue: resultCount.INITIAL_RESULT_COUNT },
   });
 
   static defaultProps = {
@@ -54,7 +51,7 @@ export default class JobLogContainer extends React.Component {
     if (index > 0) {
       mutator.resultOffset.replace(index);
     } else {
-      mutator.resultCount.replace(resources.resultCount + RECORD_INCREMENT);
+      mutator.resultCount.replace(resources.resultCount + resultCount.RESULT_COUNT_INCREMENT);
     }
   }
 
