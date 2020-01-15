@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { MultiColumnList, Spinner } from '@folio/stripes/components';
+import { resultCount } from '../../constants';
 
 export default class LogsList extends React.Component {
   static propTypes = {
@@ -31,6 +32,8 @@ export default class LogsList extends React.Component {
         interactive={false}
         maxHeight={800}
         onNeedMoreData={onNeedMoreLogs}
+        pageAmount={resultCount.RESULT_COUNT_INCREMENT}
+        pagingType="scroll"
         virtualize
         visibleColumns={['recordNumber', 'message']}
       />

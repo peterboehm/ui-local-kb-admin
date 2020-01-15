@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import LogsList from '../../components/LogsList';
-
-const RECORDS_PER_REQUEST = 100;
-const RECORD_INCREMENT = 5000;
+import { resultCount } from '../../constants';
 
 export default class JobLogContainer extends React.Component {
   static manifest = Object.freeze({
@@ -13,15 +11,16 @@ export default class JobLogContainer extends React.Component {
       type: 'okapi',
       path: 'erm/jobs/!{job.id}/!{type}Log',
       records: 'results',
-      perRequest: RECORDS_PER_REQUEST,
-      recordsRequired: '%{logsCount}',
+      perRequest: resultCount.RESULT_COUNT_INCREMENT,
+      resultOffset: '%{resultOffset}',
       limitParam: 'perPage',
       params: {
         stats: 'true',
       },
       throwErrors: false,
     },
-    logsCount: { initialValue: RECORD_INCREMENT },
+    resultOffset: { initialValue: 0 },
+    resultCount: { initialValue: resultCount.INITIAL_RESULT_COUNT },
   });
 
   static defaultProps = {
@@ -33,21 +32,27 @@ export default class JobLogContainer extends React.Component {
       id: PropTypes.string,
     }),
     mutator: PropTypes.shape({
-      logsCount: PropTypes.shape({
+      resultOffset: PropTypes.shape({
+        replace: PropTypes.func.isRequired,
+      }),
+      resultCount: PropTypes.shape({
         replace: PropTypes.func.isRequired,
       }),
     }).isRequired,
     resources: PropTypes.shape({
       logs: PropTypes.object,
-      logsCount: PropTypes.number,
     }),
     // eslint-disable-next-line react/no-unused-prop-types
     type: PropTypes.string, // used in `logs` manifest
   };
 
-  handleNeedMoreLogs = () => {
+  handleNeedMoreLogs = (_askAmount, index) => {
     const { mutator, resources } = this.props;
-    mutator.logsCount.replace(resources.logsCount + RECORD_INCREMENT);
+    if (index > 0) {
+      mutator.resultOffset.replace(index);
+    } else {
+      mutator.resultCount.replace(resources.resultCount + resultCount.RESULT_COUNT_INCREMENT);
+    }
   }
 
   render() {
