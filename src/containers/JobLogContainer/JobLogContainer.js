@@ -11,7 +11,7 @@ export default class JobLogContainer extends React.Component {
       type: 'okapi',
       path: 'erm/jobs/!{job.id}/!{type}Log',
       records: 'results',
-      perRequest: 100,
+      perRequest: resultCount.RESULT_COUNT_INCREMENT,
       resultOffset: '%{resultOffset}',
       limitParam: 'perPage',
       params: {
