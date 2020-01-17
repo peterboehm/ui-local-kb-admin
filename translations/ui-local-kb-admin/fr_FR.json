@@ -2,7 +2,7 @@
     "meta.title": "Admin. base de connaissances locale",
     "errorLog": "Journal d'erreurs",
     "infoLog": "Journal d'informations",
-    "job.delete": "Supprimer la tâche",
+    "job.delete": "Supprimer",
     "prop.class": "Type de tâche",
     "prop.ended": "Terminé",
     "prop.errors": "Erreurs",
