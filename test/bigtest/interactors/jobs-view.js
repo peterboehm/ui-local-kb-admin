@@ -41,7 +41,7 @@ export default @interactor class JobsView {
   ended = text('[data-test-job-ended]');
   source = text('[data-test-job-type]');
 
-  headerDropdown = new HeaderDropdown('[class*=paneHeaderCenterInner---] [class*=dropdown---]');
+  headerDropdown = new HeaderDropdown('[data-pane-header-actions-dropdown]');
   headerDropdownMenu = new HeaderDropdownMenu();
   confirmationModal = new ConfirmationModalInteractor();
 }
