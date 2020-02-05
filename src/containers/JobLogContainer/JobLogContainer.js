@@ -46,6 +46,17 @@ export default class JobLogContainer extends React.Component {
     type: PropTypes.string, // used in `logs` manifest
   };
 
+  getLogRecords = () => {
+    const { job, resources } = this.props;
+    const jobLogsURL = get(resources, 'logs.url', '');
+    // If a new job is selected return undefined
+    return jobLogsURL.indexOf(`${job.id}`) === -1
+      ?
+      undefined
+      :
+      get(resources, 'logs.records');
+  }
+
   handleNeedMoreLogs = (_askAmount, index) => {
     const { mutator, resources } = this.props;
     if (index > 0) {
@@ -58,13 +69,13 @@ export default class JobLogContainer extends React.Component {
   render() {
     const { resources, ...rest } = this.props;
 
-    const records = get(resources, 'logs.records', []);
+    const records = this.getLogRecords();
     const hasLoaded = get(resources, 'logs.hasLoaded', false);
 
     // We want to send any logs if we've fetched them, and only send an empty array
     // if the fetch is complete. Otherwise send an undefined to indicate that we're loading.
     let logs;
-    if (records.length) logs = records;
+    if (records && records.length) logs = records;
     else if (hasLoaded) logs = [];
 
     return (
