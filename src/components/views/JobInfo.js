@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { get } from 'lodash';
 
 import {
   AccordionSet,
@@ -11,9 +10,10 @@ import {
   Icon,
   KeyValue,
   Layout,
+  NoValue,
   Pane,
   Row,
-  Spinner,
+  Spinner
 } from '@folio/stripes/components';
 import { IfPermission, TitleManager } from '@folio/stripes/core';
 
@@ -78,25 +78,23 @@ export default class JobInfo extends React.Component {
 
   getActionMenu = ({ onToggle }) => {
     const { data: { job } } = this.props;
-    const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
+    const isJobNotInProgress = job?.status?.value !== 'in_progress';
 
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.delete">
-        <React.Fragment>
-          <Button
-            buttonStyle="dropdownItem"
-            id="clickable-dropdown-delete-job"
-            disabled={!isJobNotInProgress}
-            onClick={() => {
-              onToggle();
-              this.props.onDelete();
-            }}
-          >
-            <Icon icon="trash">
-              <FormattedMessage id="ui-local-kb-admin.job.delete" />
-            </Icon>
-          </Button>
-        </React.Fragment>
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-delete-job"
+          disabled={!isJobNotInProgress}
+          onClick={() => {
+            onToggle();
+            this.props.onDelete();
+          }}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-local-kb-admin.job.delete" />
+          </Icon>
+        </Button>
       </IfPermission>
     );
   }
@@ -105,7 +103,7 @@ export default class JobInfo extends React.Component {
     const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
-    const isJobNotQueued = get(job, 'status.value') !== 'queued';
+    const isJobNotQueued = job?.status?.value !== 'queued';
 
     return (
       <Pane
@@ -136,7 +134,7 @@ export default class JobInfo extends React.Component {
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
                   <div data-test-job-status>
-                    {get(job, 'status.label', '-')}
+                    {job?.status?.label ?? <NoValue />}
                   </div>
                 </KeyValue>
               </Col>
@@ -145,7 +143,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                       <div data-test-job-result>
-                        {get(job, 'result.label', '-')}
+                        {job?.result?.label ?? <NoValue />}
                       </div>
                     </KeyValue>
                   </Col>
@@ -169,7 +167,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
-                        {job.started ? <FormattedDateTime date={job.started} /> : '-'}
+                        {job.started ? <FormattedDateTime date={job.started} /> : <NoValue />}
                       </div>
                     </KeyValue>
                   </Col>
@@ -180,7 +178,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
-                        {job.ended ? <FormattedDateTime date={job.ended} /> : '-'}
+                        {job.ended ? <FormattedDateTime date={job.ended} /> : <NoValue />}
                       </div>
                     </KeyValue>
                   </Col>

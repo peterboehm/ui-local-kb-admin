@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { ConfirmationModal } from '@folio/stripes/components';
 import JobInfo from '../components/views/JobInfo';
 
@@ -35,23 +35,26 @@ class JobViewRoute extends React.Component {
     }).isRequired,
   };
 
-  state = { showConfirmDelete: false };
+  constructor(props) {
+    super(props);
+    this.state = { showConfirmDelete: false };
+  }
 
   handleDelete = () => {
     const { resources } = this.props;
-    const job = get(resources, 'job.records[0]', {});
-    const name = get(job, 'name', '');
-    const id = get(job, 'id', '');
-
+    const job = resources?.job?.records?.[0] ?? {};
+    const name = job?.name ?? '';
+    const jobClass = job?.class ?? '';
+    const id = job?.id ?? '';
     this.props.mutator.job
       .DELETE(job)
       .then(() => this.props.history.replace(
         {
           pathname: '/local-kb-admin',
           search: `${this.props.location.search}`,
-          state: { deletedJobId: id, deletedJobName: name }
+          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
         }
-      )); // push deleted job id and name to location state so that it could be used to show the callout in jobsRoute
+      ));
   };
 
   handleClose = () => {
@@ -64,31 +67,41 @@ class JobViewRoute extends React.Component {
 
   render() {
     const { resources } = this.props;
-    const job = get(resources, 'job.records[0]', {});
-    const name = get(job, 'name', '');
+    const job = resources?.job?.records?.[0] ?? {};
+    const name = job?.name ?? '';
+    const jobClass = job?.class ?? '';
+
+    let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
+    let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
+
+    if (jobClass !== '') {
+      deleteMessageId = `${deleteMessageId}.${jobClass}`;
+      deleteHeadingId = `${deleteHeadingId}.${jobClass}`;
+    }
 
     return (
-      <React.Fragment>
+      <>
         <JobInfo
           data={{
-            job: get(resources, 'job.records[0]', {}),
+            job
           }}
           onClose={this.handleClose}
           onDelete={this.showDeleteConfirmationModal}
-          isLoading={get(resources, 'job.isPending', true)}
+          isLoading={resources?.job?.isPending ?? true}
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal
             id="delete-job-confirmation"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
-            heading={<FormattedMessage id="ui-local-kb-admin.job.delete.heading" values={{ name }} />}
-            message={<FormattedMessage id="ui-local-kb-admin.job.delete.message" />}
+            heading={<FormattedMessage id={deleteHeadingId} />}
+            message={<SafeHTMLMessage id={deleteMessageId} values={{ name }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={this.handleDelete}
+            buttonStyle="danger"
             open
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -7,8 +7,11 @@ import { AppIcon, IfPermission } from '@folio/stripes/core';
 
 import {
   Button,
+  Dropdown,
+  DropdownMenu,
   Icon,
   MultiColumnList,
+  NoValue,
   Pane,
   PaneMenu,
   Paneset,
@@ -44,7 +47,7 @@ export default class Jobs extends React.Component {
   }
 
   state = {
-    filterPaneIsVisible: true,
+    filterPaneIsVisible: true
   }
 
   columnMapping = {
@@ -66,12 +69,12 @@ export default class Jobs extends React.Component {
   }
 
   formatter = {
-    ended: ({ ended }) => (ended ? <FormattedDateTime date={ended} /> : '-'),
+    ended: ({ ended }) => (ended ? <FormattedDateTime date={ended} /> : <NoValue />),
     errors: ({ errorLogCount }) => errorLogCount,
     jobname: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? <FormattedDateTime date={started} /> : '-'),
+    started: ({ started }) => (started ? <FormattedDateTime date={started} /> : <NoValue />),
   }
 
   rowFormatter = (row) => {
@@ -145,24 +148,44 @@ export default class Jobs extends React.Component {
     );
   }
 
+  renderNewJobMenu = ({ onToggle }) => (
+    <DropdownMenu
+      data-role="menu"
+      onToggle={onToggle}
+    >
+      <FormattedMessage id="ui-local-kb-admin.job.newJob">
+        {() => (
+          <>
+            <Button
+              buttonStyle="dropdownItem"
+              id="clickable-new-JSON-job"
+              marginBottom0
+              to={`/local-kb-admin/create/JSON${this.props.searchString}`}
+            >
+              <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
+            </Button>
+            <Button
+              buttonStyle="dropdownItem"
+              id="clickable-new-KBART-job"
+              marginBottom0
+              to={`/local-kb-admin/create/KBART${this.props.searchString}`}
+            >
+              <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
+            </Button>
+          </>
+        )}
+      </FormattedMessage>
+    </DropdownMenu>
+  );
+
   renderResultsLastMenu() {
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
-        <PaneMenu>
-          <FormattedMessage id="ui-local-kb-admin.job.newJob">
-            {ariaLabel => (
-              <Button
-                aria-label={ariaLabel}
-                buttonStyle="primary"
-                id="clickable-new-job"
-                marginBottom0
-                to={`/local-kb-admin/create${this.props.searchString}`}
-              >
-                <FormattedMessage id="stripes-smart-components.new" />
-              </Button>
-            )}
-          </FormattedMessage>
-        </PaneMenu>
+        <Dropdown
+          label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
+          renderMenu={this.renderNewJobMenu}
+          buttonProps={{ buttonStyle: 'primary' }}
+        />
       </IfPermission>
     );
   }
@@ -277,8 +300,7 @@ export default class Jobs extends React.Component {
                           filterHandlers={getFilterHandlers()}
                         />
                       </form>
-                    </Pane>
-                  }
+                    </Pane> }
                   <Pane
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"

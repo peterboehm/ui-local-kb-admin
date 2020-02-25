@@ -14,24 +14,45 @@ import JobViewInteractor from '../interactors/jobs-view';
 const uploaderInteractor = new FileUploaderInteractor();
 const uploaderFieldInteractor = new FileUploaderFieldInteractor();
 
-describe('JobCreate JSON', () => {
+describe('JobCreate KBART', () => {
   setupApplication();
   const interactor = new JobsCreateInteractor();
   const jobviewinteractor = new JobViewInteractor();
 
   beforeEach(async function () {
-    this.visit('/local-kb-admin/create/JSON');
+    this.visit('/local-kb-admin/create/KBART');
   });
 
-  describe('job create JSON pane', () => {
+  describe('job create KBART pane', () => {
     it('should display file uploader component', () => {
       expect(interactor.isFileUploaderPresent).to.be.true;
+    });
+
+    it('should display package name field', () => {
+      expect(interactor.isPackageNameFieldPresent).to.be.true;
+    });
+
+    it('should display package source field', () => {
+      expect(interactor.isPackageSourceFieldPresent).to.be.true;
+    });
+
+    it('should display package reference field', () => {
+      expect(interactor.isPackageReferenceFieldPresent).to.be.true;
+    });
+
+    it('should display package provider field', () => {
+      expect(interactor.isPackageProviderFieldPresent).to.be.true;
     });
 
     describe('Upload file', () => {
       beforeEach(async function () {
         await uploaderInteractor.dragEnter();
         await uploaderInteractor.drop();
+
+        await interactor.fillPackageName('Test package');
+        await interactor.fillPackageSource('Test package source');
+        await interactor.fillPackageReference('Test package reference');
+        await interactor.fillPackageProvider('Test package provider');
       });
 
       it('should display the uploaded file name', () => {
@@ -61,13 +82,14 @@ describe('JobCreate JSON', () => {
         });
 
         it('should render the expected job source', () => {
-          expect(jobviewinteractor.source).to.equal('JSON File import');
+          expect(jobviewinteractor.source).to.equal('KBART File import');
         });
       });
 
       describe('Clicking the close button', () => {
         beforeEach(async function () {
           await interactor.closeButton();
+          await interactor.confirmCloseButton();
         });
 
         it('should navigate to the jobs page', () => {

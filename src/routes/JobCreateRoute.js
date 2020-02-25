@@ -9,7 +9,16 @@ class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
-      path: 'erm/jobs/packageImport',
+      path: (_q, params) => {
+        const format = params?.format;
+        let endpointPath;
+        if (format === 'KBART') {
+          endpointPath = 'erm/jobs/kbartImport';
+        } else {
+          endpointPath = 'erm/jobs/packageImport';
+        }
+        return endpointPath;
+      },
       fetch: false,
       shouldRefresh: () => false,
     },
@@ -19,10 +28,16 @@ class JobCreateRoute extends React.Component {
     handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
+      replace: PropTypes.func,
     }).isRequired,
     location: PropTypes.shape({
       search: PropTypes.string.isRequired,
     }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        format: PropTypes.string,
+      }),
+    }),
     mutator: PropTypes.shape({
       jobs: PropTypes.shape({
         POST: PropTypes.func.isRequired,
@@ -41,17 +56,16 @@ class JobCreateRoute extends React.Component {
 
   handleSubmit = (job) => {
     const { history, location, mutator } = this.props;
-
     mutator.jobs
       .POST(job)
-      .then(({ id }) => {
-        history.push(`/local-kb-admin/${id}${location.search}`);
+      .then(response => {
+        const jobId = response?.id ?? '';
+        history.push(`/local-kb-admin/${jobId}${location.search}`);
       });
   }
 
   render() {
-    const { handlers } = this.props;
-
+    const { handlers, match: { params: { format } } } = this.props;
     return (
       <View
         handlers={{
@@ -59,6 +73,7 @@ class JobCreateRoute extends React.Component {
           onClose: this.handleClose
         }}
         onSubmit={this.handleSubmit}
+        format={format}
       />
     );
   }

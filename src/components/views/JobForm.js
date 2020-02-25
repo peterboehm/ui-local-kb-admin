@@ -15,10 +15,12 @@ import {
   Paneset,
 } from '@folio/stripes/components';
 
+import KbartFields from './KbartFields';
 import css from './JobForm.css';
 
 class JobForm extends React.Component {
   static propTypes = {
+    format: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
@@ -26,7 +28,7 @@ class JobForm extends React.Component {
       onUploadFile: PropTypes.func.isRequired,
     }),
     pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
+    submitting: PropTypes.bool
   }
 
   renderPaneFooter() {
@@ -86,7 +88,7 @@ class JobForm extends React.Component {
   }
 
   render() {
-    const { handlers: { onDownloadFile, onUploadFile } } = this.props;
+    const { handlers: { onDownloadFile, onUploadFile }, format } = this.props;
     return (
       <Paneset>
         <FormattedMessage id="ui-local-kb-admin.create">
@@ -97,11 +99,12 @@ class JobForm extends React.Component {
               footer={this.renderPaneFooter()}
               id="pane-job-form"
               firstMenu={this.renderFirstMenu()}
-              paneTitle={<FormattedMessage id="ui-local-kb-admin.job.newJob" />}
+              paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
             >
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
+                    {format === 'KBART' && <KbartFields /> }
                     <Field
                       component={FileUploaderField}
                       data-test-document-field-file
@@ -110,6 +113,7 @@ class JobForm extends React.Component {
                       name="fileUpload"
                       onDownloadFile={onDownloadFile}
                       onUploadFile={onUploadFile}
+                      required
                       validate={this.validateUploadFile}
                     />
                   </div>

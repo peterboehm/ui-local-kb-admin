@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 
 import ExternalDataSourcesForm from '../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
@@ -43,7 +42,7 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
 
   render() {
     if (!this.props.resources.externalKbs) return <div />;
-    const externalKbs = get(this.props, 'resources.externalKbs.records', []);
+    const externalKbs = this.props?.resources?.externalKbs?.records ?? [];
 
     return (
       <ExternalDataSourcesForm

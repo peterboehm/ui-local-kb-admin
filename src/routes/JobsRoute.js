@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import { Callout } from '@folio/stripes/components';
 import { getSASParams } from '@folio/stripes-erm-components';
-import { FormattedMessage } from 'react-intl';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
-import { Callout } from '@folio/stripes/components';
 import View from '../components/views/Jobs';
+import makeToast from './components/makeToast';
 
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
@@ -103,7 +103,8 @@ class JobsRoute extends React.Component {
     const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
     if (prevDeletedJobId !== currentDeletedJobId) {
       const name = get(this.props, 'location.state.deletedJobName', '');
-      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', 'success', { name });
+      const jobClass = get(this.props, 'location.state.deletedJobClass', '');
+      if (name !== '') this.callout.current.sendCallout(makeToast('ui-local-kb-admin.job.deleted.success', jobClass, 'success', { name }));
     }
   }
 
@@ -122,14 +123,7 @@ class JobsRoute extends React.Component {
   }
 
   queryGetter = () => {
-    return get(this.props.resources, 'query', {});
-  }
-
-  showToast = (messageId, messageType = 'success', values = {}) => {
-    return this.callout.current.sendCallout({
-      message: <FormattedMessage id={messageId} values={values} />,
-      type: messageType,
-    });
+    return this.props?.resources?.query ?? {};
   }
 
   render() {
@@ -139,12 +133,12 @@ class JobsRoute extends React.Component {
     }
 
     return (
-      <div>
+      <>
         <View
           data={{
-            jobs: get(resources, 'jobs.records', []),
-            resultValues: get(resources, 'resultValues.records', []),
-            statusValues: get(resources, 'statusValues.records', []),
+            jobs: resources?.jobs?.records ?? [],
+            resultValues: resources?.resultValues?.records ?? [],
+            statusValues: resources?.statusValues?.records ?? [],
           }}
           selectedRecordId={match.params.id}
           queryGetter={this.queryGetter}
@@ -155,8 +149,7 @@ class JobsRoute extends React.Component {
           {children}
         </View>
         <Callout ref={this.callout} />
-      </div>
-
+      </>
     );
   }
 }
