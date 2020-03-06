@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
+
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { CalloutContext, stripesConnect } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
+
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
@@ -35,26 +37,26 @@ class JobViewRoute extends React.Component {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { showConfirmDelete: false };
-  }
+  static contextType = CalloutContext;
+
+  state = { showConfirmDelete: false };
 
   handleDelete = () => {
     const { resources } = this.props;
     const job = resources?.job?.records?.[0] ?? {};
     const name = job?.name ?? '';
     const jobClass = job?.class ?? '';
-    const id = job?.id ?? '';
     this.props.mutator.job
       .DELETE(job)
-      .then(() => this.props.history.replace(
-        {
-          pathname: '/local-kb-admin',
-          search: `${this.props.location.search}`,
-          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
-        }
-      ));
+      .then(() => {
+        this.props.history.replace(
+          {
+            pathname: '/local-kb-admin',
+            search: this.props.location.search,
+          }
+        );
+        this.context.sendCallout({ message: <SafeHTMLMessage id={`ui-local-kb-admin.job.deleted.success.${jobClass}`} values={{ name }} /> });
+      });
   };
 
   handleClose = () => {
@@ -85,19 +87,19 @@ class JobViewRoute extends React.Component {
           data={{
             job
           }}
+          isLoading={resources?.job?.isPending ?? true}
           onClose={this.handleClose}
           onDelete={this.showDeleteConfirmationModal}
-          isLoading={resources?.job?.isPending ?? true}
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal
-            id="delete-job-confirmation"
+            buttonStyle="danger"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
             heading={<FormattedMessage id={deleteHeadingId} />}
+            id="delete-job-confirmation"
             message={<SafeHTMLMessage id={deleteMessageId} values={{ name }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={this.handleDelete}
-            buttonStyle="danger"
             open
           />
         )}

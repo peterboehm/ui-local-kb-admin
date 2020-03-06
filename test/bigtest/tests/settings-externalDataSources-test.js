@@ -261,11 +261,24 @@ describe('External Data Source Settings', () => {
       describe('deleting 2 sources', () => {
         beforeEach(async function () {
           await externaldatasources.externalDataSourceList.items(0).clickDeleteButton();
-          await externaldatasources.externalDataSourceList.items(1).clickDeleteButton();
         });
 
-        it('reduces the count of data sources by 2', () => {
-          expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 2);
+        it('confirmation modal opens', () => {
+          expect(externaldatasources.externalDataSourceList.items(0).confirmation.isDeleteConfirmationButtonPresent).to.be.true;
+        });
+
+        describe('confirm delete', () => {
+          beforeEach(async () => {
+            await externaldatasources.externalDataSourceList.items(0).confirmation.clickConfirmDeleteButton();
+          });
+
+          it('reduces the count of data sources by 1', () => {
+            expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 1);
+          });
+
+          it('reduces the count of data sources by 1', () => {
+            expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 1);
+          });
         });
       });
     });

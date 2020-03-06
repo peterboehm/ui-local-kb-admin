@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
+
+import { ConfirmationModal } from '@folio/stripes/components';
 import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
 import ExternalDataSourcesView from './ExternalDataSourcesView';
 
@@ -58,16 +63,39 @@ export default class ExternalDataSourcesFields extends React.Component {
       .then(() => this.setState({ editing: false }));
   }
 
+  showDeleteConfirmationModal = () => this.setState({ showConfirmDelete: true });
+
+  hideDeleteConfirmationModal = () => this.setState({ showConfirmDelete: false });
+
   render() {
     const ExternalDataSourceComponent = this.state.editing ? ExternalDataSourcesEdit : ExternalDataSourcesView;
+    const custPropName = this.props?.input?.value?.name;
     return (
-      <ExternalDataSourceComponent
-        {...this.props}
-        onCancel={this.handleCancel}
-        onDelete={this.props.onDelete}
-        onSave={this.handleSave}
-        onEdit={this.handleEdit}
-      />
+      <>
+        <ExternalDataSourceComponent
+          {...this.props}
+          onCancel={this.handleCancel}
+          onDelete={this.showDeleteConfirmationModal}
+          onSave={this.handleSave}
+          onEdit={this.handleEdit}
+        />
+        {this.state.showConfirmDelete && (
+          <ConfirmationModal
+            buttonStyle="danger"
+            confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
+            data-test-confirmationModal
+            heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+            id="delete-external-data-source-confirmation"
+            message={<SafeHTMLMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
+            onCancel={this.hideDeleteConfirmationModal}
+            onConfirm={() => {
+              this.props.onDelete();
+              this.hideDeleteConfirmationModal();
+            }}
+            open
+          />
+        )}
+      </>
     );
   }
 }
