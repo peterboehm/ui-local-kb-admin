@@ -88,5 +88,10 @@
     "job.update": "更新包",
     "job.sourceReferenceWarning": "<strong>来源</strong>和<strong>参考</strong>字段一起用作包的唯一标识符。如果给定的<strong>来源</strong> + <strong>参考</strong>包已存在则会被更新，否则将创建一个新的包。如果输入的<strong>提供者</strong>不存在，则会在“协议”应用程序的本地知识库中创建一个新的。",
     "org.olf.general.jobs.KbartIngestJob": "KBART收割器",
-    "org.olf.general.jobs.KbartImportJob": "KBART文件导入"
+    "org.olf.general.jobs.KbartImportJob": "KBART文件导入",
+    "job.JSONImportJob": "JSON import job",
+    "job.KBARTImportJob": "KBART import job",
+    "settings.externalDataSources.delete.confirmLabel": "Delete",
+    "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
+    "settings.externalDataSources.delete.confirmMessage": "External data source <strong>{name}</strong> will be <strong>deleted</strong>."
 }
