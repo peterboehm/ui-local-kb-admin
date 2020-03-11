@@ -46,6 +46,6 @@ export default @interactor class JobsView {
   confirmationModal = new ConfirmationModalInteractor();
 
   whenLoaded() {
-    return this.when(() => this.isPresent).timeout(10000);
+    return this.when(() => this.isPresent).timeout(5000);
   }
 }
