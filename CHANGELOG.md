@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 1.3.2 2020-03-11
+* Fixed tests
+
 ## 1.3.1 2020-03-11
 * Fixed tests
 
