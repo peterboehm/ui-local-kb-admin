@@ -1,10 +1,12 @@
 # Change history for ui-local-kb-admin
 
-## 1.3.0 IN PROGRESS
+## 1.3.0 2020-03-11
 * Switched to using `<FormattedUTCDate>` from Stripes. ERM-635
 * Switched to using `<Spinner>` from Stripes. ERM-635
 * Improved performance for job log and error lists. ERM-642
 * Added support for importing KBART files. ERM-685
+* Added callouts and confirmation modals. ERM-727 733
+* Upgrade to Stripes 3.0
 
 ## 1.2.0 2019-12-02
 * Update stripes to v2.10.1 to support PaneFooter.
