@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 1.3.1 2020-03-11
+* Fixed tests
+
 ## 1.3.0 2020-03-11
 * Switched to using `<FormattedUTCDate>` from Stripes. ERM-635
 * Switched to using `<Spinner>` from Stripes. ERM-635
