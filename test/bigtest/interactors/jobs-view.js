@@ -44,4 +44,8 @@ export default @interactor class JobsView {
   headerDropdown = new HeaderDropdown('[data-pane-header-actions-dropdown]');
   headerDropdownMenu = new HeaderDropdownMenu();
   confirmationModal = new ConfirmationModalInteractor();
+
+  whenLoaded() {
+    return this.when(() => this.isPresent).timeout(5000);
+  }
 }

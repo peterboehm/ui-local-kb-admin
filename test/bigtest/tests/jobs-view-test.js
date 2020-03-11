@@ -20,7 +20,8 @@ describe('JobView', () => {
 
   beforeEach(async function () {
     job = this.server.create('job', jobInfo);
-    this.visit(`/local-kb-admin/${job.id}`);
+    await this.visit(`/local-kb-admin/${job.id}`);
+    await jobsView.whenLoaded();
   });
 
   describe('jobview pane', () => {
