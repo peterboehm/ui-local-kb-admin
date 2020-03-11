@@ -20,7 +20,7 @@ describe('JobCreate JSON', () => {
   const jobviewinteractor = new JobViewInteractor();
 
   beforeEach(async function () {
-    this.visit('/local-kb-admin/create/JSON');
+    await this.visit('/local-kb-admin/create/JSON');
   });
 
   describe('job create JSON pane', () => {
@@ -46,6 +46,7 @@ describe('JobCreate JSON', () => {
         beforeEach(async function () {
           await interactor.saveButton.whenEnabled();
           await interactor.saveButton.click();
+          await jobviewinteractor.whenLoaded();
         });
 
         it('should render job title', () => {

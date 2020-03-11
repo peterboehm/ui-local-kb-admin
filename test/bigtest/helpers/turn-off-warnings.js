@@ -11,6 +11,8 @@ const error = console.error;
 const errorBlacklist = [
   /\[React Intl\]/,
   /Cannot update a component from inside the function body of a different component/,
+  /Warning: Failed prop typ/,
+  /perform a React state update on an unmounted component/,
 ];
 
 export default function turnOffWarnings() {

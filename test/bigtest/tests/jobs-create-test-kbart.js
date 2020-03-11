@@ -20,7 +20,7 @@ describe('JobCreate KBART', () => {
   const jobviewinteractor = new JobViewInteractor();
 
   beforeEach(async function () {
-    this.visit('/local-kb-admin/create/KBART');
+    await this.visit('/local-kb-admin/create/KBART');
   });
 
   describe('job create KBART pane', () => {
@@ -67,6 +67,7 @@ describe('JobCreate KBART', () => {
         beforeEach(async function () {
           await interactor.saveButton.whenEnabled();
           await interactor.saveButton.click();
+          await jobviewinteractor.whenLoaded();
         });
 
         it('should render job title', () => {
