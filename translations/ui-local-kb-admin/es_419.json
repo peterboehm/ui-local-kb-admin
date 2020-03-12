@@ -91,7 +91,7 @@
     "org.olf.general.jobs.KbartImportJob": "KBART File import",
     "job.JSONImportJob": "JSON import job",
     "job.KBARTImportJob": "KBART import job",
-    "settings.externalDataSources.delete.confirmLabel": "Delete",
-    "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
+    "settings.externalDataSources.delete.confirmLabel": "Borrar",
+    "settings.externalDataSources.delete.confirmHeading": "Borrar fuente de datos externa",
     "settings.externalDataSources.delete.confirmMessage": "External data source <strong>{name}</strong> will be <strong>deleted</strong>."
 }
