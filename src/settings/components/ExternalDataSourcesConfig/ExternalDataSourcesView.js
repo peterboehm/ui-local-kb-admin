@@ -37,8 +37,9 @@ export default class ExternalDataSourcesView extends React.Component {
     return (
       <Card
         data-test-external-data-source-view
-        headerEnd={value.readonly ? undefined : (
+        headerEnd={(
           <span>
+            {value.readonly ? undefined :
             <Button
               buttonStyle="danger"
               data-test-external-data-source-delete
@@ -46,7 +47,7 @@ export default class ExternalDataSourcesView extends React.Component {
               onClick={onDelete}
             >
               <FormattedMessage id="stripes-core.button.delete" />
-            </Button>
+            </Button>}
             <Button
               data-test-external-data-source-edit
               marginBottom0
@@ -81,11 +82,22 @@ export default class ExternalDataSourcesView extends React.Component {
             />
           </Col>
         </Row>
-        <KeyValue
-          data-test-external-data-source-uri
-          label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
-          value={value?.uri ?? <NoValue />}
-        />
+        <Row>
+          <Col xs={8}>
+            <KeyValue
+              data-test-external-data-source-uri
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
+              value={value?.uri ?? <NoValue />}
+            />
+          </Col>
+          <Col xs={4}>
+            <KeyValue
+              data-test-external-data-source-isactive
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.trustedSourceTI" />}
+              value={<FormattedMessage id={value.trustedSourceTI ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
+            />
+          </Col>
+        </Row>
         <Layout className="padding-bottom-gutter">
           <Row>
             <Col xs={3}>

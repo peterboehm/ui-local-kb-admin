@@ -94,6 +94,7 @@
   "settings.externalDataSources.recordType": "Record type",
   "settings.externalDataSources.uri": "URI",
   "settings.externalDataSources.isActive": "Is active",
+  "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata",
   "settings.externalDataSources.supportsHarvesting": "Supports harvesting",
   "settings.externalDataSources.activationEnabled": "Activation enabled",
   "settings.externalDataSources.listPrefix": "Listprefix",
