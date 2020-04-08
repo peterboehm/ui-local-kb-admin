@@ -15,6 +15,7 @@ import {
 
 export default class KbartFields extends React.Component {
   render() {
+    const { localKB } = this.props || {};
     return (
       <>
         <MessageBanner>
@@ -59,8 +60,10 @@ export default class KbartFields extends React.Component {
         <Field
           component={Checkbox}
           data-test-field-trusted-source-ti
+          initialValue={localKB.trustedSourceTI}
           label={<FormattedMessage id="ui-local-kb-admin.job.trustedSourceTI" />}
           name="trustedSourceTI"
+          type="checkbox"
         />
       </>
     );

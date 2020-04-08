@@ -104,7 +104,7 @@ class JobForm extends React.Component {
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
-                    {format === 'KBART' && <KbartFields /> }
+                    {format === 'KBART' && <KbartFields localKB={this.props.localKB} /> }
                     <Field
                       component={FileUploaderField}
                       data-test-document-field-file
