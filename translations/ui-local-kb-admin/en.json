@@ -50,6 +50,7 @@
   "job.packageSource": "Package source",
   "job.packageReference": "Package reference",
   "job.packageProvider": "Package provider",
+  "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
   "job.addNew": "Add new package",
   "job.update": "Update package",
 

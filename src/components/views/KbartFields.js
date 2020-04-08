@@ -6,10 +6,11 @@ import { Field } from 'react-final-form';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import {
+  Checkbox,
   Col,
   MessageBanner,
   Row,
-  TextField,
+  TextField
 } from '@folio/stripes/components';
 
 export default class KbartFields extends React.Component {
@@ -54,6 +55,12 @@ export default class KbartFields extends React.Component {
           data-test-field-package-provider
           label={<FormattedMessage id="ui-local-kb-admin.job.packageProvider" />}
           name="packageProvider"
+        />
+        <Field
+          component={Checkbox}
+          data-test-field-trusted-source-ti
+          label={<FormattedMessage id="ui-local-kb-admin.job.trustedSourceTI" />}
+          name="trustedSourceTI"
         />
       </>
     );
