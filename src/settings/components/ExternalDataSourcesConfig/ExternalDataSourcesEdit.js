@@ -41,6 +41,8 @@ export default class ExternalDataSourcesEdit extends React.Component {
       onSave,
     } = this.props;
 
+    console.log("Props: %o", this.props)
+
     return (
       <Card
         data-test-external-data-source-edit

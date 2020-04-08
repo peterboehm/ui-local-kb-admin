@@ -85,11 +85,11 @@ class JobCreateRoute extends React.Component {
     return (
       <View
         format={format}
-        localKB={localKB}
         handlers={{
           ...handlers,
           onClose: this.handleClose
         }}
+        localKB={localKB}
         onSubmit={this.handleSubmit}
       />
     );

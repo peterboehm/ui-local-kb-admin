@@ -63,7 +63,9 @@ export default class KbartFields extends React.Component {
           initialValue={localKB.trustedSourceTI}
           label={<FormattedMessage id="ui-local-kb-admin.job.trustedSourceTI" />}
           name="trustedSourceTI"
+          required
           type="checkbox"
+          validate={requiredValidator}
         />
       </>
     );
