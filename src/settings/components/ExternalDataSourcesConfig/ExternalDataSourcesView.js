@@ -15,6 +15,7 @@ export default class ExternalDataSourcesView extends React.Component {
         readonly: PropTypes.bool,
         rectype: PropTypes.number,
         supportsHarvesting: PropTypes.bool,
+        trustedSourceTI: PropTypes.bool,
         type: PropTypes.string,
       }).isRequired,
     }).isRequired,
