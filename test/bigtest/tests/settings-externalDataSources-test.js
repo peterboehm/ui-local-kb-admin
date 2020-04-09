@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import ExternalDataSourcesInteractor from '../interactors/external-data-sources';
 
-describe.only('External Data Source Settings', () => {
+describe('External Data Source Settings', () => {
   setupApplication();
   const externaldatasources = new ExternalDataSourcesInteractor();
 
