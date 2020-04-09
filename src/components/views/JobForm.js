@@ -27,6 +27,9 @@ class JobForm extends React.Component {
       onDownloadFile: PropTypes.func.isRequired,
       onUploadFile: PropTypes.func.isRequired,
     }),
+    localKB: PropTypes.shape({
+      trustedSourceTI: PropTypes.bool,
+    }),
     pristine: PropTypes.bool,
     submitting: PropTypes.bool
   }
