@@ -93,7 +93,7 @@ export default class ExternalDataSourcesView extends React.Component {
           </Col>
           <Col xs={4}>
             <KeyValue
-              data-test-external-data-source-isactive
+              data-test-external-data-source-trusted-source-ti
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.trustedSourceTI" />}
               value={<FormattedMessage id={value.trustedSourceTI ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
             />

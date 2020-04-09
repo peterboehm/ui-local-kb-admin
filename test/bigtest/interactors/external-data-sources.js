@@ -4,7 +4,9 @@ import {
   collection,
   count,
   fillable,
+  focusable,
   isPresent,
+  property,
   selectable,
 } from '@bigtest/interactor';
 import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/interactor'; // eslint-disable-line
@@ -26,6 +28,7 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   isRecordTypePresent = isPresent('[data-test-external-data-source-recordtype]');
   isURIPresent = isPresent('[data-test-external-data-source-uri]');
   isActivePresent = isPresent('[data-test-external-data-source-isactive]');
+  isTrustedSourceTIPresent = isPresent('[data-test-external-data-source-trusted-source-ti]');
   isSupportsHarvestingPresent = isPresent('[data-test-external-data-source-supportsharvesting]');
   isActivationEnabledPresent = isPresent('[data-test-external-data-source-activationenabled]');
   isListPrefixPresent = isPresent('[data-test-external-data-source-listprefix]');
@@ -38,6 +41,7 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   recordType = new KeyValueInteractor('[data-test-external-data-source-recordtype]');
   uri = new KeyValueInteractor('[data-test-external-data-source-uri]');
   isActive = new KeyValueInteractor('[data-test-external-data-source-isactive]');
+  trustedSourceTI = new KeyValueInteractor('[data-test-external-data-source-trusted-source-ti]');
   isSupportsHarvesting = new KeyValueInteractor('[data-test-external-data-source-supportsharvesting]');
   isActivationEnabled = new KeyValueInteractor('[data-test-external-data-source-activationenabled]');
   listPrefix = new KeyValueInteractor('[data-test-external-data-source-listprefix]');
@@ -62,6 +66,16 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   editIsActive = clickable('[data-test-external-data-source-is-active-edit]');
   editSupportsHarvesting = clickable('[data-test-external-data-source-supports-harvesting-edit]');
   editActivationEnabled = clickable('[data-test-external-data-source-activation-enabled-edit]');
+  editTrustedSourceTI = clickable('[data-test-external-data-source-trusted-source-ti-edit]');
+
+  isNameFieldDisabled = property('[data-test-external-data-source-name-edit]', 'disabled');
+  isURIFieldDisabled = property('[data-test-external-data-source-uri]', 'disabled');
+  isTypeFieldDisabled = property('[data-test-external-data-source-type-edit]', 'disabled');
+  isRecordTypeFieldDisabled = property('[data-test-external-data-source-record-type-edit]', 'disabled');
+  isIsActiveFieldDisabled = property('[data-test-external-data-source-is-active-edit]', 'disabled');
+  isSupportsHarvestingFieldDisabled = property('[data-test-external-data-source-supports-harvesting-edit]', 'disabled');
+  isActivationEnabledFieldDisabled = property('[data-test-external-data-source-activation-enabled-edit]', 'disabled');
+  isTrustedSourceTIFieldDisabled = property('[data-test-external-data-source-trusted-source-ti-edit]', 'disabled');
 }
 
 @interactor class ExternalDataSourcesListInteractor {

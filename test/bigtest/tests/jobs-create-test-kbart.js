@@ -44,6 +44,10 @@ describe('JobCreate KBART', () => {
       expect(interactor.isPackageProviderFieldPresent).to.be.true;
     });
 
+    it('should display trusted source ti field', () => {
+      expect(interactor.isTrustedSourceTIFieldPresent).to.be.true;
+    });
+
     describe('Upload file', () => {
       beforeEach(async function () {
         await uploaderInteractor.dragEnter();
@@ -53,6 +57,7 @@ describe('JobCreate KBART', () => {
         await interactor.fillPackageSource('Test package source');
         await interactor.fillPackageReference('Test package reference');
         await interactor.fillPackageProvider('Test package provider');
+        await interactor.fillTrustedSourceTI();
       });
 
       it('should display the uploaded file name', () => {
