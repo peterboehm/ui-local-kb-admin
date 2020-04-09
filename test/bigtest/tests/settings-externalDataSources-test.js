@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import ExternalDataSourcesInteractor from '../interactors/external-data-sources';
 
-describe('External Data Source Settings', () => {
+describe.only('External Data Source Settings', () => {
   setupApplication();
   const externaldatasources = new ExternalDataSourcesInteractor();
 
@@ -172,6 +172,7 @@ describe('External Data Source Settings', () => {
     beforeEach(async function () {
       this.visit('/settings/local-kb-admin/external-data-sources');
       await externaldatasources.clickNewButton();
+      await new Promise(resolve => { setTimeout(resolve, 100); }); // Should be removed as a part of ERM-825
       await externaldatasources.externalDataSourceList.itemsEdit(0).editName(name);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
@@ -189,6 +190,7 @@ describe('External Data Source Settings', () => {
 
         beforeEach(async function () {
           await externaldatasources.externalDataSourceList.items(0).clickEditButton();
+          await new Promise(resolve => { setTimeout(resolve, 500); }); // Should be removed as a part of ERM-825
           await externaldatasources.externalDataSourceList.itemsEdit(0).editName(editedName);
           await externaldatasources.externalDataSourceList.itemsEdit(0).editIsActive(isActive);
           await externaldatasources.externalDataSourceList.itemsEdit(0).editSupportsHarvesting(supportsHarvesting);
@@ -218,6 +220,7 @@ describe('External Data Source Settings', () => {
       describe('edit and cancel', () => {
         beforeEach(async function () {
           await externaldatasources.externalDataSourceList.items(0).clickEditButton();
+          await new Promise(resolve => { setTimeout(resolve, 500); }); // Should be removed as a part of ERM-825
           await externaldatasources.externalDataSourceList.itemsEdit(0).clickCancelButton();
         });
 
