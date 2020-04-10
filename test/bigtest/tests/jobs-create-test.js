@@ -76,15 +76,15 @@ describe('JobCreate JSON', () => {
         });
       });
 
-      describe('Uploading and deleteing a file', () => {
+      describe('Uploading and deleting a file', () => {
         beforeEach(async function () {
           await uploaderInteractor.dragEnter();
           await uploaderInteractor.drop();
           await uploaderFieldInteractor.clickDelete();
         });
 
-        it('should render validation message', () => {
-          expect(interactor.errorText).to.equal('Please upload a file to continue');
+        it('should render validation error message', () => {
+          expect(interactor.errorText).contains('Please upload a file to continue');
         });
       });
     });

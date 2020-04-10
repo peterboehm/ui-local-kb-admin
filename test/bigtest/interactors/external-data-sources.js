@@ -73,5 +73,9 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
 export default @interactor class ExternalDataSourcesInteractor {
   isFormPresent = isPresent('[data-test-external-data-sources]');
   externalDataSourceList = new ExternalDataSourcesListInteractor();
-  clickNewButton = clickable('[data-test-external-data-source-new]')
+  clickNewButton = clickable('[data-test-external-data-source-new]');
+
+  whenFormLoaded() {
+    return this.when(() => this.isFormPresent).timeout(5000);
+  }
 }

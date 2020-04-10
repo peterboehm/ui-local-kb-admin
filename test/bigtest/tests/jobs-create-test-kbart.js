@@ -105,8 +105,8 @@ describe('JobCreate KBART', () => {
           await uploaderFieldInteractor.clickDelete();
         });
 
-        it('should render validation message', () => {
-          expect(interactor.errorText).to.equal('Please upload a file to continue');
+        it('should render validation error message', () => {
+          expect(interactor.errorText).contains('Please upload a file to continue');
         });
       });
     });
