@@ -306,6 +306,7 @@ export default class Jobs extends React.Component {
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
                     lastMenu={this.renderResultsLastMenu()}
+                    noOverflow
                     padContent={false}
                     paneSub={this.renderResultsPaneSubtitle(source)}
                     paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
