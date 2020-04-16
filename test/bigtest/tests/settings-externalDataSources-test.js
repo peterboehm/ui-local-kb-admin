@@ -220,6 +220,7 @@ describe('External Data Source Settings', () => {
     beforeEach(async function () {
       this.visit('/settings/local-kb-admin/external-data-sources');
       await externaldatasources.clickNewButton();
+      await externaldatasources.whenFormLoaded();
       await externaldatasources.externalDataSourceList.itemsEdit(0).editName(name);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
@@ -229,6 +230,16 @@ describe('External Data Source Settings', () => {
     });
 
     describe('creating a new data source', () => {
+      beforeEach(async function () {
+        await externaldatasources.clickNewButton();
+        await new Promise(resolve => { setTimeout(resolve, 500); }); // Should be removed as a part of ERM-825
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editName(name);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editURI(URI);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
+      });
+
       it('should render the expected source', () => {
         expect(externaldatasources.externalDataSourceList.items(0).name.value.text).to.equal(name);
       });

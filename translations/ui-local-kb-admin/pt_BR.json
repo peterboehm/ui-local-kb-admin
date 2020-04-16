@@ -93,5 +93,9 @@
     "job.KBARTImportJob": "Job de importação KBART",
     "settings.externalDataSources.delete.confirmLabel": "Excluir",
     "settings.externalDataSources.delete.confirmHeading": "Excluir fonte de dados externa",
-    "settings.externalDataSources.delete.confirmMessage": "A fonte de dados externa <strong>{name}</strong> será <strong>excluída</strong>."
+    "settings.externalDataSources.delete.confirmMessage": "A fonte de dados externa <strong>{name}</strong> será <strong>excluída</strong>.",
+    "permission.jobs.view": "Administrador da KB local: Ver jobs",
+    "permission.jobs.edit": "Administrador da KB local: Criar jobs",
+    "permission.jobs.delete": "Administrador da KB local: excluir jobs",
+    "permission.kbs.manage": "Administrador da KB local: Gerenciar a configuração remota da KB"
 }

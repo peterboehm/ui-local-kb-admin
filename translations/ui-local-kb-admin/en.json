@@ -1,6 +1,11 @@
 {
   "meta.title": "Local KB admin",
 
+  "permission.jobs.view": "Local KB admin: View jobs",
+  "permission.jobs.edit": "Local KB admin: Create jobs",
+  "permission.jobs.delete": "Local KB admin: Delete jobs",
+  "permission.kbs.manage": "Local KB admin: Manage remote KB configuration",
+
   "create": "Create",
   "errorLog": "Error log",
   "infoLog": "Info log",
