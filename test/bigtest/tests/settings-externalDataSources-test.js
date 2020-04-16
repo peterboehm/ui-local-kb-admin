@@ -219,14 +219,7 @@ describe('External Data Source Settings', () => {
 
     beforeEach(async function () {
       this.visit('/settings/local-kb-admin/external-data-sources');
-      await externaldatasources.clickNewButton();
       await externaldatasources.whenFormLoaded();
-      await externaldatasources.externalDataSourceList.itemsEdit(0).editName(name);
-      await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
-      await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
-      await externaldatasources.externalDataSourceList.itemsEdit(0).editURI(URI);
-      await externaldatasources.externalDataSourceList.itemsEdit(0).editTrustedSourceTI(trustedSourceTI);
-      await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
     });
 
     describe('creating a new data source', () => {
@@ -237,6 +230,7 @@ describe('External Data Source Settings', () => {
         await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
         await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
         await externaldatasources.externalDataSourceList.itemsEdit(0).editURI(URI);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editTrustedSourceTI(trustedSourceTI);
         await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
       });
 
