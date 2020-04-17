@@ -91,7 +91,11 @@ class JobForm extends React.Component {
   }
 
   render() {
-    const { handlers: { onDownloadFile, onUploadFile }, format } = this.props;
+    const {
+      handlers: { onDownloadFile, onUploadFile },
+      format,
+      localKB
+    } = this.props;
     return (
       <Paneset>
         <FormattedMessage id="ui-local-kb-admin.create">
@@ -107,7 +111,7 @@ class JobForm extends React.Component {
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
-                    {format === 'KBART' && <KbartFields localKB={this.props.localKB} /> }
+                    {format === 'KBART' && <KbartFields localKB={localKB} /> }
                     <Field
                       component={FileUploaderField}
                       data-test-document-field-file

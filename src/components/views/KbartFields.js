@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Field } from 'react-final-form';
@@ -14,8 +15,14 @@ import {
 } from '@folio/stripes/components';
 
 export default class KbartFields extends React.Component {
+  static propTypes = {
+    localKB: PropTypes.shape({
+      trustedSourceTI: PropTypes.bool,
+    }),
+  }
+
   render() {
-    const { localKB } = this.props || {};
+    const { localKB } = this.props;
     return (
       <>
         <MessageBanner>

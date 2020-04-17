@@ -51,6 +51,13 @@ class JobCreateRoute extends React.Component {
         POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    resources: PropTypes.shape({
+      localKB: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.shape({
+          trustedSourceTI: PropTypes.bool,
+        })),
+      })
+    })
   };
 
   static contextType = CalloutContext;
@@ -80,8 +87,8 @@ class JobCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, match: { params: { format } } } = this.props;
-    const localKB = this.props?.resources?.localKB?.records[0] || {};
+    const { handlers, match: { params: { format } }, resources } = this.props;
+    const localKB = resources.localKB?.records?.[0] || {};
     return (
       <View
         format={format}

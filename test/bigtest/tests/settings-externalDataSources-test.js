@@ -90,7 +90,7 @@ describe('External Data Source Settings', () => {
         expect(externaldatasources.externalDataSourceList.items(0).isTrustedSourceTIPresent).to.be.true;
       });
 
-      it('renders the expected trustedSourceTI checkobx status', () => {
+      it('renders the expected trustedSourceTI checkbox status', () => {
         expect(externaldatasources.externalDataSourceList.items(0).trustedSourceTI.value.text).to.equal('Yes');
       });
 

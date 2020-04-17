@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
 import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { validateURLIsValid, required } from '../../../util/validators';
+import { validateURLIsValid } from '../../../util/validators';
 
 export default class ExternalDataSourcesEdit extends React.Component {
   static propTypes = {
@@ -42,7 +42,6 @@ export default class ExternalDataSourcesEdit extends React.Component {
       onSave,
     } = this.props;
 
-    const isReadonly = value.readonly;
     return (
       <Card
         data-test-external-data-source-edit
@@ -80,10 +79,10 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={TextField}
               data-test-external-data-source-name-edit
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               name={`${name}.name`}
-              required={!isReadonly}
+              required={!value.readonly}
               validate={composeValidators(
                 requiredValidator,
                 this.validateUniqueName,
@@ -97,16 +96,11 @@ export default class ExternalDataSourcesEdit extends React.Component {
               dataOptions={[
                 { value: 'org.olf.kb.adapters.GOKbOAIAdapter', label: 'org.olf.kb.adapters.GOKbOAIAdapter' }
               ]}
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               name={`${name}.type`}
-              required={!isReadonly}
-              validate={v => {
-                if (!isReadonly) {
-                  return required(v);
-                }
-                return undefined;
-              }}
+              required={!value.readonly}
+              validate={v => (value.readonly ? undefined : requiredValidator(v))}
             />
           </Col>
           <Col xs={4}>
@@ -116,11 +110,11 @@ export default class ExternalDataSourcesEdit extends React.Component {
               dataOptions={
                 [{ value: '1', label: 'Package' }]
               }
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
               name={`${name}.rectype`}
-              required={!isReadonly}
-              validate={required}
+              required={!value.readonly}
+              validate={requiredValidator}
             />
           </Col>
         </Row>
@@ -129,13 +123,13 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={TextField}
               data-test-external-data-source-uri
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
               name={`${name}.uri`}
-              required={!isReadonly}
+              required={!value.readonly}
               validate={v => {
-                if (!isReadonly) {
-                  return (v && v.length) ? validateURLIsValid(v) : required(v);
+                if (!value.readonly) {
+                  return (v && v.length) ? validateURLIsValid(v) : requiredValidator(v);
                 }
                 return undefined;
               }}
@@ -157,7 +151,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
               <Field
                 component={Checkbox}
                 data-test-external-data-source-is-active-edit
-                disabled={isReadonly}
+                disabled={value.readonly}
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
                 name={`${name}.active`}
                 type="checkbox"
@@ -167,7 +161,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
               <Field
                 component={Checkbox}
                 data-test-external-data-source-supports-harvesting-edit
-                disabled={isReadonly}
+                disabled={value.readonly}
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
                 name={`${name}.supportsHarvesting`}
                 type="checkbox"
@@ -177,7 +171,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
               <Field
                 component={Checkbox}
                 data-test-external-data-source-activation-enabled-edit
-                disabled={isReadonly}
+                disabled={value.readonly}
                 label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
                 name={`${name}.activationEnabled`}
                 type="checkbox"
@@ -190,7 +184,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={TextField}
               data-test-external-data-source-list-prefix-edit
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
               name={`${name}.listPrefix`}
             />
@@ -199,7 +193,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={TextField}
               data-test-external-data-source-full-prefix-edit
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
               name={`${name}.fullPrefix`}
             />
@@ -208,7 +202,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
             <Field
               component={TextField}
               data-test-external-data-source-principal-edit
-              disabled={isReadonly}
+              disabled={value.readonly}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
               name={`${name}.principal`}
             />
@@ -217,7 +211,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
         <Field
           component={TextArea}
           data-test-external-data-source-credentials-edit
-          disabled={isReadonly}
+          disabled={value.readonly}
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
           name={`${name}.credentials`}
         />
