@@ -97,5 +97,7 @@
     "permission.jobs.view": "本地KB管理：查看任务",
     "permission.jobs.edit": "本地KB管理：创建任务",
     "permission.jobs.delete": "本地KB管理：删除任务",
-    "permission.kbs.manage": "本地KB管理：管理远程KB配置"
+    "permission.kbs.manage": "本地KB管理：管理远程KB配置",
+    "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
+    "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata"
 }

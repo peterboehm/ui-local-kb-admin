@@ -97,5 +97,7 @@
     "permission.jobs.view": "Local KB admin: View jobs",
     "permission.jobs.edit": "Local KB admin: Create jobs",
     "permission.jobs.delete": "Local KB admin: Delete jobs",
-    "permission.kbs.manage": "Local KB admin: Manage remote KB configuration"
+    "permission.kbs.manage": "Local KB admin: Manage remote KB configuration",
+    "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
+    "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata"
 }
