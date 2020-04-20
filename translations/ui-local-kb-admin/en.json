@@ -55,6 +55,7 @@
   "job.packageSource": "Package source",
   "job.packageReference": "Package reference",
   "job.packageProvider": "Package provider",
+  "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
   "job.addNew": "Add new package",
   "job.update": "Update package",
 
@@ -98,6 +99,7 @@
   "settings.externalDataSources.recordType": "Record type",
   "settings.externalDataSources.uri": "URI",
   "settings.externalDataSources.isActive": "Is active",
+  "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata",
   "settings.externalDataSources.supportsHarvesting": "Supports harvesting",
   "settings.externalDataSources.activationEnabled": "Activation enabled",
   "settings.externalDataSources.listPrefix": "Listprefix",

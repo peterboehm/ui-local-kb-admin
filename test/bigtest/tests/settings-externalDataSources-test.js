@@ -11,6 +11,7 @@ describe('External Data Source Settings', () => {
 
   const dataSource = {
     active: true,
+    trustedSourceTI: true,
     activationEnabled: false,
     credentials: 'test credentials',
     name: 'test source',
@@ -85,6 +86,14 @@ describe('External Data Source Settings', () => {
         expect(externaldatasources.externalDataSourceList.items(0).isActive.value.text).to.equal('Yes');
       });
 
+      it('renders the trustedSourceTI checkbox', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).isTrustedSourceTIPresent).to.be.true;
+      });
+
+      it('renders the expected trustedSourceTI checkbox status', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).trustedSourceTI.value.text).to.equal('Yes');
+      });
+
       it('renders the supportsHarvesting checkbox', () => {
         expect(externaldatasources.externalDataSourceList.items(0).isSupportsHarvestingPresent).to.be.true;
       });
@@ -154,8 +163,46 @@ describe('External Data Source Settings', () => {
         expect(externaldatasources.externalDataSourceList.items(0).isDeleteButtonPresent).to.be.false;
       });
 
-      it('does not render the edit button', () => {
-        expect(externaldatasources.externalDataSourceList.items(0).isEditButtonPresent).to.be.false;
+      it('renders the edit button', () => {
+        expect(externaldatasources.externalDataSourceList.items(0).isEditButtonPresent).to.be.true;
+      });
+
+      describe('Editing readonly data source', () => {
+        beforeEach(async function () {
+          await externaldatasources.externalDataSourceList.items(0).clickEditButton();
+        });
+
+        it('should have disabled name field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isNameFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled URI field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isURIFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled type field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isTypeFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled recordType field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isRecordTypeFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled isActive field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isIsActiveFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled supportsHarvesting field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isSupportsHarvestingFieldDisabled).to.be.true;
+        });
+
+        it('should have disabled activationEnabled field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isActivationEnabledFieldDisabled).to.be.true;
+        });
+
+        it('should not have disabled trustedSourceTI field', () => {
+          expect(externaldatasources.externalDataSourceList.itemsEdit(0).isTrustedSourceTIFieldDisabled).to.be.false;
+        });
       });
     });
   });
@@ -166,6 +213,7 @@ describe('External Data Source Settings', () => {
     const recordType = 'Package';
     const URI = 'http://abcd.com';
     const isActive = true;
+    const trustedSourceTI = true;
     const supportsHarvesting = false;
     const activationEnabled = true;
 
@@ -182,6 +230,7 @@ describe('External Data Source Settings', () => {
         await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
         await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
         await externaldatasources.externalDataSourceList.itemsEdit(0).editURI(URI);
+        await externaldatasources.externalDataSourceList.itemsEdit(0).editTrustedSourceTI(trustedSourceTI);
         await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
       });
 
@@ -198,6 +247,7 @@ describe('External Data Source Settings', () => {
           await externaldatasources.externalDataSourceList.itemsEdit(0).editIsActive(isActive);
           await externaldatasources.externalDataSourceList.itemsEdit(0).editSupportsHarvesting(supportsHarvesting);
           await externaldatasources.externalDataSourceList.itemsEdit(0).editActivationEnabled(activationEnabled);
+          await externaldatasources.externalDataSourceList.itemsEdit(0).editTrustedSourceTI(!trustedSourceTI);
           await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
         });
 
@@ -208,6 +258,10 @@ describe('External Data Source Settings', () => {
 
           it('should render the edited isActive checkbox status', () => {
             expect(externaldatasources.externalDataSourceList.items(0).isActive.value.text).to.equal('Yes');
+          });
+
+          it('should render the edited trustedSourceTI checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).trustedSourceTI.value.text).to.equal('No');
           });
 
           it('should render the edited supportsHarvesting checkbox status', () => {
@@ -233,6 +287,10 @@ describe('External Data Source Settings', () => {
 
           it('should render the previous isActive checkbox status', () => {
             expect(externaldatasources.externalDataSourceList.items(0).isActive.value.text).to.equal('No');
+          });
+
+          it('should render the previous trustedSourceTI checkbox status', () => {
+            expect(externaldatasources.externalDataSourceList.items(0).trustedSourceTI.value.text).to.equal('Yes');
           });
 
           it('should render the previous supportsHarvesting checkbox status', () => {

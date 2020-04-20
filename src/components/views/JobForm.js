@@ -27,6 +27,9 @@ class JobForm extends React.Component {
       onDownloadFile: PropTypes.func.isRequired,
       onUploadFile: PropTypes.func.isRequired,
     }),
+    localKB: PropTypes.shape({
+      trustedSourceTI: PropTypes.bool,
+    }),
     pristine: PropTypes.bool,
     submitting: PropTypes.bool
   }
@@ -88,7 +91,11 @@ class JobForm extends React.Component {
   }
 
   render() {
-    const { handlers: { onDownloadFile, onUploadFile }, format } = this.props;
+    const {
+      handlers: { onDownloadFile, onUploadFile },
+      format,
+      localKB
+    } = this.props;
     return (
       <Paneset>
         <FormattedMessage id="ui-local-kb-admin.create">
@@ -104,7 +111,7 @@ class JobForm extends React.Component {
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
-                    {format === 'KBART' && <KbartFields /> }
+                    {format === 'KBART' && <KbartFields localKB={localKB} /> }
                     <Field
                       component={FileUploaderField}
                       data-test-document-field-file

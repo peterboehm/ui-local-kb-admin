@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Field } from 'react-final-form';
@@ -6,14 +7,22 @@ import { Field } from 'react-final-form';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import {
+  Checkbox,
   Col,
   MessageBanner,
   Row,
-  TextField,
+  TextField
 } from '@folio/stripes/components';
 
 export default class KbartFields extends React.Component {
+  static propTypes = {
+    localKB: PropTypes.shape({
+      trustedSourceTI: PropTypes.bool,
+    }),
+  }
+
   render() {
+    const { localKB } = this.props;
     return (
       <>
         <MessageBanner>
@@ -54,6 +63,16 @@ export default class KbartFields extends React.Component {
           data-test-field-package-provider
           label={<FormattedMessage id="ui-local-kb-admin.job.packageProvider" />}
           name="packageProvider"
+        />
+        <Field
+          component={Checkbox}
+          data-test-field-trusted-source-ti
+          initialValue={localKB.trustedSourceTI}
+          label={<FormattedMessage id="ui-local-kb-admin.job.trustedSourceTI" />}
+          name="trustedSourceTI"
+          required
+          type="checkbox"
+          validate={requiredValidator}
         />
       </>
     );

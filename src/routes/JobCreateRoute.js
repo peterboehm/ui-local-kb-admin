@@ -24,6 +24,12 @@ class JobCreateRoute extends React.Component {
       fetch: false,
       shouldRefresh: () => false,
     },
+    localKB: {
+      type: 'okapi',
+      path: 'erm/kbs?filters=name%3DLOCAL',
+      clientGeneratePk: false,
+      throwErrors: false
+    },
   });
 
   static propTypes = {
@@ -45,6 +51,13 @@ class JobCreateRoute extends React.Component {
         POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    resources: PropTypes.shape({
+      localKB: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.shape({
+          trustedSourceTI: PropTypes.bool,
+        })),
+      })
+    })
   };
 
   static contextType = CalloutContext;
@@ -74,7 +87,8 @@ class JobCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, match: { params: { format } } } = this.props;
+    const { handlers, match: { params: { format } }, resources } = this.props;
+    const localKB = resources.localKB?.records?.[0] || {};
     return (
       <View
         format={format}
@@ -82,6 +96,7 @@ class JobCreateRoute extends React.Component {
           ...handlers,
           onClose: this.handleClose
         }}
+        localKB={localKB}
         onSubmit={this.handleSubmit}
       />
     );

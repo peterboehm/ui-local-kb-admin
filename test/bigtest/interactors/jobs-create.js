@@ -26,6 +26,8 @@ export default @interactor class JobsCreate {
   fillPackageReference = fillable('[data-test-field-package-reference]');
   isPackageProviderFieldPresent = isPresent('[data-test-field-package-provider]');
   fillPackageProvider = fillable('[data-test-field-package-provider]');
+  isTrustedSourceTIFieldPresent = isPresent('[data-test-field-trusted-source-ti]');
+  fillTrustedSourceTI = clickable('[data-test-field-trusted-source-ti]');
   saveButton = new Button('[data-test-save-button]');
   closeButton = clickable('#close-job-form-button');
   confirmCloseButton = clickable('[data-test-confirmation-modal-cancel-button]');
