@@ -98,6 +98,6 @@
     "permission.jobs.edit": "إدارة قاعدة المعرفة المحلية: أنشئ وظائف",
     "permission.jobs.delete": "إدارة قاعدة المعرفة المحلية: احذف الوظائف",
     "permission.kbs.manage": "إدارة قاعدة المعرفة المحلية: أدر تهيئة قاعدة المعرفة البعيدة",
-    "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
-    "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata"
+    "job.trustedSourceTI": "ثق بهذه الوظيفة كمصدر لميتاداتا وعاء العنوان",
+    "settings.externalDataSources.trustedSourceTI": "موثوق بها لميتاداتا وعاء العنوان"
 }

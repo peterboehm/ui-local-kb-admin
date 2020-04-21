@@ -98,6 +98,6 @@
     "permission.jobs.edit": "Administrador da KB local: Criar jobs",
     "permission.jobs.delete": "Administrador da KB local: excluir jobs",
     "permission.kbs.manage": "Administrador da KB local: Gerenciar a configuração remota da KB",
-    "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
-    "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata"
+    "job.trustedSourceTI": "Confie neste job como uma fonte de metadados da instância de título",
+    "settings.externalDataSources.trustedSourceTI": "Confiável para metadados da instância de título"
 }
