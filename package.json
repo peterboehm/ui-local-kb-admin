@@ -71,6 +71,9 @@
     "okapiInterfaces": {
       "erm": "1.0 2.0"
     },
+    "stripesDeps": [
+      "@folio/stripes-erm-components"
+    ],
     "permissionSets": [
       {
         "permissionName": "module.local-kb-admin.enabled",
