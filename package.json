@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "1.3.3",
+  "version": "2.0.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -22,7 +22,7 @@
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^5.2.0",
-    "@folio/stripes": "^3.0.0",
+    "@folio/stripes": "^4.0.0",
     "@folio/stripes-cli": "^1.8.0",
     "babel-eslint": "^9.0.0",
     "babel-polyfill": "^6.26.0",
@@ -30,7 +30,7 @@
     "eslint": "^6.2.1",
     "mocha": "^6.2.0",
     "react": "^16.6.0",
-    "react-intl": "^2.4.0",
+    "react-intl": "^4.5.1",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.1.1",
@@ -38,8 +38,8 @@
     "sinon": "^7.3.2"
   },
   "dependencies": {
-    "@folio/stripes-erm-components": "^2.0.0",
-    "@folio/react-intl-safe-html": "^1.0.3",
+    "@folio/stripes-erm-components": "^3.0.0",
+    "@folio/react-intl-safe-html": "^2.0.0",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
     "final-form-arrays": "^3.0.1",
@@ -50,10 +50,10 @@
     "react-final-form-arrays": "^3.1.1"
   },
   "peerDependencies": {
-    "@folio/stripes": "^3.0.0",
+    "@folio/stripes": "^4.0.0",
     "react": "*",
     "react-dom": "*",
-    "react-intl": "^2.4.0",
+    "react-intl": "^4.5.1",
     "react-redux": "*",
     "react-router-dom": "^4.1.1",
     "redux": "*"
@@ -71,6 +71,9 @@
     "okapiInterfaces": {
       "erm": "1.0 2.0"
     },
+    "stripesDeps": [
+      "@folio/stripes-erm-components"
+    ],
     "permissionSets": [
       {
         "permissionName": "module.local-kb-admin.enabled",

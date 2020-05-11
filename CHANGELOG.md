@@ -1,5 +1,9 @@
 # Change history for ui-local-kb-admin
 
+## 2.0.0 IN PROGRESS
+* Upgrade to Stripes 4.0
+* Added translations
+
 ## 1.3.3 2020-03-11
 * Disabled tests
 
