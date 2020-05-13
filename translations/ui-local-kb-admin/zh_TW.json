@@ -22,7 +22,7 @@
     "columns.infoLogMessage": "消息",
     "columns.recordNumber": "记录号",
     "job.delete.confirmLabel": "删除",
-    "job.delete.heading": "删除 {name}？",
+    "job.delete.heading": "删除 {name} 任務 ？",
     "job.delete.message": "删除任务？",
     "loading": "载入中...",
     "searchInputLabel": "查詢任務",
