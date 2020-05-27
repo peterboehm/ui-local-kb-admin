@@ -71,7 +71,7 @@
     "job.deleted.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job deleted </strong>: {name}",
     "job.deleted.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job deleted </strong>: {name}",
     "job.deleted.success.org.olf.general.jobs.PackageIngestJob": "<strong>JSON package ingest job deleted </strong>: {name}",
-    "job.created.success": "Job <strong>{name}</strong> was successfully <strong>created</strong>",
+    "job.created.success": "Job <strong>{name}</strong> was successfully <strong>create</strong>",
     "job.created.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job created </strong>: {name}",
     "job.created.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job created </strong>: {name}",
     "job.created.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job created </strong>: {name}",
