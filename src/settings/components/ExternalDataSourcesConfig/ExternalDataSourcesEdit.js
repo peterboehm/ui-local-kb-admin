@@ -26,7 +26,9 @@ export default class ExternalDataSourcesEdit extends React.Component {
 
   validateUniqueName = (value, allValues) => {
     const { externalKbs } = allValues;
-    const uniqueNameSources = externalKbs.filter(externalKb => externalKb.name.toLowerCase() === value.toLowerCase());
+    const uniqueNameSources = externalKbs
+      .filter(ekb => ekb.name)
+      .filter(ekb => ekb.name.toLowerCase() === value.toLowerCase());
     if (uniqueNameSources.length > 1) {
       return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />;
     }
