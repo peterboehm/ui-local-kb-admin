@@ -3,6 +3,8 @@
 ## 2.0.0 IN PROGRESS
 * Upgrade to Stripes 4.0
 * Added translations
+* Added ability to set "Trusted for title instance metadata" value for local KB data sources. ERM-794 795
+* Bumped the required node version to 10
 
 ## 1.3.3 2020-03-11
 * Disabled tests
