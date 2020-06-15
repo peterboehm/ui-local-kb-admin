@@ -182,7 +182,7 @@ export default class Jobs extends React.Component {
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
         <Dropdown
-          buttonProps={{ buttonStyle: 'primary' }}
+          buttonProps={{ buttonStyle: 'primary', marginBottom0: true }}
           label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
           renderMenu={this.renderNewJobMenu}
         />
