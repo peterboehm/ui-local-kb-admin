@@ -92,7 +92,7 @@
     "job.JSONImportJob": "Задание на импорт JSON",
     "job.KBARTImportJob": "Задание на импорт KBART",
     "settings.externalDataSources.delete.confirmLabel": "Delete",
-    "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
+    "settings.externalDataSources.delete.confirmHeading": "Удалить внешний источник данных",
     "settings.externalDataSources.delete.confirmMessage": "External data source <strong>{name}</strong> will be <strong>deleted</strong>.",
     "permission.jobs.view": "Администрирование локальной БЗ: Просматривать задания",
     "permission.jobs.edit": "Администрирование локальной БЗ: Создавать задания",
